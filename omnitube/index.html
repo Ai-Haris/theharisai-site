@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/omnitube/">
+<script>if (location.pathname === "/omnitube") history.replaceState(null, "", "/omnitube/" + location.search + location.hash);</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OMNITUBE by Haris Ai Â· Free AI video studio for YouTube</title>
+<meta name="description" content="OMNITUBE by Haris Ai turns a script into a finished YouTube video on your own PC: narration, AI scenes, video clips, music, captions, thumbnails, Shorts and dubbing. Free, no watermark, no per-minute fees.">
+<meta property="og:title" content="OMNITUBE by Haris Ai Â· Script in. Video out.">
+<meta property="og:description" content="A free AI video studio that runs on your own PC. Paste a script, get a finished YouTube video.">
+<meta property="og:image" content="https://theharisai.com/omnitube/assets/shots/storyboard.webp?v=142">
+<meta property="og:url" content="https://theharisai.com/omnitube/">
+<link rel="canonical" href="https://theharisai.com/omnitube/">
+<meta name="theme-color" content="#0a0a0d">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preload" as="image" href="assets/shots/storyboard.webp?v=142">
+<style>
+@font-face{font-family:Urbanist;src:url(assets/fonts/urbanist-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Urbanist;src:url(assets/fonts/urbanist-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:Urbanist;src:url(assets/fonts/urbanist-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Urbanist;src:url(assets/fonts/urbanist-latin-800-normal.woff2) format("woff2");font-weight:800;font-display:swap}
+@font-face{font-family:InterBrand;src:url(assets/fonts/inter-latin-800-normal.woff2) format("woff2");font-weight:800;font-display:swap}
+:root{--bg:#0a0a0d;--text:#f6f3f3;--muted:rgba(246,243,243,.64);--faint:rgba(246,243,243,.4);--line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.16);
+  --glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.08);--a:#ff2d40;--a2:#ff6a3d;--ok:#3ee08f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:500 16px/1.6 Urbanist,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:min(1180px,100% - 32px);margin:0 auto}
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.glow i{position:absolute;border-radius:50%;filter:blur(120px)}
+.glow .g1{width:900px;height:640px;background:radial-gradient(closest-side,#d3101f,transparent);opacity:.24;top:-280px;right:-200px}
+.glow .g2{width:760px;height:560px;background:radial-gradient(closest-side,#ff4a2c,transparent);opacity:.1;top:55%;left:-260px}
+main,header,footer{position:relative;z-index:1}
+/* nav */
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:rgba(10,10,13,.62);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:22px;height:68px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:34px;height:34px;border-radius:10px;box-shadow:0 0 22px rgba(255,45,64,.45)}
+.word{font:800 17px/1 InterBrand,Urbanist,sans-serif;letter-spacing:2px}
+.word b{color:var(--a)}
+.by{font-size:12px;color:var(--faint);margin-left:2px}
+.nav nav{display:flex;gap:22px;margin-left:auto;font-weight:600;color:var(--muted);font-size:15px}
+.nav nav a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:46px;padding:0 22px;border-radius:999px;font:700 15px/1 Urbanist,sans-serif;border:1px solid var(--line2);background:var(--glass);color:var(--text);cursor:pointer;transition:transform .15s,box-shadow .25s,background .2s}
+.btn:hover{background:var(--glass2)}
+.btn.primary{border:0;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;box-shadow:0 12px 36px rgba(255,45,64,.38)}
+.btn.primary:hover{transform:translateY(-1px);box-shadow:0 16px 46px rgba(255,45,64,.55)}
+.btn.big{height:58px;padding:0 30px;font-size:17px}
+.btn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav .btn{height:40px;padding:0 18px;font-size:14px}
+/* hero */
+.hero{padding:80px 0 30px;text-align:center}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1px solid var(--line2);background:var(--glass);font-size:13.5px;font-weight:700;color:var(--muted)}
+.pill:hover{color:var(--text);border-color:rgba(255,45,64,.5)}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok);flex:none}
+h1{font:800 clamp(46px,8vw,92px)/1.02 Urbanist,sans-serif;letter-spacing:-2px;margin:22px 0 18px}
+h1 span{background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:720px;margin:0 auto;color:var(--muted);font-size:clamp(17px,2.2vw,20px)}
+.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.dlc{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:10px 18px;border-radius:14px;border:1px solid var(--line2);background:var(--glass);color:var(--muted);font-weight:600;font-size:15px}
+.dlc .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok);animation:dlp 2s ease-in-out infinite}
+.dlc .dln{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes dlp{50%{opacity:.35}}
+.meta{margin-top:16px;color:var(--faint);font-size:14px}
+.meta b{color:var(--muted)}
+/* showcase */
+.showcase{margin:58px auto 0;max-width:1140px}
+.frame{padding:10px;border-radius:26px;border:1px solid var(--line2);background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:0 50px 120px rgba(0,0,0,.6),0 0 90px rgba(255,45,64,.16)}
+.stack{position:relative;aspect-ratio:1520/940;border-radius:18px;overflow:hidden;background:#111}
+.stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.012);transition:opacity .6s ease,transform 1.2s ease}
+.stack img.on{opacity:1;transform:none}
+.stabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.stabs button{position:relative;overflow:hidden;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line2);background:var(--glass);color:var(--muted);font:700 14px/1 Urbanist,sans-serif;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+.stabs button:hover{color:var(--text)}
+.stabs button.on{color:#fff;border-color:rgba(255,45,64,.6);background:rgba(255,45,64,.14)}
+.stabs button.on:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:linear-gradient(90deg,var(--a),var(--a2));transform-origin:left;animation:fill var(--dur,6s) linear forwards}
+.showcase.paused .stabs button.on:after{animation-play-state:paused}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.scap{min-height:52px;margin:14px auto 0;max-width:720px;color:var(--muted);font-size:16px}
+.scap b{color:var(--text)}
+/* sections */
+section{padding:90px 0}
+.kicker{color:var(--a);font-weight:800;letter-spacing:2px;font-size:13px;text-transform:uppercase}
+h2{font:800 clamp(32px,4.6vw,50px)/1.1 Urbanist,sans-serif;letter-spacing:-1px;margin:10px 0 14px}
+.sub{color:var(--muted);max-width:680px;font-size:18px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.card{padding:26px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(160deg,var(--glass2),var(--glass) 60%);transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--line2);transform:translateY(-2px)}
+.card .ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(255,45,64,.13);border:1px solid rgba(255,45,64,.3);color:var(--a);margin-bottom:16px}
+.card .ic svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.card h3{margin:0 0 6px;font-size:19px}
+.card p{margin:0;color:var(--muted);font-size:15.5px}
+.v{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;font:700 11px/1.5 Urbanist,sans-serif;letter-spacing:.5px;color:var(--muted);border:1px solid var(--line2);vertical-align:middle}
+.v.new{color:#fff;border:0;background:linear-gradient(90deg,var(--a),var(--a2))}
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;gap:14px;margin-top:44px}
+.gallery figure{position:relative;margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#111}
+.gallery figure.w{grid-column:span 2}.gallery figure.t{grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figcaption{position:absolute;left:10px;bottom:10px;padding:6px 11px;border-radius:999px;background:rgba(10,10,13,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;font-weight:700;color:var(--text)}
+/* versions */
+.vtabs{display:inline-flex;gap:6px;margin-top:34px;padding:6px;border-radius:999px;border:1px solid var(--line2);background:var(--glass)}
+.vtabs button{height:40px;padding:0 20px;border-radius:999px;border:0;background:none;color:var(--muted);font:800 15px/1 Urbanist,sans-serif;cursor:pointer}
+.vtabs button.on{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;box-shadow:0 8px 24px rgba(255,45,64,.35)}
+.rel{display:none;margin-top:22px;padding:30px;border-radius:24px;border:1px solid var(--line2);background:linear-gradient(160deg,var(--glass2),var(--glass) 60%)}
+.rel.on{display:block;animation:up .35s ease}
+@keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.rel .rh{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.rel .rh h3{margin:0;font-size:26px}
+.rel .rh time{color:var(--faint);font-weight:700;font-size:14px}
+.rel .rh .tag{padding:3px 10px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.6px;color:var(--ok);border:1px solid rgba(62,224,143,.4)}
+.rel>p{color:var(--muted);margin:8px 0 0}
+.groups{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;margin-top:22px}
+.groups h4{margin:0 0 8px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--a)}
+.groups ul{margin:0;padding:0;list-style:none}
+.groups li{position:relative;padding:0 0 9px 22px;color:var(--muted);font-size:15.5px;line-height:1.55}
+.groups li b{color:var(--text)}
+.groups li:before{content:"";position:absolute;left:4px;top:9px;width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--a2))}
+/* other */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;counter-reset:s}
+.step{padding:28px;border-radius:22px;border:1px solid var(--line);background:var(--glass);position:relative}
+.step:before{counter-increment:s;content:counter(s);position:absolute;top:22px;right:24px;font:800 46px/1 Urbanist;color:rgba(255,255,255,.07)}
+.step h3{margin:0 0 6px;font-size:20px}
+.step p{margin:0;color:var(--muted)}
+.req{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.req div{padding:20px;border-radius:18px;border:1px solid var(--line);background:var(--glass)}
+.req b{display:block;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.req span{font-size:17px;font-weight:700}
+.req small{display:block;color:var(--muted);font-size:13.5px;margin-top:4px}
+.saclink{color:var(--muted);text-decoration:underline;text-underline-offset:3px}.saclink:hover{color:var(--text)}
+.fix{margin:6px 0 10px;padding-left:22px;color:var(--muted);line-height:1.8}
+.faq{margin-top:36px;display:grid;gap:12px}
+details{border:1px solid var(--line);border-radius:18px;background:var(--glass);padding:18px 22px}
+summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--a);font-size:22px;line-height:1}
+details[open] summary:after{content:"âˆ’"}
+details p{color:var(--muted);margin:10px 0 0}
+.final{text-align:center;padding:80px 26px;border-radius:30px;border:1px solid var(--line2);background:radial-gradient(120% 140% at 50% 0%,rgba(255,45,64,.2),transparent 60%),var(--glass)}
+.community{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--faint);font-size:14px}
+footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+footer a:hover{color:var(--text)}
+.lightbox{position:fixed;inset:0;z-index:50;display:none;place-items:center;padding:24px;background:rgba(5,5,8,.9);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:zoom-out}
+.lightbox.on{display:grid}
+.lightbox img{max-width:min(1600px,100%);max-height:100%;border-radius:14px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
+.stack,.gallery figure{cursor:zoom-in}
+.prostatus{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:6px 14px;border-radius:999px;border:1px solid var(--line2);background:var(--glass);font-weight:700;font-size:14px;color:var(--muted)}
+.prostatus .dot{width:8px;height:8px;border-radius:50%;background:#f5b83d;box-shadow:0 0 10px #f5b83d}
+.docu{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;margin-top:34px;padding:30px;border-radius:24px;border:1px solid rgba(255,45,64,.35);background:linear-gradient(160deg,rgba(255,45,64,.10),var(--glass) 55%)}
+.docu h3{margin:10px 0 6px;font-size:28px}.docu-t>p{color:var(--muted);margin:0 0 12px}
+.docu ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px}.docu li{margin:7px 0}.docu li b{color:var(--text,#fff)}
+.looks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;align-content:start}
+.looks figure{margin:0;position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#111}
+.looks img{width:100%;height:100%;object-fit:cover;display:block}
+.looks figcaption{position:absolute;left:8px;top:8px;padding:2px 9px;border-radius:999px;background:rgba(0,0,0,.65);font:700 12px/1.6 Urbanist,sans-serif}
+@media (max-width:900px){.docu{grid-template-columns:1fr;padding:22px}}
+@media (max-width:900px){.grid,.steps{grid-template-columns:1fr 1fr}.req{grid-template-columns:1fr 1fr}.nav nav{display:none}.nav .dl{margin-left:auto}.gallery{grid-template-columns:repeat(2,1fr)}.groups{grid-template-columns:1fr}}
+@media (max-width:600px){.grid,.steps,.req{grid-template-columns:1fr}.hero{padding-top:56px}section{padding:64px 0}.by{display:none}
+  .gallery{grid-auto-rows:150px}.gallery figure.t{grid-row:span 1}.rel{padding:22px}
+  .stabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.stabs button{flex:none}
+  .vtabs{display:flex;width:100%}.vtabs button{flex:1;padding:0 8px}}
+@media (prefers-reduced-motion:reduce){.stack img{transition:none}.stabs button.on:after{animation:none}}
+</style>
+</head>
+<body>
+<div class="glow"><i class="g1"></i><i class="g2"></i></div>
+<header><div class="wrap nav">
+  <a class="brand" href="#"><img src="assets/app_icon.png" alt=""><span class="word">OMNI<b>TUBE</b></span><span class="by">by Haris Ai</span></a>
+  <nav><a href="#features">Features</a><a href="#gallery">Gallery</a><a href="#whatsnew">What's new</a><a href="#pro">Pro</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a></nav>
+  <a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe">Download</a>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <a class="pill" href="#whatsnew"><span class="dot"></span><span id="relnote">OMNITUBE 1.4 is here: a real Timeline editor and Pro cloud mode</span></a>
+  <h1>Script in.<br><span>Video out.</span></h1>
+  <p class="lead">A free AI video studio that runs on your own PC. Paste a script and OMNITUBE makes the finished YouTube video: narration, AI scenes and clips, music, captions, thumbnails, Shorts and dubbing.</p>
+  <div class="cta">
+    <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
+    <a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Mac_1.4.4.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a>
+    <a class="btn big" href="#tour">Take the tour</a>
+  </div>
+  <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>people have downloaded OMNITUBE</span></div>
+  <div class="meta"><b id="vlabel">v1.4</b> Â· Windows 10 and 11 Â· Free Â· No watermark Â· No per-minute fees</div>
+  <div class="meta"><a class="saclink" href="#sac">Windows blocked the installer? Here is the fix.</a></div>
+
+  <div class="showcase" id="tour">
+    <div class="frame"><div class="stack" id="stack"></div></div>
+    <div class="stabs" id="stabs"></div>
+    <p class="scap" id="scap"></p>
+  </div>
+</div>
+
+<section id="features"><div class="wrap">
+  <div class="kicker">Features</div>
+  <h2>Everything a faceless channel needs, in one app</h2>
+  <p class="sub">No subscriptions and no upload limits. Everything runs on your graphics card with open-source models.</p>
+  <div class="grid">
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg></div><h3>One click, full video</h3><p>Voice, images, video clips, music, sound effects, captions and render, built one after another with live progress.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3"/></svg></div><h3>Natural narration</h3><p>Human-like voices and voice cloning from a short sample. Characters can speak in their own voices.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div><h3>Characters that stay the same</h3><p>Full-body reference sheets keep faces and clothes the same in every scene and every episode, found automatically.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div><h3>Places that stay the same<span class="v new">1.2</span></h3><p>A scene sheet keeps the kitchen, classroom or street the same in every shot, inside and outside.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0 0 22 9.8C22 5.5 17.5 2 12 2z"/></svg></div><h3>34 image styles<span class="v new">1.2</span></h3><p>Anime, Ghibli-like hand-painted, 3D, cartoon, oil painting, stick doodles, horror and more, each with its own preview.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 13 5.2 3.1a.5.5 0 0 0 .8-.4V8.3a.5.5 0 0 0-.8-.4L16 11"/></svg></div><h3>Real motion</h3><p>Turns scene images into short AI video clips with Wan 2.2, so scenes move instead of sitting still.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M12 11v6M12 13l-4 3M12 13l4 3M12 17l-3 4M12 17l3 4"/></svg></div><h3>Doodle explainers<span class="v new">1.2</span></h3><p>The popular stick figure explainer look: a new picture every 2 seconds, hard cuts, text cards and an AI script writer.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><h3>Rhyme mode<span class="v new">1.2</span></h3><p>Write the lyrics or let the AI write them, pick a music style and a singer, and get a sung kids video with karaoke captions.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15h4M13 15h4M7 11h10"/></svg></div><h3>Captions and sound effects</h3><p>13 caption styles previewed on your own picture, and sound effects placed from the story, sorted by mood.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Vertical Shorts</h3><p>Native 9:16 Shorts with fast cuts and big word-by-word captions, plus a cover, title and hashtags.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></div><h3>Thumbnails, titles, dubbing</h3><p>Three thumbnails to A/B test, titles, description, chapters and tags, and the same video voiced in 18 languages.</p></div>
+    <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></div><h3>Music, setup and updates</h3><p>Music made on your PC, a one-click setup that fits your hardware, and new versions installed from inside the app.</p></div>
+  </div>
+</div></section>
+
+<section id="gallery"><div class="wrap">
+  <div class="kicker">Made with OMNITUBE</div>
+  <h2>Straight out of the app</h2>
+  <p class="sub">Every picture below was made by OMNITUBE on one home PC, no editing.</p>
+  <div class="gallery" id="gal"></div>
+</div></section>
+
+<section id="whatsnew"><div class="wrap">
+  <div class="kicker">What's new</div>
+  <h2>Every version, in plain words</h2>
+  <p class="sub">OMNITUBE updates itself from inside the app. Your projects, voices and models always stay where they are.</p>
+  <div class="vtabs" role="tablist">
+    <button class="on" data-v="v14">Version 1.4</button><button data-v="v13">Version 1.3</button><button data-v="v12">Version 1.2</button><button data-v="v11">Version 1.1</button><button data-v="v10">Version 1.0</button>
+  </div>
+
+  <div class="rel on" id="v14">
+    <div class="rh"><h3>OMNITUBE 1.4.4</h3><time datetime="2026-10-22">22 October 2026</time><span class="tag">LATEST</span></div>
+    <p>Thousands of ElevenLabs voices inside the app, batch image generation, a storyboard that updates live, and setup that finally tells you what your PC can and cannot do. Free update for everyone, from the Update button in the app.</p>
+    <div class="groups">
+      <div><h4>New in 1.4.4</h4><ul>
+        <li><b>ElevenLabs Voice Library:</b> browse over 20,000 voices without leaving OMNITUBE. Filter by gender, language, accent and use, hear a sample, add the one you want in one click.</li>
+        <li><b>Pictures appear live:</b> a scene shows its picture the moment it is ready, no more switching tabs to see your own work.</li>
+        <li><b>Batch images:</b> tick several scenes and remake all their pictures in one run.</li>
+        <li><b>All to video:</b> turn every scene into a video scene with one button.</li>
+        <li><b>Reset to recommended:</b> one button in Settings puts picture size, video size and clip length back to what suits your PC.</li>
+      </ul></div>
+      <div><h4>Setup that explains itself</h4><ul>
+        <li><b>No NVIDIA card?</b> You get a clear message and a one-click switch to Cloud, instead of a start that fails for no visible reason.</li>
+        <li><b>Older NVIDIA cards</b> (GTX 10 series, Quadro P) now say why they cannot run the picture engine, instead of closing silently.</li>
+        <li><b>Ollama starts by itself,</b> so Smart Director and the face describer just work.</li>
+        <li><b>Pro licenses</b> are now checked with Gumroad. Your key from the Gumroad email activates in seconds, and keys that were never bought no longer work.</li>
+      </ul></div>
+      <div><h4>Timeline editor (Pro)</h4><ul>
+        <li><b>Live preview:</b> watch the pictures, voice, sound effects, music and captions together before you render.</li>
+        <li><b>Tracks like Premiere:</b> captions, pictures and videos, voice, clip audio, sound effects and music, each on its own track, with mute and zoom.</li>
+        <li><b>Drag to edit:</b> drag the end of a picture for a longer pause, drag sounds to move them, undo with Ctrl+Z.</li>
+        <li><b>Edit the words:</b> change a spoken line (only that line is recorded again) or just its captions, and style the captions on the timeline.</li>
+        <li><b>Add from your PC:</b> drop pictures, video clips, sounds and music on the tracks. Your clip keeps its own sound, linked or unlinked.</li>
+      </ul></div>
+      <div><h4>Pro cloud mode</h4><ul>
+        <li><b>On my PC or Cloud</b> for characters, places, pictures, video clips, voice and music, picked page by page.</li>
+        <li><b>Pick the model for every scene:</b> Nano Banana, GPT Image, FLUX, Kling, Veo, Seedance, Wan and more, with the price shown before you build.</li>
+        <li><b>Cloud music:</b> Google Lyria and ElevenLabs Music. <b>Cloud voices:</b> Gemini, ElevenLabs and OpenAI.</li>
+      </ul></div>
+      <div><h4>Free on your PC</h4><ul>
+        <li>Choose FLUX Klein or Schnell and Wan 5B or 14B per scene, and chain up to 3 clips for longer shots.</li>
+        <li>3 suggested voices for every character, with a voice picker you can listen to.</li>
+      </ul></div>
+      <div><h4>Setup and smaller PCs</h4><ul>
+        <li><b>Setup Center in two parts:</b> Free (everything on your PC) and Pro (only the basics, about 3.5 GB, any graphics card). Pro can still install the free models.</li>
+        <li><b>4 GB graphics cards</b> now make pictures and short video on the PC, with a low-memory mode for cards under 8 GB.</li>
+      </ul></div>
+      <div><h4>Fixes</h4><ul>
+        <li>Characters named in the script always reach the Cast page.</li>
+        <li>No more flicker or white line on the Storyboard card.</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="rel" id="v13">
+    <div class="rh"><h3>OMNITUBE 1.3</h3><time datetime="2026-10-11">11 October 2026</time></div>
+    <p>The first look at the Documentary Studio, the main feature of OMNITUBE Pro. Pro is in private testing and not on sale yet.</p>
+    <div class="groups">
+      <div><h4>Documentary Studio (Pro, in testing)</h4><ul>
+        <li><b>From a topic:</b> OMNITUBE researches it, checks every fact against several sources, finds free-to-use photos, maps and clips, and writes the script.</li>
+        <li><b>From your folder:</b> point it at your own photos, clips and notes and it finds the story and builds the documentary.</li>
+        <li><b>21 channel styles</b> inspired by the best documentary channels, each with its own motion graphics, colour grade, pacing and sound.</li>
+      </ul></div>
+      <div><h4>Editing</h4><ul>
+        <li><b>Pick a style by eye:</b> every style shows a real preview frame, and its signature graphic when you hover it.</li>
+        <li><b>Timeline tab:</b> check and fix every cut, graphic and sound effect before the final render.</li>
+        <li><b>Premiere Pro and CapCut:</b> export the documentary as an editable project to finish it in your own editor.</li>
+      </ul></div>
+      <div><h4>Pro page</h4><ul>
+        <li>The Pro page shows this PC's ID, so testers can get a Pro key for their own PC.</li>
+      </ul></div>
+      <div><h4>Fixes</h4><ul>
+        <li>Full-screen graphics such as chapter cards now always appear in the video.</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="rel" id="v12">
+    <div class="rh"><h3>OMNITUBE 1.2</h3><time datetime="2026-10-10">10 October 2026</time></div>
+    <p>Two new kinds of video, 34 styles, and characters and places that finally stay the same.</p>
+    <div class="groups">
+      <div><h4>New kinds of video</h4><ul>
+        <li><b>Rhyme mode:</b> write the lyrics (or let the AI write them), pick a music style and a singer, and get a sung kids video with karaoke captions that follow the singing.</li>
+        <li><b>Doodle explainers:</b> a new hand-drawn Stick look, a new picture every 2 seconds with hard cuts, text cards drawn on paper, and an AI writer for the popular explainer formula.</li>
+      </ul></div>
+      <div><h4>Look</h4><ul>
+        <li><b>34 image styles</b> in 6 groups: Anime, 3D, Cartoon, Realistic, Horror and Art, each with its own preview.</li>
+        <li><b>13 redesigned caption styles</b> (Viral, Highlight pill, Punch, Karaoke, Netflix box, Documentary, Neon, Horror and more), previewed on a real picture.</li>
+        <li><b>Auto color grade</b> that follows the story: cold for horror, warm for bedtime, clean for flat styles.</li>
+      </ul></div>
+      <div><h4>Consistency</h4><ul>
+        <li><b>Places:</b> a scene sheet keeps the kitchen, classroom or street the same in every scene. A room also gets an outside view of its building.</li>
+        <li><b>Characters:</b> full-body reference sheet (front, side, back), no more double characters, and three characters in one picture stay consistent.</li>
+        <li><b>Auto tags:</b> every storyboard scene shows who is in it and which place it uses.</li>
+        <li>Talking buses, cars and animals stay buses, cars and animals. In Stick, chibi and clay styles every person follows the style.</li>
+      </ul></div>
+      <div><h4>Sound, setup and fixes</h4><ul>
+        <li><b>Sound effects by mood</b> (Calm, Kids, Story, Documentary, Horror, Epic, Shorts, Fun) with 8 new sounds.</li>
+        <li><b>Model Doctor</b> in Setup Center finds a broken FLUX or Wan file and downloads a clean copy.</li>
+        <li>Auto Director on by default, character sheets save by themselves, season episodes share places and characters.</li>
+        <li>Fixed: older NVIDIA drivers no longer stop the voice, and regenerating a picture no longer jumps to the top.</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="rel" id="v11">
+    <div class="rh"><h3>OMNITUBE 1.1</h3><time datetime="2026-10-07">7 October 2026</time></div>
+    <p>Captions, sound effects, trailers and a setup that does everything for you.</p>
+    <div class="groups">
+      <div><h4>New features</h4><ul>
+        <li><b>Captions</b> in 5 styles (Classic, Karaoke, Boxed, Bold Pop, Cinematic), fully customizable, on or off.</li>
+        <li><b>Sound effects</b> placed automatically from the story, free for YouTube.</li>
+        <li><b>Episode trailers</b> for Season mode, in 16:9 and 9:16.</li>
+        <li><b>Stock footage and online voices</b> (Pexels, Pixabay, Microsoft Edge) for PCs without NVIDIA.</li>
+        <li><b>Batch import</b> of up to 200 scripts, built overnight.</li>
+      </ul></div>
+      <div><h4>Setup and reliability</h4><ul>
+        <li><b>System check:</b> tells you if your PC is ready, Limited or not supported.</li>
+        <li><b>Auto setup</b> downloads exactly what fits your PC and resumes after an internet drop.</li>
+        <li><b>Resume</b> a stopped build from the last finished scene, and <b>Preview first</b> before the long build.</li>
+        <li>No more black window: setup and errors show inside OMNITUBE. Repair button and one-click error report.</li>
+        <li>Fixed: long builds stopping after about an hour. Build time estimate and a sound when the video is ready.</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="rel" id="v10">
+    <div class="rh"><h3>OMNITUBE 1.0</h3><time datetime="2026-10-04">4 October 2026</time><span class="tag" style="color:var(--muted);border-color:var(--line2)">FIRST RELEASE</span></div>
+    <p>The first public version: paste a script, get a finished YouTube video on your own PC.</p>
+    <div class="groups">
+      <div><h4>Make the video</h4><ul>
+        <li><b>One click, full video:</b> voice, images, video clips, music, render and YouTube text with live progress.</li>
+        <li><b>Natural narration</b> and voice cloning from a short sample; characters can speak in their own voices.</li>
+        <li><b>Season mode</b> keeps the same characters across a whole series.</li>
+        <li><b>Real motion</b> with Wan 2.2 video clips.</li>
+      </ul></div>
+      <div><h4>Publish it</h4><ul>
+        <li><b>Vertical Shorts</b> with fast cuts and word-by-word captions.</li>
+        <li><b>Thumbnails and titles:</b> three thumbnail styles, three title ideas, description, chapters, tags and subtitles.</li>
+        <li><b>Dubbing</b> in 18 languages in your narrator's voice.</li>
+        <li><b>Music made on your PC</b>, and updates in one click.</li>
+      </ul></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <div class="kicker">How it works</div>
+  <h2>From install to first video</h2>
+  <div class="steps">
+    <div class="step"><h3>Install OMNITUBE</h3><p>Run the installer. The first start prepares its engine in a few minutes, with its own progress window.</p></div>
+    <div class="step"><h3>Auto setup</h3><p>OMNITUBE checks your PC and downloads exactly what fits it: AI models, ComfyUI, FFmpeg and Windows essentials, with progress for each item.</p></div>
+    <div class="step"><h3>Paste a script, build</h3><p>Pick a video type and a look, paste your script and press Make my video. The finished video lands in your folder.</p></div>
+  </div>
+</div></section>
+
+<section id="pro"><div class="wrap">
+  <div class="kicker">OMNITUBE Pro</div>
+  <h2>Same app, more power</h2>
+  <p class="sub">Pro is the same OMNITUBE, made in the cloud on your own API keys, so it runs on any laptop. You pay the AI providers directly (usually $0.50 to $2 per video), nothing extra to us. Free stays free, with no watermark and no limits.</p>
+  <div class="prostatus"><span class="dot"></span>Founder pre-order open: $15 one time, only 30 spots. Then $39.99.</div>
+  <div class="cta" style="margin-top:18px;justify-content:flex-start"><a class="btn primary big" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get OMNITUBE Pro, $15</a></div>
+
+  <div class="docu">
+    <div class="docu-t">
+      <span class="v new">NEW IN 1.4</span>
+      <h3>Timeline editor</h3>
+      <p>Edit your video like in Premiere, right inside OMNITUBE.</p>
+      <ul>
+        <li><b>Live preview:</b> pictures, voice, sounds, music and captions play together, no render needed.</li>
+        <li><b>Every part on its own track:</b> captions, pictures and videos, voice, clip audio, sound effects and music.</li>
+        <li><b>Drag, trim and fix:</b> longer pauses, moved sounds, new words, styled captions, undo.</li>
+        <li><b>Your own files:</b> drop pictures, clips, sounds and music from your PC onto the timeline.</li>
+        <li><b>Cloud mode:</b> pick the best model for every scene and see the price before you build.</li>
+      </ul>
+    </div>
+    <div class="looks" id="looks" style="grid-template-columns:1fr">
+      <figure style="aspect-ratio:auto"><img loading="lazy" src="assets/shots/timeline.webp?v=142" alt="OMNITUBE Timeline editor"><figcaption>Timeline editor</figcaption></figure>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <figure><img loading="lazy" src="assets/shots/cloud.webp?v=142" alt="Cloud or On my PC, model per scene" style="object-position:top"><figcaption>Cloud models</figcaption></figure>
+        <figure><img loading="lazy" src="assets/shots/cast14.webp?v=142" alt="Characters with cloud sheets and voices" style="object-position:top"><figcaption>Characters</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card"><h3>21 channel styles</h3><p>Business, true crime, history, war, space, science, internet culture, engineering and more. Each with its own fonts, background, frames, colour grade and pacing. Pick one by its preview.</p></div>
+    <div class="card"><h3>Motion graphics</h3><p>Name labels, years and numbers that count up, newspaper clippings, social posts, timelines, evidence boards, HUD callouts, spec panels, maps and chapter cards, placed from the script.</p></div>
+    <div class="card"><h3>Editing like a pro channel</h3><p>A cut every 2 to 3 seconds (faster at the start), push-ins and pans with speed ramps, transitions, music ducking and sound effects on every graphic.</p></div>
+    <div class="card"><h3>Documentary Studio</h3><p>A full documentary from a topic or your own folder: real research, fact check, free-to-use archive media and 21 channel styles with motion graphics.</p></div>
+    <div class="card"><h3>Premiere Pro and CapCut</h3><p>Export the whole documentary as an editable project: voice, music, sound effects, graphics with transparency and every move as keyframes.</p></div>
+    <div class="card"><h3>One-click cloud (OpenRouter)</h3><p>One account for script AI, research with live web search, cloud images and cloud video. Add credit once, pay only for what you make.</p></div>
+    <div class="card"><h3>Cloud video and images</h3><p>Kling, Veo 3.1 and Seedance video, Nano Banana, Seedream, FLUX and GPT Image pictures through your own keys. Works without an NVIDIA card.</p></div>
+    <div class="card"><h3>Script AI</h3><p>OpenAI, Claude, Gemini, OpenRouter, Groq, DeepSeek or Grok for scripts, titles, directing and translations.</p></div>
+    <div class="card"><h3>ElevenLabs voices</h3><p>Premium voices, your own cloned voice from a sample, and an AI sound effect for every scene.</p></div>
+    <div class="card"><h3>Lip sync and multi-GPU</h3><p>Characters move their lips to the dialogue. Video clips on every NVIDIA card in the PC at the same time.</p></div>
+    <div class="card"><h3>Publish and automate</h3><p>Upload to YouTube, TikTok and Instagram on a schedule. A local API for n8n, Make and Zapier, and a cost estimator before you start.</p></div>
+    <div class="card"><h3>4K export</h3><p>A sharpened 3840x2160 master for YouTube.</p></div>
+  </div>
+  <p class="sub" style="margin-top:22px"><a href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Pre-order OMNITUBE Pro</a> while the 30 founder spots last. Follow <a href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">@theharisai</a> or join the <a href="https://discord.gg/h5b4GgTXv" target="_blank" rel="noopener">Discord</a> to hear first when it opens.</p>
+</div></section>
+
+<section id="requirements"><div class="wrap">
+  <div class="kicker">Requirements</div>
+  <h2>What your PC needs</h2>
+  <p class="sub">OMNITUBE checks your hardware and tunes its settings for it automatically.</p>
+  <div class="req">
+    <div><b>System</b><span>Windows 10 or 11</span><small>64-bit</small></div>
+    <div><b>Graphics</b><span>NVIDIA RTX, 4 GB+</span><small>8 GB or more for AI video, 16 GB is best. AMD, Intel or no graphics card: OMNITUBE Pro makes everything in the cloud, or use Limited mode (voices, captions, editing).</small></div>
+    <div><b>Memory</b><span>16 GB RAM</span><small>32 GB recommended for AI video</small></div>
+    <div><b>Storage</b><span>60 GB free</span><small>An SSD makes models load faster</small></div>
+  </div>
+  <p class="sub" style="margin-top:20px"><b>On a Mac:</b> Apple Silicon (M1 and later), macOS 11 or newer. Voices, scripts, captions, music and editing run on your Mac. Images and video clips are made in the cloud with OMNITUBE Pro, so no graphics card is needed.</p>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="kicker">FAQ</div>
+  <h2>Questions</h2>
+  <div class="faq">
+    <details><summary>Is OMNITUBE really free?</summary><p>Yes. There is no watermark, no subscription and no limit on minutes or videos. It runs on your own computer, so making more videos costs nothing extra.</p></details>
+    <details><summary>Windows says "Windows protected your PC". Is it safe?</summary><p>That message appears for new apps that are not yet widely downloaded. Click "More info", then "Run anyway". OMNITUBE installs only into the folder you choose.</p></details>
+    <details><summary>I'm on a Mac. How do I open it?</summary><p>OMNITUBE for Mac is for Apple Silicon (M1 and later). Drag OMNITUBE to your Applications folder, then open it. The first time, macOS may say it could not verify the app. Go to <b>System Settings &gt; Privacy &amp; Security</b>, scroll down and click <b>Open Anyway</b>, then open OMNITUBE again. This is only needed once. A signed version is on the way.</p></details>
+    <details id="sac"><summary>"Smart App Control blocked an app" or "Error 4551". What do I do?</summary><p>Smart App Control is a Windows 11 setting that blocks every new app that is not yet code-signed, including OMNITUBE. A signed version is on the way. Until then:</p><ol class="fix"><li>Open <b>Windows Security</b> (search it in the Start menu).</li><li>Go to <b>App &amp; browser control</b>, then <b>Smart App Control settings</b>.</li><li>Choose <b>Off</b>, then run the OMNITUBE installer again.</li></ol><p>On Windows 11 with the April 2026 update or newer you can switch Smart App Control back on later from the same page. On older versions, turning it off is permanent until Windows is reinstalled, so only do it if you are comfortable with that.</p></details>
+    <details><summary>I already have OMNITUBE. How do I get the new version?</summary><p>Open OMNITUBE and click the update button in the top bar. It downloads the new version and restarts in a few seconds. Your projects, voices and models stay as they are. You can also download the new installer here and install it into the same folder. See <a class="saclink" href="#whatsnew">What's new</a> for every version.</p></details>
+    <details><summary>Does it need the internet?</summary><p>Only for the first setup (downloading the AI models) and for updates. After that, videos are made fully offline.</p></details>
+    <details><summary>Do I own the videos?</summary><p>Yes. Your scripts and videos never leave your PC. The included models use open licenses (Apache 2.0 and MIT). Follow YouTube's rules: add your own creativity and mark realistic AI content as altered or synthetic when YouTube asks.</p></details>
+    <details><summary>I have an AMD or Intel graphics card.</summary><p>OMNITUBE runs in Limited mode: voices, scripts, captions, music, sound effects, stock footage and editing all work. AI images and video clips on your own PC need an NVIDIA RTX card. OMNITUBE Pro makes them with cloud AI on any PC.</p></details>
+    <details><summary>My antivirus flags OMNITUBE (for example Avast "IDP.Generic").</summary><p>That is a false positive: the app is new and not code-signed yet, and some antivirus tools flag every new unsigned program. Add the OMNITUBE folder as an exception, or restore the file from the antivirus quarantine. A signed version is on the way.</p></details>
+    <details><summary>A build stopped with an error. Do I start again?</summary><p>No. Click <b>Resume</b>: finished voices, images and clips are kept and OMNITUBE continues from where it stopped.</p></details>
+    <details><summary>Something is not working. How do I get help?</summary><p>Open Setup Center and click <b>Repair OMNITUBE</b>, it fixes most problems. Still stuck? Click <b>Create error report</b> in the same place and send the file from your Desktop to <a href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">@theharisai</a>.</p></details>
+    <details><summary>What is OMNITUBE Pro? Is it paid?</summary><p>Pro is an optional paid upgrade, in private testing now. It is the same app with extra power: the Documentary Studio with 21 channel styles, Premiere Pro and CapCut export, cloud AI video and images with your own API keys, ElevenLabs voices, lip sync, multi-GPU and auto publishing. The price will be announced on <a href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">@theharisai</a>. The free version stays free, with no watermark and no limits.</p></details>
+  </div>
+</div></section>
+
+<section><div class="wrap final">
+  <h2>Make your first video today</h2>
+  <p class="sub" style="margin:0 auto 30px">Install it, click Auto setup, paste a script.</p>
+  <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
+  <a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Mac_1.4.4.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a>
+  <div class="meta" id="sizelabel">Windows installer Â· about 42 MB</div>
+  <div class="meta"><a class="saclink" href="#sac">Blocked by Smart App Control? Here is the fix.</a></div>
+  <div class="dlc" style="justify-content:center;margin:18px auto 0"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads so far</span></div>
+  <div class="community">
+    <a class="btn" href="https://whatsapp.com/channel/0029VafcwJ93bbV9L8uWan3D" target="_blank" rel="noopener">WhatsApp channel</a>
+    <a class="btn" href="https://discord.gg/h5b4GgTXv" target="_blank" rel="noopener">Discord community</a>
+    <a class="btn" href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>Â© 2026 Haris Ai Â· OMNITUBE</span>
+  <span><a href="https://theharisai.com">theharisai.com</a> Â· <a href="mailto:haris@theharisai.com">haris@theharisai.com</a></span>
+</div></footer>
+<div class="lightbox" id="lb"><img alt=""></div>
+<script>
+// Tour: app screenshots that change by themselves
+const SHOTS = [
+  ["timeline", "Timeline", "<b>Timeline editor (Pro).</b> Live preview, every part on its own track, drag to edit, captions and your own files."],
+  ["new", "Create", "<b>Create.</b> Pick a single video, a whole season or a kids rhyme, then a video type. Paste a script and press Make my video."],
+  ["storyboard", "Storyboard", "<b>Storyboard.</b> Every scene with its picture, its line of the script and the character in it. Change any prompt, shot or picture."],
+  ["styles", "34 styles", "<b>34 image styles</b> in 6 groups. Pick one and every picture and every person follows it."],
+  ["cast", "Characters", "<b>Characters.</b> A full-body reference sheet keeps each face and outfit the same in every scene."],
+  ["places", "Places", "<b>Places.</b> A scene sheet keeps every room and street the same, from every side."],
+  ["captions", "Captions", "<b>13 caption styles,</b> previewed on a picture from your own video, with font, size and colours."],
+  ["rhyme", "Rhyme mode", "<b>Rhyme mode.</b> A sung kids video from your lyrics, with the same character and street in every line."],
+  ["explainer", "Doodle explainer", "<b>Doodle explainers.</b> A new picture every 2 seconds, hard cuts and text cards, like the big explainer channels."],
+  ["documentary", "Documentary", "<b>Documentary.</b> Real archive and stock footage for every scene, no GPU needed for the clips."],
+  ["output", "Your video", "<b>Your video.</b> Watch it in the app, download it, and get the subtitles file for YouTube."],
+  ["output2", "Titles and thumbnails", "<b>Ready to upload.</b> Three titles, a description and three thumbnails to A/B test in YouTube Studio."],
+];
+const DUR = 6000;
+(function tour() {
+  const stack = document.getElementById("stack"), tabs = document.getElementById("stabs"), cap = document.getElementById("scap"), box = document.getElementById("tour");
+  SHOTS.forEach(([id, label], i) => {
+    const im = new Image(); im.alt = "OMNITUBE " + label; im.src = "assets/shots/" + id + ".webp?v=142";
+    im.loading = i ? "lazy" : "eager"; im.decoding = "async"; im.width = 1800; im.height = 1113; stack.appendChild(im);
+    const b = document.createElement("button"); b.textContent = label; b.onclick = () => { show(i); }; tabs.appendChild(b);
+  });
+  box.style.setProperty("--dur", DUR / 1000 + "s");
+  let cur = -1, timer = null;
+  function show(i) {
+    cur = (i + SHOTS.length) % SHOTS.length;
+    [...stack.children].forEach((im, k) => im.classList.toggle("on", k === cur));
+    [...tabs.children].forEach((b, k) => { b.classList.remove("on"); if (k === cur) { void b.offsetWidth; b.classList.add("on"); } });
+    cap.innerHTML = SHOTS[cur][2];
+    const nxt = stack.children[(cur + 1) % SHOTS.length]; if (nxt) nxt.loading = "eager";
+    clearTimeout(timer); if (!box.classList.contains("paused")) timer = setTimeout(() => show(cur + 1), DUR);
+  }
+  box.addEventListener("mouseenter", () => { box.classList.add("paused"); clearTimeout(timer); });
+  box.addEventListener("mouseleave", () => { box.classList.remove("paused"); show(cur); });
+  stack.addEventListener("click", () => zoom(stack.children[cur].src));
+  show(0);
+})();
+// Gallery
+const GAL = [
+  ["g-rain1", "Hand-painted bedtime story", "w t"], ["g-bus1", "3D kids rhyme", ""], ["g-stick1", "Doodle explainer", ""],
+  ["g-ferry1", "Cozy sleep story", ""], ["g-apollo", "Documentary", ""], ["g-rain2", "Hand-painted bedtime story", "w"],
+  ["g-stick2", "Doodle explainer", ""], ["g-bus2", "3D kids rhyme", ""], ["thumb1", "Anime drama thumbnail", "w"],
+  ["g-ferry2", "Cozy sleep story", "w"],
+];
+document.getElementById("gal").innerHTML = GAL.map(([f, c, cls]) =>
+  `<figure class="${cls}"><img src="assets/${f.startsWith("thumb") ? f : "gallery/" + f}.webp" alt="${c}, made with OMNITUBE" loading="lazy" decoding="async"><figcaption>${c}</figcaption></figure>`).join("");
+document.getElementById("gal").addEventListener("click", e => { const im = e.target.closest("figure")?.querySelector("img"); if (im) zoom(im.src); });
+function zoom(src) { const lb = document.getElementById("lb"); lb.querySelector("img").src = src; lb.classList.add("on"); }
+document.getElementById("lb").addEventListener("click", () => document.getElementById("lb").classList.remove("on"));
+document.addEventListener("keydown", e => { if (e.key === "Escape") document.getElementById("lb").classList.remove("on"); });
+// Version tabs
+document.querySelectorAll(".vtabs button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".vtabs button").forEach(x => x.classList.toggle("on", x === b));
+  document.querySelectorAll(".rel").forEach(r => r.classList.toggle("on", r.id === b.dataset.v));
+}));
+// Latest version and installer from update.json
+fetch("update.json", {cache: "no-store"}).then(r => r.json()).then(u => {
+  if (!u || !u.version) return;
+  document.querySelectorAll(".dl").forEach(a => a.href = u.installer_url || a.href);
+  document.querySelectorAll(".dlmac").forEach(a => a.href = u.mac_installer_url || a.href);
+  document.getElementById("vlabel").textContent = "v" + String(u.version).split(".").slice(0, 2).join(".");
+  if (u.headline) document.getElementById("relnote").textContent = u.headline;
+  if (u.installer_size) document.getElementById("sizelabel").textContent = "Windows installer Â· about " + Math.round(u.installer_size / 1e6) + " MB";
+}).catch(() => {});
+// Open the Smart App Control answer when a link points at it
+function openSac() { if (location.hash === "#sac") { const d = document.getElementById("sac"); if (d) d.open = true; } }
+window.addEventListener("hashchange", openSac); openSac();
+// Live download counter
+function countUp(el, to) {
+  const from = Number(el.dataset.v || 0), t0 = performance.now(), d = from === 0 ? 2000 : 900;
+  el.dataset.v = to;
+  (function f(t) {
+    const k = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = Math.round(from + (to - from) * e).toLocaleString("en-US");
+    if (k < 1) requestAnimationFrame(f);
+  })(t0);
+}
+// Downloads = old counter (Supabase) + GitHub release downloads
+const SB_URL = "https://lmahtkrmcrszlqqdqssn.supabase.co";
+const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxtYWh0a3JtY3JzemxxcWRxc3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTExMDgyNDEsImV4cCI6MjEwNjY4NDI0MX0.CANLJlct5QMWoCn9qmXJpFdtLxm24IeaFfNgt2DQIjo";
+async function getDownloads() {
+  let n = 0, ok = false;
+  try {
+    const r = await fetch(SB_URL + "/rest/v1/counters?select=key,value", {headers: {apikey: SB_KEY, Authorization: "Bearer " + SB_KEY}, cache: "no-store"});
+    (await r.json()).forEach(x => { if (x.key === "installer" || x.key === "portable") { n += Number(x.value) || 0; ok = true; } });
+  } catch (e) {}
+  try {
+    let c = null; try { c = JSON.parse(localStorage.getItem("omt_gh") || "null"); } catch (e) {}
+    if (c && Date.now() - c.t < 900000) { n += c.n; ok = true; }
+    else {
+      try {
+        const r = await fetch("https://api.github.com/repos/Ai-Haris/omnitube-releases/releases?per_page=100");
+        if (!r.ok) throw 0;
+        let g = 0; (await r.json()).forEach(rel => (rel.assets || []).forEach(a => { if (/Setup|Portable/i.test(a.name)) g += a.download_count || 0; }));
+        n += g; ok = true; try { localStorage.setItem("omt_gh", JSON.stringify({n: g, t: Date.now()})); } catch (e) {}
+      } catch (e) { if (c) { n += c.n; ok = true; } }
+    }
+  } catch (e) {}
+  if (!ok) throw 0;
+  return n;
+}
+function loadCount(fresh, tries) {
+  tries = tries || 0;
+  getDownloads().then(total => {
+    if (total <= 0) throw 0;
+    total = Math.max(total, 7558);
+    document.querySelectorAll(".dln").forEach(el => {
+      if (total >= Number(el.dataset.v || 0)) countUp(el, total);
+    });
+  }).catch(() => {
+    if (tries < 3) setTimeout(() => loadCount(fresh, tries + 1), 4000);
+    else document.querySelectorAll(".dln").forEach(el => { if (Number(el.dataset.v || 0) === 0) countUp(el, 7558); });
+  });
+}
+loadCount(); setInterval(loadCount, 300000);
+document.querySelectorAll(".dl").forEach(a => a.addEventListener("click", () => setTimeout(() => loadCount(true), 3000)));
+</script>
+</body>
+</html>

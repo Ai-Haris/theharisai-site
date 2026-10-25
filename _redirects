@@ -1,0 +1,5 @@
+/omnitube /omnitube/ 301
+/omnitube/api/download https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe 302
+/api/download https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe 302
+/omnitube/downloads/* https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/:splat 302
+/downloads/* https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/:splat 302

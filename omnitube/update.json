@@ -1,0 +1,26 @@
+{
+  "version": "1.4.4",
+  "date": "2026-10-22",
+  "headline": "OMNITUBE 1.4.4: thousands of ElevenLabs voices, batch images and clearer setup",
+  "notes": [
+    "ElevenLabs Voice Library: browse 20,000+ voices, filter by gender, language and use, hear a sample and add the one you want",
+    "Pictures now appear on the storyboard the moment they are ready, no more switching tabs",
+    "Batch: tick several scenes and remake their pictures in one run",
+    "New All to video button turns every scene into a video scene at once",
+    "PCs without an NVIDIA card get a clear message and a one-click switch to Cloud instead of a failed start",
+    "Older NVIDIA cards (GTX 10 series and Quadro P) now say why they cannot run the picture engine",
+    "Ollama now starts by itself, so Smart Director and the face describer just work",
+    "Reset to recommended in Settings puts picture size, video size and clip length back to what suits your PC",
+    "Pro licenses are now checked with Gumroad. Your key from the Gumroad email works on one PC, and fake keys no longer work"
+  ],
+  "installer_file": "OMNITUBE_Setup_1.4.4.exe",
+  "update_file": "OMNITUBE_update_1.4.4.zip",
+  "portable_file": "OMNITUBE_Portable_1.4.4.zip",
+  "update_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_update_1.4.4.zip",
+  "update_size": 31438793,
+  "update_sha256": "876264ce7c6158d8f8d0a7b37906023b18eab5fb2778e0575a97c291c357506b",
+  "installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe",
+  "installer_size": 42251987,
+  "mac_installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Mac_1.4.4.dmg",
+  "portable_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Portable_1.4.4.zip"
+}
