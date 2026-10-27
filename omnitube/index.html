@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -171,7 +171,7 @@ footer a:hover{color:var(--text)}
 <div class="glow"><i class="g1"></i><i class="g2"></i></div>
 <header><div class="wrap nav">
   <a class="brand" href="#"><img src="assets/app_icon.png" alt=""><span class="word">OMNI<b>TUBE</b></span><span class="by">by Haris Ai</span></a>
-  <nav><a href="#features">Features</a><a href="#gallery">Gallery</a><a href="#whatsnew">What's new</a><a href="#pro">Pro</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a></nav>
+  <nav><a href="#features">Features</a><a href="#gallery">Gallery</a><a href="#whatsnew">What's new</a><a href="#howtouse">How to use</a><a href="#pro">Pro</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a></nav>
   <a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe">Download</a>
 </div></header>
 
@@ -377,6 +377,81 @@ footer a:hover{color:var(--text)}
   </div>
 </div></section>
 
+
+<section id="howtouse"><div class="wrap">
+  <div class="kicker">How to use</div>
+  <h2>Write a script, get a video</h2>
+  <p class="sub">OMNITUBE turns a plain text script into a finished video. Pick your mode, write your script and press Make my video.</p>
+
+  <div style="background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:18px;padding:28px 32px;margin:32px 0">
+    <div class="kicker" style="margin-bottom:12px">Script format</div>
+    <p style="color:var(--muted);margin:0 0 18px">Every script follows the same pattern. Use it in any mode.</p>
+    <pre style="background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 22px;font-size:0.82em;overflow-x:auto;line-height:1.7;margin:0"><code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#f6f3f3"># Declare characters once at the top
+[CAST: Zara = 28, red jacket, short dark hair, confident]
+[CAST: Leo = 35, grey suit, glasses, calm]
+
+# Each heading is a new scene
+
+# The Discovery
+
+# Describe the visual for each scene
+[IMG: rooftop at sunset, Zara leaning on railing, city below, golden light, wide shot]
+
+# Plain text becomes the narrator voice
+She had been here a thousand times. But tonight felt different.
+
+# The Conversation
+
+[IMG: rooftop, Zara and Leo facing each other, tense, close shot]
+
+Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code></pre>
+  </div>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:8px">
+
+    <div class="card" style="border-top:3px solid var(--a)">
+      <div class="kicker" style="margin-bottom:10px">Mode 1</div>
+      <h3>Single Story</h3>
+      <p>A complete standalone video from one script. Every heading is a scene, with its own image prompt and narration. Great for fairy tales, explainers, mini-documentaries and short films.</p>
+      <ul style="padding-left:18px;color:var(--muted);font-size:0.9em;line-height:1.8;margin:14px 0 0">
+        <li>Declare [CAST:] once at the top</li>
+        <li>Use # headings for each scene</li>
+        <li>[IMG:] sets the visual for that scene</li>
+        <li>Plain text below becomes narration</li>
+        <li>Everything in one file, one video</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-top:3px solid #7c5cff">
+      <div class="kicker" style="margin-bottom:10px">Mode 2</div>
+      <h3>Season</h3>
+      <p>A multi-episode series where characters and the world carry over between episodes. Reuse the same [CAST:] names and OMNITUBE keeps faces consistent across all of them.</p>
+      <ul style="padding-left:18px;color:var(--muted);font-size:0.9em;line-height:1.8;margin:14px 0 0">
+        <li>Same cast names across all episodes</li>
+        <li>Shared world, growing story arc</li>
+        <li>Each episode is its own script file</li>
+        <li>OMNITUBE links them into a series</li>
+        <li>Great for drama, sci-fi, story series</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-top:3px solid #2dd4bf">
+      <div class="kicker" style="margin-bottom:10px">Mode 3</div>
+      <h3>Rhyme</h3>
+      <p>Rhythmic, poem-style scripts where every line sings. The AI matches visuals to the beat of the words. Perfect for kids content, nursery rhymes and short poetic social clips.</p>
+      <ul style="padding-left:18px;color:var(--muted);font-size:0.9em;line-height:1.8;margin:14px 0 0">
+        <li>Write in rhyming couplets or verses</li>
+        <li>[IMG:] sets the scene for each verse</li>
+        <li>Pacing follows the rhythm of the text</li>
+        <li>No [CAST:] needed, imagery-driven</li>
+        <li>Short, punchy, made for sharing</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <p class="sub" style="margin-top:28px">Not sure where to start? Open OMNITUBE, pick <b>Single Story</b>, choose a channel style, paste any short story and press <b>Make my video</b>.</p>
+</div></section>
 <section id="pro"><div class="wrap">
   <div class="kicker">OMNITUBE Pro</div>
   <h2>Same app, more power</h2>
