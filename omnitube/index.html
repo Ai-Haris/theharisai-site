@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -442,7 +442,7 @@ footer a:hover{color:var(--text)}
   <div class="faq">
     <details><summary>Is OMNITUBE really free?</summary><p>Yes. There is no watermark, no subscription and no limit on minutes or videos. It runs on your own computer, so making more videos costs nothing extra.</p></details>
     <details><summary>Windows says "Windows protected your PC". Is it safe?</summary><p>That message appears for new apps that are not yet widely downloaded. Click "More info", then "Run anyway". OMNITUBE installs only into the folder you choose.</p></details>
-    <details><summary>I'm on a Mac. How do I open it?</summary><p>OMNITUBE for Mac is for Apple Silicon (M1 and later). Drag OMNITUBE to your Applications folder, then open it. The first time, macOS may say it could not verify the app. Go to <b>System Settings &gt; Privacy &amp; Security</b>, scroll down and click <b>Open Anyway</b>, then open OMNITUBE again. This is only needed once. A signed version is on the way.</p></details>
+    <details id="mac-install"><summary>I'm on a Mac. How do I open it?</summary><p>OMNITUBE for Mac is for Apple Silicon (M1 and later). Drag OMNITUBE to your Applications folder, then open it. The first time, macOS may say it could not verify the app. Go to <b>System Settings &gt; Privacy &amp; Security</b>, scroll down and click <b>Open Anyway</b>, then open OMNITUBE again. This is only needed once.</p><p><b>Faster fix using Terminal:</b> Open Terminal and paste this command, then press Return. After that, open OMNITUBE normally.</p><pre style="background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 18px;font-size:0.83em;overflow-x:auto;margin:12px 0;line-height:1.5"><code style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#f6f3f3">xattr -dr com.apple.quarantine /Applications/OMNITUBE.app</code></pre><p>A signed version is on the way.</p></details>
     <details id="sac"><summary>"Smart App Control blocked an app" or "Error 4551". What do I do?</summary><p>Smart App Control is a Windows 11 setting that blocks every new app that is not yet code-signed, including OMNITUBE. A signed version is on the way. Until then:</p><ol class="fix"><li>Open <b>Windows Security</b> (search it in the Start menu).</li><li>Go to <b>App &amp; browser control</b>, then <b>Smart App Control settings</b>.</li><li>Choose <b>Off</b>, then run the OMNITUBE installer again.</li></ol><p>On Windows 11 with the April 2026 update or newer you can switch Smart App Control back on later from the same page. On older versions, turning it off is permanent until Windows is reinstalled, so only do it if you are comfortable with that.</p></details>
     <details><summary>I already have OMNITUBE. How do I get the new version?</summary><p>Open OMNITUBE and click the update button in the top bar. It downloads the new version and restarts in a few seconds. Your projects, voices and models stay as they are. You can also download the new installer here and install it into the same folder. See <a class="saclink" href="#whatsnew">What's new</a> for every version.</p></details>
     <details><summary>Does it need the internet?</summary><p>Only for the first setup (downloading the AI models) and for updates. After that, videos are made fully offline.</p></details>
@@ -594,6 +594,13 @@ function loadCount(fresh, tries) {
 }
 loadCount(); setInterval(loadCount, 300000);
 document.querySelectorAll(".dl").forEach(a => a.addEventListener("click", () => setTimeout(() => loadCount(true), 3000)));
+// Mac download: scroll to and open Mac install FAQ
+document.querySelectorAll(".dlmac").forEach(a => a.addEventListener("click", () => {
+  const el = document.getElementById("mac-install");
+  if (!el) return;
+  el.open = true;
+  setTimeout(() => el.scrollIntoView({behavior: "smooth", block: "start"}), 200);
+}));
 </script>
 </body>
 </html>
