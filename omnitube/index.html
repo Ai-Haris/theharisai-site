@@ -1,13 +1,13 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <base href="/omnitube/">
 <script>if (location.pathname === "/omnitube") history.replaceState(null, "", "/omnitube/" + location.search + location.hash);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OMNITUBE by Haris Ai Â· Free AI video studio for YouTube</title>
+<title>OMNITUBE by Haris Ai · Free AI video studio for YouTube</title>
 <meta name="description" content="OMNITUBE by Haris Ai turns a script into a finished YouTube video on your own PC: narration, AI scenes, video clips, music, captions, thumbnails, Shorts and dubbing. Free, no watermark, no per-minute fees.">
-<meta property="og:title" content="OMNITUBE by Haris Ai Â· Script in. Video out.">
+<meta property="og:title" content="OMNITUBE by Haris Ai · Script in. Video out.">
 <meta property="og:description" content="A free AI video studio that runs on your own PC. Paste a script, get a finished YouTube video.">
 <meta property="og:image" content="https://theharisai.com/omnitube/assets/shots/storyboard.webp?v=142">
 <meta property="og:url" content="https://theharisai.com/omnitube/">
@@ -186,7 +186,7 @@ footer a:hover{color:var(--text)}
     <a class="btn big" href="#tour">Take the tour</a>
   </div>
   <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>people have downloaded OMNITUBE</span></div>
-  <div class="meta"><b id="vlabel">v1.4</b> Â· Windows 10 and 11 Â· Free Â· No watermark Â· No per-minute fees</div>
+  <div class="meta"><b id="vlabel">v1.4</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees</div>
   <div class="meta"><a class="saclink" href="#sac">Windows blocked the installer? Here is the fix.</a>&ensp;&middot;&ensp;<a class="saclink" href="#mac-install" onclick="var e=document.getElementById('mac-install');if(e)e.open=true">On a Mac? Here is how to open it.</a></div>
 
   <div class="showcase" id="tour">
@@ -535,7 +535,7 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
   <p class="sub" style="margin:0 auto 30px">Install it, click Auto setup, paste a script.</p>
   <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
   <a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Mac_1.4.4.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a>
-  <div class="meta" id="sizelabel">Windows installer Â· about 42 MB</div>
+  <div class="meta" id="sizelabel">Windows installer · about 42 MB</div>
   <div class="meta"><a class="saclink" href="#sac">Blocked by Smart App Control? Here is the fix.</a></div>
   <div class="dlc" style="justify-content:center;margin:18px auto 0"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads so far</span></div>
   <div class="community">
@@ -547,8 +547,8 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
 </main>
 
 <footer><div class="wrap">
-  <span>Â© 2026 Haris Ai Â· OMNITUBE</span>
-  <span><a href="https://theharisai.com">theharisai.com</a> Â· <a href="mailto:haris@theharisai.com">haris@theharisai.com</a></span>
+  <span>Â© 2026 Haris Ai · OMNITUBE</span>
+  <span><a href="https://theharisai.com">theharisai.com</a> · <a href="mailto:haris@theharisai.com">haris@theharisai.com</a></span>
 </div></footer>
 <div class="lightbox" id="lb"><img alt=""></div>
 <script>
@@ -615,7 +615,7 @@ fetch("update.json", {cache: "no-store"}).then(r => r.json()).then(u => {
   document.querySelectorAll(".dlmac").forEach(a => a.href = u.mac_installer_url || a.href);
   document.getElementById("vlabel").textContent = "v" + String(u.version).split(".").slice(0, 2).join(".");
   if (u.headline) document.getElementById("relnote").textContent = u.headline;
-  if (u.installer_size) document.getElementById("sizelabel").textContent = "Windows installer Â· about " + Math.round(u.installer_size / 1e6) + " MB";
+  if (u.installer_size) document.getElementById("sizelabel").textContent = "Windows installer · about " + Math.round(u.installer_size / 1e6) + " MB";
 }).catch(() => {});
 // Open the Smart App Control answer when a link points at it
 function openSac() { if (location.hash === "#sac") { const d = document.getElementById("sac"); if (d) d.open = true; } }
@@ -679,3 +679,4 @@ document.querySelectorAll(".dlmac").forEach(a => a.addEventListener("click", () 
 </script>
 </body>
 </html>
+
