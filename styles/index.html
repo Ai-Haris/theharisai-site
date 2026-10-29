@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="10 free motion graphics styles drawn in code, in 1080p 60fps. Watch a sample, set voiceover, facecam and screenshots, copy the prompt into Claude and get the look for your own video.">
+<link rel="canonical" href="https://theharisai.com/styles/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Motion Styles Library by Haris Ai">
+<meta property="og:description" content="10 free code-drawn motion graphics styles in 1080p 60fps. Copy the prompt into Claude, get the look for your own video.">
+<meta property="og:url" content="https://theharisai.com/styles/">
+<meta property="og:image" content="https://theharisai.com/styles/thumbs/06-orbit-title.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://theharisai.com/styles/thumbs/06-orbit-title.jpg">
+<title>Motion Styles Library · Free Motion Graphics for Claude · Haris Ai</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Layout: a dark studio shelf. Hero line, family filters, a three-column card grid, a Pro teaser band; each card opens a sheet with the sample video and a "make it yours" prompt builder. One dark look by choice, matching theharisai.com. */
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0d;
+  --card: #131318;
+  --card2: #1a1a21;
+  --ink: #f6f3f3;
+  --dim: #a19fab;
+  --line: #2a2a33;
+  --red: #ff4655;
+  --red2: #ff7a59;
+  --display: "Urbanist", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--display); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 40px; }
+.wrap { max-width: 1160px; margin: 0 auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.hero { padding-block: 56px 28px; display: grid; gap: 14px; }
+.eyebrow { font: 700 13px var(--display); letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin: 0; }
+h1 { font: 900 clamp(40px, 7vw, 76px)/0.98 var(--display); letter-spacing: -0.03em; margin: 0; text-wrap: balance; max-width: 15ch; }
+h1 em { font-style: normal; background: linear-gradient(90deg, var(--red), var(--red2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lede { font-size: 18px; color: var(--dim); max-width: 60ch; margin: 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.stat { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; color: var(--dim); }
+.stat b { color: var(--ink); font-weight: 800; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; padding-block: 8px 22px; }
+.chip { border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 8px 14px; font-weight: 600; font-size: 14px; cursor: pointer; }
+.chip span { color: var(--dim); font-weight: 500; margin-left: 4px; }
+.chip[aria-pressed="true"] { background: var(--ink); color: #0a0a0d; border-color: var(--ink); }
+.chip[aria-pressed="true"] span { color: #55545c; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 960px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; text-align: left; padding: 0; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; }
+.card:hover { transform: translateY(-3px); border-color: #3d3d48; }
+.thumb { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: #000; overflow: hidden; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb.tall img { object-fit: contain; background: #f7b500; }
+.free { position: absolute; top: 10px; left: 10px; background: var(--ink); color: #0a0a0d; font: 800 11px var(--display); letter-spacing: 0.12em; padding: 4px 9px; border-radius: 999px; }
+.ratio { position: absolute; top: 10px; right: 10px; background: rgba(10,10,13,0.75); font: 700 11px var(--mono); padding: 4px 8px; border-radius: 6px; }
+.body { padding: 16px 18px 20px; display: grid; gap: 6px; min-width: 0; }
+.meta { font: 600 13px var(--display); color: var(--dim); }
+.meta b { color: var(--red); font-family: var(--mono); font-weight: 700; margin-right: 6px; }
+.card h2 { font: 800 25px/1.15 var(--display); margin: 0; letter-spacing: -0.01em; }
+.card p { margin: 0; color: var(--dim); font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.go { margin-top: 8px; justify-self: start; background: linear-gradient(90deg, var(--red), var(--red2)); color: #fff; border-radius: 999px; padding: 9px 18px; font-weight: 700; font-size: 15px; }
+.pro { margin-top: 36px; min-width: 0; border: 1px solid var(--line); border-radius: 22px; padding: 28px; background: radial-gradient(120% 140% at 0% 0%, rgba(255,70,85,0.16), transparent 55%), var(--card); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; align-items: center; }
+@media (max-width: 760px) { .pro { grid-template-columns: 1fr; } }
+.grid .pro { margin-top: 0; grid-column: span 2; grid-template-columns: 1fr; align-content: center; }
+@media (max-width: 600px) { .grid .pro { grid-column: span 1; } }
+.pro h3 { font: 900 34px/1.05 var(--display); margin: 0 0 8px; letter-spacing: -0.02em; }
+.pro p { margin: 0; color: var(--dim); }
+.pro ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.soon { display: inline-block; margin-top: 14px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-weight: 700; font-size: 14px; }
+[hidden] { display: none !important; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 18px 0; flex-wrap: wrap; }
+.brand { font: 900 22px var(--display); text-decoration: none; letter-spacing: -0.02em; }
+.brand span { color: var(--red); }
+.toplinks { display: flex; gap: 18px; flex-wrap: wrap; }
+.toplinks a { text-decoration: none; color: var(--dim); font-weight: 600; font-size: 15px; }
+.toplinks a:hover { color: var(--ink); }
+a.soon { text-decoration: none; }
+.guide { margin-top: 48px; display: grid; gap: 14px; scroll-margin-top: 20px; }
+.guide h2 { font: 900 clamp(30px, 4.4vw, 46px)/1.05 var(--display); margin: 0; letter-spacing: -0.02em; }
+.steps { margin: 6px 0 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 10px; }
+.steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 14px 62px; position: relative; color: var(--dim); max-width: 860px; }
+.steps li::before { content: counter(s); position: absolute; left: 16px; top: 13px; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: 800 15px var(--display); color: #fff; background: linear-gradient(135deg, var(--red), var(--red2)); }
+.steps b { color: var(--ink); }
+.steps a { color: var(--ink); }
+.tips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 6px; }
+@media (max-width: 760px) { .tips { grid-template-columns: 1fr; } }
+.tip { background: var(--card2); border-radius: 14px; padding: 16px; min-width: 0; }
+.tip h3 { margin: 0 0 6px; font: 800 18px var(--display); }
+.tip p { margin: 0; color: var(--dim); font-size: 15px; }
+footer a { color: var(--ink); }
+footer { margin-top: 36px; color: var(--dim); font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+/* sheet */
+dialog { width: min(980px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; border: 1px solid var(--line); border-radius: 22px; background: var(--card); color: var(--ink); overflow: auto; }
+dialog::backdrop { background: rgba(5,5,8,0.72); backdrop-filter: blur(4px); }
+.player { background: #000; position: relative; }
+.player video { display: block; width: 100%; max-height: 62dvh; background: #000; }
+.close { position: absolute; top: 10px; right: 10px; background: rgba(10,10,13,0.8); border: 1px solid var(--line); border-radius: 999px; width: 38px; height: 38px; cursor: pointer; font-size: 18px; line-height: 1; }
+.sheet { padding: 22px 26px 26px; display: grid; gap: 14px; }
+.sheet h2 { font: 900 clamp(30px, 4vw, 42px)/1.05 var(--display); margin: 0; letter-spacing: -0.02em; }
+.sheet .look { margin: 0; color: var(--dim); max-width: 75ch; }
+.how { background: var(--card2); border-radius: 14px; padding: 14px 16px; margin: 0; }
+.how b { color: var(--ink); }
+.swatches { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--dim); font-size: 14px; }
+.sw { width: 26px; height: 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); }
+.live { color: var(--dim); font-size: 14px; }
+.live a { color: var(--ink); font-weight: 700; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
+.form { display: grid; gap: 14px; }
+.form h3 { font: 800 22px var(--display); margin: 0; }
+.row { display: grid; gap: 6px; }
+.lab { font-weight: 700; font-size: 15px; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; background: var(--card2); border-radius: 12px; padding: 4px; justify-self: start; }
+.seg button { border: 0; background: transparent; border-radius: 9px; padding: 8px 14px; font-weight: 600; font-size: 14px; cursor: pointer; color: var(--dim); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: #0a0a0d; }
+.hint { color: var(--dim); font-size: 13.5px; margin: 0; }
+textarea { width: 100%; min-height: 84px; resize: vertical; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font: 400 15px var(--display); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; }
+.check input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--red); }
+.foot { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 16px; }
+.nav { display: flex; gap: 8px; }
+.ghost { border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 9px 18px; font-weight: 700; cursor: pointer; }
+.copy { border: 0; background: linear-gradient(90deg, var(--red), var(--red2)); color: #fff; border-radius: 999px; padding: 11px 22px; font-weight: 800; font-size: 15px; cursor: pointer; }
+.status { color: var(--dim); font-size: 14px; min-height: 1.4em; margin: 0; }
+#fallback { display: none; min-height: 140px; font: 400 12px var(--mono); }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style>
+
+<div class="wrap">
+  <nav class="top" aria-label="Site"><a class="brand" href="/">Haris <span>Ai</span></a><div class="toplinks"><a href="/#products">Products</a><a href="#how">How to use</a><a href="/omnitube/">OMNITUBE</a></div></nav>
+  <header class="hero">
+    <p class="eyebrow">Haris AI · Style Library</p>
+    <h1>Motion styles you can <em>make yours</em></h1>
+    <p class="lede">Ten free animation styles, drawn entirely in code with synthesized sound. Watch a sample, set your options (voiceover, facecam, your own screenshots), then copy the prompt into Claude and get the same look around your topic.</p>
+    <div class="stats"><span class="stat"><b>10</b> free styles</span><span class="stat"><b>1080p</b> · <b>60fps</b> · motion blur</span><span class="stat"><b>16:9</b> and <b>9:16</b></span><span class="stat">Facecam and Brand UI slots</span></div>
+  </header>
+  <nav class="filters" id="filters" aria-label="Filter styles by family"></nav>
+  <section class="grid" id="grid" aria-label="Styles"></section>
+  <section class="pro" aria-label="Start here">
+    <div>
+      <h3>New here? Start with the guide.</h3>
+      <p>Five steps, about two minutes: pick a style, set your options, paste the prompt into Claude, approve the storyboard, get your video.</p>
+      <a class="soon" href="#how">Read how to use it</a>
+    </div>
+    <ul>
+      <li>Works in a normal Claude chat</li>
+      <li>Voiceover, facecam and your own screenshots</li>
+      <li>16:9 for YouTube, 9:16 for Shorts</li>
+      <li>Free to use in your own videos</li>
+    </ul>
+  </section>
+  <section class="guide" id="how" aria-labelledby="howTitle">
+    <p class="eyebrow">How to use</p>
+    <h2 id="howTitle">From style to finished video</h2>
+    <ol class="steps">
+      <li><b>Pick a style.</b> Open any card and watch the sample. Use <em>open the interactive player</em> to try the facecam and screenshot slots with your own files.</li>
+      <li><b>Set your options.</b> Choose voiceover, facecam, Brand UI and format, then paste your topic or full script.</li>
+      <li><b>Copy the prompt.</b> Open a new chat at <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> and paste it. If you picked Brand UI, attach 1 to 3 screenshots in the same message.</li>
+      <li><b>Approve the storyboard.</b> Claude sketches every beat as still frames first. Reply "OK" or ask for changes.</li>
+      <li><b>Get your video.</b> Claude builds the animation as a page you can play. Load your voiceover or facecam in its player, or ask Claude to "render the MP4" for a 1080p 60fps file.</li>
+    </ol>
+    <div class="tips">
+      <div class="tip"><h3>With a voiceover</h3><p>Export a word-level SRT from CapCut, ElevenLabs or Whisper and paste it in the Voiceover timing box. Every on-screen word then lands on its spoken word.</p></div>
+      <div class="tip"><h3>With a facecam</h3><p>Record yourself first. Choose "Facecam in a corner" or "Full-frame intro, then corner", and the layout keeps text clear of your camera.</p></div>
+      <div class="tip"><h3>Best results</h3><p>Keep a video to one idea, 15 to 40 seconds, with short punchy lines. Use a Claude plan that can run code if you want the MP4 rendered for you.</p></div>
+    </div>
+  </section>
+  <footer><span>Built on the HX Motion Engine v1.1 by <a href="/">Haris Ai</a>.</span><span>Free styles are free to use in your own videos.</span></footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="dName">
+  <div class="player"><video id="dVid" controls playsinline preload="none"></video><button class="close" id="dClose" type="button" aria-label="Close">✕</button></div>
+  <div class="sheet">
+    <div class="meta" id="dMeta"></div>
+    <h2 id="dName"></h2>
+    <p class="look" id="dLook"></p>
+    <p class="how" id="dHow"></p>
+    <div class="swatches" id="dSw"></div>
+    <p class="live">Try the facecam and screenshot slots live: <a id="dLive" href="#" target="_blank" rel="noopener">open the interactive player</a></p>
+    <hr>
+    <div class="form">
+      <h3>Make it yours</h3>
+      <div class="row"><span class="lab">Voiceover</span><div class="seg" id="segVo"><button type="button" data-v="no" aria-pressed="true">No voiceover</button><button type="button" data-v="yes" aria-pressed="false">With voiceover</button></div><p class="hint" id="hVo"></p></div>
+      <div class="row"><span class="lab">Facecam</span><div class="seg" id="segFace"><button type="button" data-v="no" aria-pressed="true">No facecam</button><button type="button" data-v="pip" aria-pressed="false">Facecam in a corner</button><button type="button" data-v="intro" aria-pressed="false">Full-frame intro, then corner</button></div><p class="hint" id="hFace"></p></div>
+      <div class="row"><span class="lab">Brand UI</span><div class="seg" id="segShot"><button type="button" data-v="no" aria-pressed="true">No screenshots</button><button type="button" data-v="yes" aria-pressed="false">My screenshots</button></div><p class="hint" id="hShot"></p></div>
+      <div class="row"><span class="lab">Format</span><div class="seg" id="segFmt"><button type="button" data-v="16:9" aria-pressed="true">16:9 YouTube</button><button type="button" data-v="9:16" aria-pressed="false">9:16 Shorts</button></div></div>
+      <div class="row"><label class="lab" for="fTopic">Topic or script</label><textarea id="fTopic" placeholder="e.g. 3 ways to grow a YouTube channel with AI automations"></textarea></div>
+      <div class="row" id="rowTiming" hidden><label class="lab" for="fTiming">Voiceover timing</label><textarea id="fTiming" placeholder="Paste a word-level SRT or word timestamps. Leave it empty and Claude will ask for them."></textarea></div>
+      <label class="check" for="fBoard"><input id="fBoard" type="checkbox" checked> Storyboard first: Claude sketches every beat as still frames and waits for your OK before building.</label>
+      <textarea id="fallback" aria-label="Prompt text to copy manually" readonly></textarea>
+      <div class="foot"><div class="nav"><button class="ghost" id="dPrev" type="button">Previous</button><button class="ghost" id="dNext" type="button">Next</button></div><button class="copy" id="dCopy" type="button">Copy prompt</button></div>
+      <p class="status" id="dStatus" role="status"></p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const LIB = [{"id": "01-op-art-loop", "num": "01", "name": "Op Art Loop", "family": "Kinetic Type", "aspect": "16:9", "look": "Two-tone op-art print: salmon and ink split across the frame, a tunnel of nested rounded bands that never stops zooming, an infinity ribbon wrapped in flowing expanded type, and giant words sliding up from behind a cut line.", "explains": "Every idea rises out of a mask line in expanded black caps, the key number rolls and locks with a flash, stripes and iris cuts carry you between scenes, and the infinity ribbon keeps the loop idea in motion the whole time.", "palette": ["#f4b6a4", "#141011", "#e79c88"], "fonts": "Archivo Expanded (900 for statements, 600 for notes)", "rules": ["Surface: run tunnel() every scene. Change the split line and speed per scene; the tunnel never stops zooming.", "Type: Archivo with fontStretch 'expanded', caps, 900. Statements 84 to 120 px, numbers 200 px or more. Words enter with rise() from behind a mask line.", "The infinity ribbon (loop()) carries one short repeated phrase in three lanes; use it for the hook and the ending.", "Two colors only: salmon and ink. No third accent.", "Cuts: blinds and iris. Sound: tech beat at 124 bpm, hit on each word, tick for counters, boom on the lock."]}, {"id": "02-geo-kit", "num": "02", "name": "Geo Kit", "family": "Shapes and Kinetic Type", "aspect": "16:9", "look": "A motion designer's shape kit on near-black: white plus grids, dashes, chevrons, dot fields, a halftone sphere, a warped wire grid, sunburst lines and wave strands, with one orange-to-pink gradient ball as the only color.", "explains": "The kit pops in around a bold geometric title, each point gets its own numbered gradient ball and a tiny live demo made of shapes, and wipes and an iris cut move between scenes.", "palette": ["#0e0e10", "#f5f4f0", "#f7a51c", "#e5317a"], "fonts": "Montserrat 800 and 900 for titles, 600 for labels", "rules": ["Everything is white on near-black except the gradient (orange to pink). Use the gradient on one thing at a time.", "Reuse the kit() layout for hooks and endings, and the K shape functions for demos. Shapes pop with an overshoot.", "Titles rise from a mask in Montserrat 800 to 900, 86 to 112 px.", "Cuts: angled wipe with a white band, iris with a gradient ring, slide up. Sound: pop beat at 120 bpm, pops for every shape, chime per point."]}, {"id": "03-slice-type", "num": "03", "name": "Slice Type", "family": "Kinetic Type", "aspect": "16:9", "look": "Monochrome editorial on a smoky near-black: huge wide white caps that arrive in horizontal slices and get cut on a diagonal, thin outline echoes stacked under them, floating rings, dark glossy spheres and a bundle of wave strands.", "explains": "Each statement slices in, the key word gets a diagonal cut with a snap and a boom, the supporting line appears as stacked outline echoes, and tiny corner labels keep the channel name on screen.", "palette": ["#0b0b0c", "#f1efe9", "#8a8890"], "fonts": "Unbounded 900 for statements, DM Sans 500 and 700 for labels", "rules": ["Black, white and grey only. Statements in Unbounded 900 through sliced(); support lines through echo() as outlines.", "One diagonal cut per scene at most, on the word that matters, with a snap then a boom.", "Keep rings drifting upward and the wave strands moving on every scene; add grain and a strong vignette.", "Cuts: glitch, slide, blinds. Sound: dark beat at 90 bpm, swish on every slice, snap and boom on the cut."]}, {"id": "04-swiss-abstract", "num": "04", "name": "Swiss Abstract", "family": "Minimal Type", "aspect": "16:9", "look": "Calm poster minimalism: warm paper, big sand circles on a grid, heavy black caps with one handwritten script accent, small graphite shapes (bursts, zigzags, waves, hourglass, plus signs), editorial corner labels and a five-column footer.", "explains": "A script line writes itself on, the heavy statement rises underneath, shapes settle around it, and points are laid out as a calm five-column row with one item circled.", "palette": ["#f6f3ec", "#e7dfcc", "#161616", "#3f3f3f"], "fonts": "Outfit 900 for statements, 300 to 600 for labels, Mrs Saint Delafield for the script accent", "rules": ["One script phrase per scene, written on with script(), always above the heavy caps.", "Statements in Outfit 900, 140 to 210 px, rising from a mask. Labels in Outfit 300 and 800 pairs.", "Graphite shapes only, never colored. Sand circles are the only fill color.", "Slow, eased motion. Cuts: wipe with a sand band, iris from a circle, slide up. Sound: chill beat at 84 bpm, soft thumps and a bell on key words."]}, {"id": "05-poster-drive", "num": "05", "name": "Poster Drive", "family": "Vertical Poster", "aspect": "9:16", "look": "A one-color brand poster for Shorts and Reels: saturated yellow, a code-drawn top-down sports car that drives in on two tire tracks, a giant tall condensed name behind it, a handwritten script over the name and clean role lines underneath.", "explains": "The car arrives on its tracks while the name rises letter by letter behind it, roles fade in under it, services slide in as dark bars, and the car races past between beats.", "palette": ["#f7b500", "#eaa300", "#231d10", "#fff6dc"], "fonts": "League Gothic for names and statements, Allura for script, Jost 400 to 700 for lines", "rules": ["720x1280 vertical. Keep everything inside a 60 px margin; key words 196 px or more.", "One color world: yellow background, ink type, cream only inside dark bars.", "The car is the hero prop: it enters on a path with tracks(), parks, and passes between scenes. Keep it generic, never a real model or badge.", "Cuts: angled wipe with an ink band, slide up, zoom. Sound: engine swell when the car moves, hits on letters, pop beat at 112 bpm."]}, {"id": "06-orbit-title", "num": "06", "name": "Orbit Title", "family": "Title Animation", "aspect": "16:9", "look": "A broadcast-style title open on deep teal: a heavy white ring that draws itself, spinning tick marks with motion blur, thin orbit arcs flying past, tiny outlined bubbles and tilted condensed caps in warm yellow and white.", "explains": "Titles punch in tilted inside the ring, a countdown ring drains around big numbers, satellites orbit with short labels, and the ring iris carries you between scenes.", "palette": ["#071c21", "#12404a", "#ffffff", "#ffc52b"], "fonts": "Bebas Neue for titles, Barlow 600 and 700 for labels", "rules": ["Titles in Bebas Neue, tilted about -7 degrees, yellow for the first word and white for the second.", "The ring is always present and always moving; streaks and bubbles drift behind it.", "Use the countdown ring for any sequence or number reveal.", "Cuts: iris with a white ring, zoom, whip. Sound: tech beat, bell on each count, boom and shimmer on GO."]}, {"id": "07-hex-explainer", "num": "07", "name": "Hex Explainer", "family": "Infographic", "aspect": "16:9", "look": "A friendly classroom infographic: warm tan-to-cream gradient, a blue outlined gear at the center, thick-outlined hexagons in six friendly colors with simple line icons, dotted connectors that draw themselves and a big bold black title.", "explains": "The question title lands, the gear spins up, connectors draw out to each hexagon as it pops in, then use cases get a big hexagon each with one short line, and a gear chain shows a process.", "palette": ["#c9a07c", "#f8f0e6", "#141414", "#2f80c9", "#cf4747", "#2a9d8f"], "fonts": "Poppins 800 for titles, 600 to 700 for labels", "rules": ["Icons are simple line drawings made in code (ICON). Never use real logos.", "One color per hexagon; the gear stays blue with red text.", "Titles are sentence case Poppins 800, 56 to 84 px. Labels 24 px or more.", "Cuts: iris from the gear, slide, white flash. Sound: chill beat at 92 bpm, a pop per hexagon, tick as each connector draws."]}, {"id": "08-neon-orbs", "num": "08", "name": "Neon Orbs", "family": "Explainer Graphics", "aspect": "16:9", "look": "A pure black stage with chains of glossy gradient spheres that slither in like caterpillars and curl around a deep blue glass panel framed by two thin rounded outlines. Bold white rounded caps, a label riding on each lead orb.", "explains": "Each category arrives as its own orb chain with the label on the head, chosen items come forward one at a time with a one-line reason, and the chains merge into one big orb for the takeaway.", "palette": ["#030305", "#ffffff", "#2321b8", "#ff2a2a", "#e0218a", "#18a8d8"], "fonts": "Lexend 800 for titles, 500 for lines", "rules": ["Every category gets one color pair from PAIRS and keeps it for the whole video.", "Orbs are cached sprites; chains wiggle with chain() and never stop moving.", "The glass panel holds the title; nothing else sits inside it.", "Cuts: zoom, iris with a pink ring, fade. Sound: pop beat at 118 bpm, swish as chains enter, pop as they land, boom on the merge."]}, {"id": "09-wave-type", "num": "09", "name": "Wave Type", "family": "Kinetic Type", "aspect": "16:9", "look": "Fields of repeated bold words that ripple like cloth, a lens bulge that rolls through them, and one hero word on top in a pink-to-orange-to-blue gradient. Midnight navy or a violet-to-red wash.", "explains": "Each step is one word: the field of that word ripples behind while the hero version pops on top, a small caption pill names the step, and the final card stacks all the words.", "palette": ["#14152e", "#7b6cf0", "#e8344a", "#ff8a3d", "#2f7bff"], "fonts": "Sora 800 for words, 600 for captions", "rules": ["One word per beat. The field repeats that same word; the hero word sits on top at 190 to 200 px.", "Alternate the two worlds: navy with gradient words, and the violet-to-red wash with lavender words and the lens.", "Captions go in a dark pill so they read over the field.", "Cuts: angled wipe with a pink band, zoom, vertical blinds. Sound: pop beat at 122 bpm, boom on the first hero word, hit on each step."]}, {"id": "10-luxe-titles", "num": "10", "name": "Luxe Titles", "family": "Title Pack", "aspect": "16:9", "look": "A premium title pack on deep black: gold calligraphy that writes itself on with a light sweep, spaced small-cap serif subtitles, hairline rules that grow from the center, a clean thin-plus-bold sans for kinetic lines with chevron accents, and slow gold dust.", "explains": "Script titles write on with a glow at the pen tip, subtitles tighten their letter spacing as they fade in, kinetic three-line sets swap with chevrons, and a grid of title looks shows the range.", "palette": ["#0a0907", "#fbe7a8", "#d9b26a", "#8f5f24", "#f4efe4"], "fonts": "Great Vibes for script, Cinzel 500 and 700 for subtitles, Josefin Sans 300 and 700 for kinetic lines", "rules": ["Gold only on script and on the bold middle word of kinetic sets; everything else is ivory or dim.", "Slow, elegant timing: write-ons take 0.9 to 1.3 s, fades are gentle, no shake.", "Gold dust drifts on every scene; vignette and fine grain always on.", "Cuts: fades and a hairline gold wipe. Sound: lux pads and plucks at 72 bpm, sparkle when a script finishes, bell on rules."]}];
+const $ = (id) => document.getElementById(id);
+const fams = ['All', ...new Set(LIB.map((s) => s.family))];
+let fam = 'All', cur = 0; const SRC = {};
+const opts = { vo: 'no', face: 'no', shot: 'no', fmt: '16:9' };
+
+function renderFilters() {
+  $('filters').innerHTML = '';
+  fams.forEach((f) => { const n = f === 'All' ? LIB.length : LIB.filter((s) => s.family === f).length; const b = document.createElement('button'); b.className = 'chip'; b.type = 'button'; b.setAttribute('aria-pressed', f === fam ? 'true' : 'false'); b.innerHTML = `${f}<span>${n}</span>`; b.onclick = () => { fam = f; renderFilters(); renderGrid(); }; $('filters').append(b); });
+}
+function renderGrid() {
+  $('grid').innerHTML = '';
+  LIB.forEach((s, i) => { if (fam !== 'All' && s.family !== fam) return;
+    const b = document.createElement('button'); b.className = 'card'; b.type = 'button';
+    b.innerHTML = `<div class="thumb${s.aspect === '9:16' ? ' tall' : ''}"><img src="thumbs/${s.id}.jpg" alt="${s.name} sample frame" loading="lazy"><span class="free">FREE</span><span class="ratio">${s.aspect}</span></div><div class="body"><div class="meta"><b>#${s.num}</b>${s.family}</div><h2>${s.name}</h2><p>${s.look}</p><span class="go">Make it yours</span></div>`;
+    b.onclick = () => open(i); $('grid').append(b); });
+  const pro = document.querySelector('.pro'), n = $('grid').children.length;
+  if (fam === 'All' && n % 3 === 1) $('grid').append(pro); else $('grid').after(pro);
+}
+function seg(id, key) { const el = $(id); el.querySelectorAll('button').forEach((b) => { b.setAttribute('aria-pressed', b.dataset.v === opts[key] ? 'true' : 'false'); b.onclick = () => { opts[key] = b.dataset.v; seg(id, key); hints(); }; }); }
+function hints() {
+  $('hVo').textContent = opts.vo === 'yes' ? 'Timed to your narration: every on-screen word lands on its spoken word, and the effects sit under your voice.' : 'A standalone video with the full mix: music, impacts and effects, no narration.';
+  $('hFace').textContent = opts.face === 'no' ? 'No camera. The graphics use the whole frame.' : opts.face === 'pip' ? 'Your camera sits in the style’s own frame in a corner while the graphics explain. Load your clip in the player to preview it.' : 'You open full-frame for the first beat, then shrink into the corner frame while the graphics take over.';
+  $('hShot').textContent = opts.shot === 'yes' ? 'Attach 1 to 3 screenshots of your app, site or brand in the same chat. They appear in the style’s Brand UI scene, framed in the style.' : 'No screenshots needed. Claude draws invented, generic visuals in the style.';
+  $('rowTiming').hidden = opts.vo !== 'yes';
+}
+function open(i) {
+  cur = i; const s = LIB[i]; opts.fmt = s.aspect;
+  $('dMeta').innerHTML = `<b>#${s.num}</b>${s.family} · ${s.aspect} · Free`; $('dName').textContent = s.name; $('dLook').textContent = s.look;
+  $('dHow').innerHTML = `<b>How it explains:</b> ${s.explains}`;
+  $('dSw').innerHTML = s.palette.map((c) => `<span class="sw" style="background:${c}" title="${c}"></span>`).join('') + `<span>${s.fonts}</span>`;
+  $('dLive').href = `styles/${s.id}.html`;
+  const v = $('dVid'); v.poster = `thumbs/${s.id}.jpg`; v.src = `videos/${s.id}.mp4`; v.load();
+  $('dStatus').textContent = ''; $('fallback').style.display = 'none';
+  ['segVo:vo', 'segFace:face', 'segShot:shot', 'segFmt:fmt'].forEach((p) => { const [a, b] = p.split(':'); seg(a, b); }); hints();
+  if (!SRC[s.id]) fetch(`styles/${s.id}.html`).then((r) => r.text()).then((x) => (SRC[s.id] = x)).catch(() => {});
+  if (!$('dlg').open) $('dlg').showModal();
+}
+function close() { $('dVid').pause(); $('dlg').close(); }
+$('dClose').onclick = close; $('dlg').addEventListener('cancel', () => $('dVid').pause());
+$('dlg').addEventListener('click', (e) => { if (e.target === $('dlg')) close(); });
+$('dPrev').onclick = () => open((cur + LIB.length - 1) % LIB.length);
+$('dNext').onclick = () => open((cur + 1) % LIB.length);
+
+function buildPrompt(s, src) {
+  const topic = $('fTopic').value.trim(), timing = $('fTiming').value.trim(), board = $('fBoard').checked, L = [];
+  L.push(`I want an animated video in the "${s.name}" style (${s.family}) from the Haris AI Style Library. Below is a complete, working reference animation in this style, built on the HX Motion Engine v1.1: core helpers and finishing effects (HX), a synthesized sound kit (SND), facecam and screenshot slots (MEDIA), a scene compositor (STAGE), the style itself (STYLE) and the player page. Treat the reference as the ground truth for how this style looks, moves and sounds, and rebuild it around my content.`);
+  L.push('', 'MY CONTENT', topic || '[No topic yet. Ask me for my topic or script before building anything.]');
+  L.push('', 'FORMAT', opts.fmt === '9:16' ? 'Vertical 9:16 at 720x1280 for Shorts, Reels and TikTok.' + (s.aspect !== '9:16' ? ' The reference is 16:9, so re-lay out every scene for the tall frame: stack lines, keep key words 140 px or larger, and keep a 60 px safe margin.' : '') : 'Landscape 16:9 at 1280x720 for YouTube.' + (s.aspect !== '16:9' ? ' The reference is vertical, so re-lay out every scene for the wide frame.' : ''));
+  L.push('', 'VOICEOVER');
+  if (opts.vo === 'yes') { L.push('Timed to my narration. Every on-screen word lands on its spoken word: build the TL times from my word timing below. Render effects for narration (window.renderAudio({ vo: true })) so music stays low and soft sounds drop to half, and keep the big hits on the words I stress.'); L.push(timing ? 'My word timing:\n' + timing : 'I have not pasted my timing yet. Ask me for a word-level SRT or word timestamps before you build.'); }
+  else L.push('No voiceover. A standalone video with the full mix: music, impacts and effects.');
+  L.push('', 'FACECAM');
+  if (opts.face === 'no') L.push('No facecam. Keep the facecam slot off (window.setOptions({ face: false })) and use the whole frame.');
+  else { L.push(opts.face === 'intro' ? 'I will record myself. Open with my facecam full-frame for the first beat (MEDIA.face across the whole frame, with one or two short captions in the style), then shrink it into the style’s own corner frame for the body, and bring it back larger for the ending if it suits the script.' : 'I will record myself. Keep my facecam in the style’s own corner frame (MEDIA.face inside overlay()) from the first body scene to the last one.'); L.push('Re-lay out every scene so no text or key visual sits under the facecam. My clip loads with "Load facecam" and plays from 0:00 in sync; its audio is my voice, so treat it as the voiceover.'); }
+  L.push('', 'BRAND UI');
+  if (opts.shot === 'yes') L.push('I am attaching screenshots of my product or brand to this chat. Show them in the style’s Brand UI scene with MEDIA.shot(), framed in the style, with a slow push-in and one highlight on what matters. Use them for proof wherever they help. Take my brand’s main color as an extra accent only if it does not fight the style palette, and never invent screens that pretend to be my real product.');
+  else L.push('No screenshots. Draw invented, generic visuals in the style for any proof moment. No real logos, brand names or people.');
+  L.push('', board ? 'STORYBOARD FIRST\nBefore building, render every beat as a still frame with the engine, show them with one line each about what happens and what sound plays, and wait for my OK.' : 'BUILD DIRECTLY\nSkip the storyboard and build the full animation now. Afterwards, list any facts or numbers you assumed.');
+  L.push('', 'WHAT TO BUILD', 'One self-contained HTML file (an artifact if you can), built on the reference below:', '- Keep the engine block (HX, SND, MEDIA, STAGE) and the PLAYER block unchanged.', '- Replace only the style block: TL, CUTS, KICK, SHAKE, FLASH, the scene functions, overlay(), score() and the STYLE object. Reuse the style’s helpers.', '- Aim for 15 to 40 seconds unless my content needs more. Set the length in TL.D.', '- Keep window.seek(t), window.seekAsync(t), window.captureFrame(), window.DURATION, window.renderAudio() and window.setOptions() working.', '- Scenes draw in logical units; the engine renders at HX.R (1.5 = 1920x1080). Cache static layers with HX.layer(w, h) and draw them with HX.blit() so they stay sharp.', '- Keep the style\u2019s finishing pass (bloom, glow, particles, bokeh, grain, camera drift) at the reference strength. Use fx.burst and fx.ring on big hits.', '- Load the fonts the way the reference does: the Google Fonts link plus STYLE.fonts.');
+  L.push('', 'THE STYLE', s.look, 'How it explains: ' + s.explains, 'Palette: ' + s.palette.join(', ') + '. Type: ' + s.fonts + '.', ...s.rules.map((r) => '- ' + r));
+  L.push('', 'ALWAYS', '- Every frame is a pure function of t. All randomness comes from HX.rand(seed) and HX.noise(seed), never Math.random. Caching static layers is fine.', '- Phone-readable at 1280x720: statements 80 px or more, key numbers 120 px or more, any label the story depends on 28 px or more.', '- Keep each frame well under 50 ms.', '- Original content only: no real logos, brand names, characters or real people. Double-check every fact and number, and label illustrative numbers as examples.', '- Sound and picture read the same TL times, so they stay in sync.');
+  L.push('', 'IF YOU CAN RUN CODE', 'Render an MP4 at 1080p60 with motion blur: open the file in headless Chrome (add #nowarm to the URL), call window.setOptions({ face, shot }) to match my choices, then for every frame i get await window.captureFrame(i / 60, { fps: 60, sub: 2, shutter: 0.5 }) (a JPEG data URL) and pipe the frames into ffmpeg at 60 fps (libx264, crf 17, yuv420p). Get the audio from await window.renderAudio({ vo: false }) (interleaved stereo floats at 48 kHz) and mux it in. With a voiceover, render with { vo: true } and mix it under my audio.');
+  L.push('', 'REFERENCE SOURCE (the complete working file)', '```html', src, '```');
+  return L.join('\n');
+}
+$('dCopy').onclick = async () => {
+  const s = LIB[cur]; let src = SRC[s.id];
+  if (!src) { $('dStatus').textContent = 'Loading the reference file…'; try { const r = await fetch(`styles/${s.id}.html`); src = SRC[s.id] = await r.text(); } catch (e) { $('dStatus').textContent = 'Could not load the reference file. Reload the page and try again.'; return; } }
+  const text = buildPrompt(s, src);
+  try { await navigator.clipboard.writeText(text); $('dStatus').textContent = 'Copied. Paste it into a new Claude chat' + (opts.shot === 'yes' ? ' and attach your screenshots.' : '.'); $('fallback').style.display = 'none'; }
+  catch (e) { const f = $('fallback'); f.value = text; f.style.display = 'block'; f.focus(); f.select(); $('dStatus').textContent = 'Your browser blocked copying. The prompt is selected below: press Ctrl+C (or Cmd+C).'; }
+};
+renderFilters(); renderGrid();
+</script>
