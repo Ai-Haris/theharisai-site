@@ -6,7 +6,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@500;700&display=block">
 <style>
 /* Layout: a single-column studio player. Stage first, transport under it, then the "make it yours" media row. One dark look by choice. */
 :root {
@@ -460,21 +460,21 @@ const STAGE = (() => {
 <script>
 // @name Op Art Loop
 // @family Kinetic Type
-// @fonts family=Archivo:wdth,wght@62..125,100..900
+// @fonts family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@500;700
 // @accent #f4b6a4
 // @onaccent #121010
 // =====================================================================================================
-// STYLE: Op Art Loop  ·  Haris AI Style Library
-// Two-tone op-art print: salmon and ink split across the frame, a tunnel of nested rounded bands that
-// never stops zooming, an infinity ribbon wrapped in flowing expanded type, giant words sliding behind.
-// Demo topic: "Consistency compounds."
+// STYLE: Op Art Loop v2  ·  Haris AI Style Library
+// Two-tone op-art print. A tunnel of nested rounded bands that zooms forward when things get better and
+// runs backwards when they get worse; the line between salmon and ink moves to tell you which world you
+// are in. Expanded black caps, mono footnotes, a hatched chart and an infinity ribbon wrapped in type.
+// Demo: the 1% rule. 1.01^365 = 37.78 and 0.99^365 = 0.03.
 // =====================================================================================================
 const W = 1280, H = 720;
-const { cl, mix, prog, ez, E, kick, shake, cam, fx, rand } = HX;
+const { cl, mix, prog, ez, E, kick, shake, cam, fx, rand, drift } = HX;
 const C = { pink: '#f4b6a4', ink: '#141011', soft: '#e79c88' };
-const FAM = '"Archivo", "Arial Black", sans-serif';
+const FAM = '"Archivo", "Arial Black", sans-serif', MONO = '"JetBrains Mono", ui-monospace, monospace';
 const fnt = (px, w = 900) => `${w} ${px}px ${FAM}`;
-// expanded type: every text call goes through these two helpers
 function tw(c, s, px, w = 900, track = 0) { c.save(); c.font = fnt(px, w); c.fontStretch = 'expanded'; c.letterSpacing = track + 'px'; const v = c.measureText(s).width; c.restore(); return v; }
 function tx(c, s, x, y, px, o = {}) {
   c.save(); c.font = fnt(px, o.w || 900); c.fontStretch = o.stretch || 'expanded'; c.letterSpacing = (o.track || 0) + 'px';
@@ -485,36 +485,39 @@ function tx(c, s, x, y, px, o = {}) {
   c.restore();
 }
 
-// ---------- timeline (picture and sound both read it) ----------
-const TL = {
-  D: 16,
-  hook: { w: [0.35, 0.85], loop: 1.35, sub: 2.7 },
-  math: { top: 4.75, eq: 5.2, cnt: [5.55, 6.9], lock: 6.9, note: 7.35 },
-  show: { rows: 8.95, hl: 10.3, cap: 10.6 },
-  end: { loop: 12.55, w: [13.05, 13.45], tag: 14.3 },
-};
-const CUTS = [
-  { t: 4.4, d: 0.5, kind: 'blinds', n: 12 },
-  { t: 8.6, d: 0.45, kind: 'iris', ring: C.pink, lw: 16 },
-  { t: 12.3, d: 0.5, kind: 'blinds', n: 14, dir: 'v' },
-];
-const KICK = [{ t: 0.35, a: 0.03 }, { t: 0.85, a: 0.07 }, { t: 1.35, a: 0.02 }, { t: 5.2, a: 0.03 }, { t: 6.9, a: 0.1, k: 2 }, { t: 10.3, a: 0.05 }, { t: 13.05, a: 0.03 }, { t: 13.45, a: 0.08 }];
-const SHAKE = [{ t: 0.85, a: 8 }, { t: 6.9, a: 15, k: 6 }, { t: 13.45, a: 10 }];
-const FLASH = [{ t: 6.9, a: 0.45, col: '244,182,164' }, { t: 13.45, a: 0.3, col: '255,255,255' }];
-const mult = (t) => 1 + 36.8 * ez(t, TL.math.cnt[0], TL.math.cnt[1], 'out3');   // 1.01^365 = 37.8
 
-// ---------- surface: split tunnel of nested rounded bands ----------
-function tunnel(c, t, o = {}) {
-  const split = o.split == null ? H / 2 : o.split, sp = o.speed || 0.55, cx = o.cx || W / 2, cy = o.cy || H / 2;
+const TL = {
+  D: 19.5,
+  b1: { a: 0.3, b: 0.75, out: 3.0 },
+  b2: { lab: 3.3, cnt: [3.6, 6.3], note: 6.6, out: 7.6 },
+  b3: { flip: [7.6, 8.4], a: 8.4, b: 8.8, cnt: [9.3, 11.3], note: 11.6, out: 12.6 },
+  b4: { flip: [12.5, 13.2], head: 13.2, draw: [13.6, 15.8], labs: 15.9, out: 17.0 },
+  b5: { flip: [16.8, 17.4], loop: 17.0, a: 17.6, sig: 18.2 },
+};
+const up = (t) => Math.pow(1.01, 365 * ez(t, TL.b2.cnt[0], TL.b2.cnt[1], 'in3'));
+const down = (t) => Math.pow(0.99, 365 * ez(t, TL.b3.cnt[0], TL.b3.cnt[1], 'out3'));
+const KICK = [{ t: 0.75, a: 0.05 }, { t: TL.b2.cnt[1], a: 0.11, k: 2.4 }, { t: 8.8, a: 0.04 }, { t: TL.b3.cnt[1], a: 0.06, k: 3 }, { t: 17.6, a: 0.05 }];
+const SHAKE = [{ t: TL.b2.cnt[1], a: 14, k: 6 }, { t: TL.b3.cnt[1], a: 6 }];
+// split line between the salmon (top) and ink (bottom) worlds, in px from the top
+const SPLIT = HX.key([[0, 440], [TL.b3.flip[0], 440], [TL.b3.flip[1], 0, 'ioExpo'], [TL.b4.flip[0], 0], [TL.b4.flip[1], H, 'ioExpo'], [TL.b5.flip[0], H], [TL.b5.flip[1], 640, 'ioExpo']]);
+// tunnel phase: steady forward, a surge while the counter climbs, then backwards while things get worse
+const ramp = (t, a, k = 3) => (t <= a ? 0 : (t - a) - (1 - Math.exp(-k * (t - a))) / k);
+const PHASE = (t) => 0.4 * t + 2.2 * ez(t, TL.b2.cnt[0], TL.b2.cnt[1], 'in3') - 1.25 * (ramp(t, TL.b3.flip[0]) - ramp(t, TL.b4.flip[0]));
+
+function tunnel(c, t, split) {
+  const cx = W / 2, cy = H / 2;
   c.fillStyle = C.pink; c.fillRect(0, 0, W, split); c.fillStyle = C.ink; c.fillRect(0, split, W, H - split);
-  const ph = (t * sp) % 1, rects = [];
-  for (let k = -1; k < 34; k++) { const s = 0.16 * Math.pow(1.11, k + ph); const w = W * s, h = H * s * 0.92; if (w > W * 2.6) break; rects.push([w, h, s]); }
+  const ph = ((PHASE(t) % 1) + 1) % 1, rects = [];
+  for (let k = -1; k < 36; k++) { const s = 0.14 * Math.pow(1.11, k + ph); const w = W * s, h = H * s * 0.92; if (w > W * 2.6) break; rects.push([w, h, s]); }
   for (const [region, col] of [[0, C.ink], [1, C.pink]]) {
+    if (region === 0 && split <= 0) continue; if (region === 1 && split >= H) continue;
     c.save(); c.beginPath(); region ? c.rect(0, split, W, H - split) : c.rect(0, 0, W, split); c.clip(); c.strokeStyle = col;
     for (const [w, h, s] of rects) { c.lineWidth = Math.max(1, 5 * s); c.beginPath(); c.roundRect(cx - w / 2, cy - h / 2, w, h, Math.min(w, h) * 0.32); c.stroke(); }
+    const g = c.createRadialGradient(cx, cy, 10, cx, cy, W * 0.42), rgb = region ? '20,16,17' : '244,182,164'; g.addColorStop(0, `rgba(${rgb},0.9)`); g.addColorStop(0.45, `rgba(${rgb},0.35)`); g.addColorStop(1, `rgba(${rgb},0)`); c.fillStyle = g; c.fillRect(0, 0, W, H);
     c.restore();
   }
-  for (const [y0, y1, col] of [[0, split, '20,16,17'], [split, H, '244,182,164']]) { c.save(); c.beginPath(); c.rect(0, y0, W, y1 - y0); c.clip(); const g = c.createRadialGradient(cx, cy, 10, cx, cy, W * 0.42); g.addColorStop(0, `rgba(${col},0.55)`); g.addColorStop(0.55, `rgba(${col},0.12)`); g.addColorStop(1, `rgba(${col},0)`); c.fillStyle = g; c.fillRect(0, y0, W, y1 - y0); c.restore(); }
+  // the split edge itself, a crisp double rule
+  if (split > 2 && split < H - 2) { c.fillStyle = C.ink; c.fillRect(0, split - 3, W, 3); c.fillStyle = C.pink; c.fillRect(0, split, W, 2); }
 }
 // ---------- the infinity ribbon wrapped in type ----------
 const LOOP_N = 240;
@@ -551,120 +554,102 @@ function loop(c, t, cx, cy, A, o = {}) {
   }
   c.restore();
 }
-// words that slide up from behind a cut line (a mask at the baseline)
-function rise(c, s, x, y, px, t, t0, o = {}) {
-  if (t < t0) return; const e = ez(t, t0, t0 + (o.dur || 0.42), 'expo'), h = px * 1.1;
-  c.save(); c.beginPath(); c.rect(0, y - h * 0.62, W, h * 1.2); c.clip();
-  tx(c, s, x, y + (1 - e) * h, px, Object.assign({}, o, { fill: o.fill || C.ink })); c.restore();
+// expanded caps that rise out of (and later sink back into) a mask line
+function rise(c, s, x, y, px, t, tIn, tOut, o = {}) {
+  if (t < tIn) return; const e = ez(t, tIn, tIn + (o.dur || 0.55), 'out5'), out = tOut == null ? 0 : ez(t, tOut, tOut + 0.4, 'in3'), h = px * 1.15;
+  if (out >= 1) return;
+  c.save(); c.beginPath(); c.rect(0, y - h * 0.6, W, h * 1.15); c.clip();
+  tx(c, s, x, y + (1 - e) * h - out * h, px, Object.assign({}, o, { fill: o.fill || C.ink })); c.restore();
 }
-function pill(c, s, x, y, px, t, t0, o = {}) {
-  if (t < t0) return; const e = ez(t, t0, t0 + 0.4, 'over', 2), w = tw(c, s, px, 800, 3) + px * 1.6, h = px * 2;
-  c.save(); c.translate(x, y); c.scale(e, e); c.fillStyle = o.bg || C.pink; c.beginPath(); c.roundRect(-w / 2, -h / 2, w, h, h / 2); c.fill();
-  tx(c, s, 0, 2, px, { w: 800, track: 3, fill: o.ink || C.ink }); c.restore();
+function mono(c, s, x, y, px, a, o = {}) { if (a <= 0) return; c.save(); c.globalAlpha *= a; c.font = `${o.w || 500} ${px}px ${MONO}`; c.letterSpacing = (o.track == null ? 2 : o.track) + 'px'; c.textAlign = o.align || 'center'; c.textBaseline = 'middle'; c.fillStyle = o.col || C.ink; c.fillText(s, x, y); c.restore(); }
+// a big number that counts with a tabular rhythm and a short squash when it locks
+function counter(c, v, x, y, px, t, tIn, tLock, col, digits) {
+  if (t < tIn) return; const e = ez(t, tIn, tIn + 0.45, 'out5'), lk = t > tLock ? 0.1 * Math.exp(-(t - tLock) * 7) * Math.cos((t - tLock) * 26) : 0;
+  c.save(); c.translate(x, y); c.scale(1 + lk, 1 - lk * 0.6); c.globalAlpha = e; tx(c, v.toFixed(digits) + '×', 0, (1 - e) * 40, px, { fill: col }); c.restore();
 }
 
-// =================================== SCENES ===================================
-function camOf(t, a, b) { const o = camOf0(t, a, b), d = HX.drift(t, 0.8); o.x = (o.x || 0) + d.x; o.y = (o.y || 0) + d.y; o.r = (o.r || 0) + d.r; return o; }
-function camOf0(t, a, b) { const k = kick(t, KICK), s = shake(t, SHAKE); return { z: 1 + 0.035 * ez(t, a, b, 'io3') + k, x: s.x, y: s.y, r: s.r }; }
-// 0 · hook
-function sHook(c, t) {
-  const Hk = TL.hook; c.save(); cam(c, W, H, camOf(t, 0, 4.4));
-  tunnel(c, t, { split: 262 });
-  tx(c, 'CONSISTENCY', W / 2 - t * 26, 46, 150, { fill: C.soft, alpha: 0.5 });
-  rise(c, 'BUILD THE', W / 2, 92, 84, t, Hk.w[0]);
-  rise(c, 'HABIT.', W / 2, 188, 112, t, Hk.w[1]);
-  loop(c, t, W / 2, 470, 370, { reveal: ez(t, Hk.loop, Hk.loop + 1.1, 'io3'), spin: 0.06 * Math.sin(t * 0.5) });
-  pill(c, 'CONSISTENCY COMPOUNDS', W / 2, 668, 24, t, Hk.sub);
-  fx.ring(c, t, Hk.w[1], W / 2, 188, { r0: 40, r1: 520, col: C.ink, lw: 8, squash: 0.35, dur: 0.7 });
+// =================================== THE SHOT ===================================
+function shot(c, t, M) {
+  const d = drift(t, 0.6), s = shake(t, SHAKE), split = SPLIT(t);
+  c.save(); cam(c, W, H, { z: 1 + kick(t, KICK), x: d.x + s.x, y: d.y + s.y, r: d.r + s.r });
+  tunnel(c, t, split);
+  // B1
+  const B1 = TL.b1; rise(c, '1% BETTER', W / 2, 190, 112, t, B1.a, B1.out); rise(c, 'EVERY DAY.', W / 2, 315, 112, t, B1.b, B1.out);
+  // B2: the climb
+  const B2 = TL.b2;
+  mono(c, 'AFTER ONE YEAR', W / 2, 110, 16, ez(t, B2.lab, B2.lab + 0.4) * (1 - ez(t, B2.out, B2.out + 0.3)), { w: 700, track: 6 });
+  if (t < B2.out + 0.4) { c.save(); c.globalAlpha = 1 - ez(t, B2.out, B2.out + 0.35); counter(c, up(t), W / 2, 265, 210, t, B2.cnt[0], B2.cnt[1], C.ink, 2); c.restore(); }
+  fx.ring(c, t, B2.cnt[1], W / 2, 265, { r0: 160, r1: 760, col: C.ink, lw: 10, squash: 0.45, dur: 0.8 });
+  mono(c, '1.01³⁶⁵ = 37.78', W / 2, 405, 18, ez(t, B2.note, B2.note + 0.4) * (1 - ez(t, B2.out, B2.out + 0.3)), { w: 700 });
+  // B3: the fall (all ink, salmon type, tunnel runs backwards)
+  const B3 = TL.b3;
+  rise(c, '1% WORSE', W / 2, 190, 112, t, B3.a, B3.cnt[0] - 0.1, { fill: C.pink }); rise(c, 'EVERY DAY.', W / 2, 315, 112, t, B3.b, B3.cnt[0] - 0.1, { fill: C.pink });
+  if (t > B3.cnt[0] && t < B3.out + 0.4) { c.save(); c.globalAlpha = 1 - ez(t, B3.out, B3.out + 0.35); counter(c, down(t), W / 2, 300, 210, t, B3.cnt[0], B3.cnt[1], C.pink, 2); c.restore(); }
+  mono(c, '0.99³⁶⁵ = 0.03', W / 2, 440, 18, ez(t, B3.note, B3.note + 0.4) * (1 - ez(t, B3.out, B3.out + 0.3)), { w: 700, col: C.pink });
+  // B4: the chart, hatched like the print
+  const B4 = TL.b4, ca = ez(t, B4.flip[1] - 0.2, B4.flip[1] + 0.3) * (1 - ez(t, B4.out, B4.out + 0.4));
+  if (ca > 0) chart(c, t, ca);
   c.restore();
+  // B5: the ribbon end card (steady camera)
+  const B5 = TL.b5;
+  if (t > B5.loop) { loop(c, t, W / 2, 470, 340, { reveal: ez(t, B5.loop, B5.loop + 1.0, 'io3'), word: 'KEEP THE LOOP GOING · ', px: 26, hw: 52, flow: 80 }); rise(c, 'SMALL. DAILY. FOREVER.', W / 2, 170, 64, t, B5.a, null); mono(c, 'OP ART LOOP · HARIS AI MOTION STYLES', W / 2, 238, 14, ez(t, B5.sig, B5.sig + 0.5), { w: 700, track: 5 }); }
 }
-// 1 · the math of 1% a day
-function sMath(c, t) {
-  const Mt = TL.math; c.save(); cam(c, W, H, camOf(t, 4.4, 8.6));
-  tunnel(c, t, { split: 250, speed: 0.4 });
-  rise(c, '1% BETTER', W / 2, 92, 104, t, Mt.top);
-  rise(c, 'A DAY =', W / 2, 196, 70, t, Mt.eq, { w: 800 });
-  if (t >= Mt.cnt[0]) {
-    const v = mult(t), lk = t > Mt.lock ? 0.12 * Math.exp(-(t - Mt.lock) * 6) : 0, e = ez(t, Mt.cnt[0], Mt.cnt[0] + 0.3, 'expo');
-    c.save(); c.translate(W / 2, 430); c.scale(mix(1.5, 1, e) + lk, mix(1.5, 1, e) + lk); tx(c, v.toFixed(1) + '×', 0, 0, 220, { fill: C.pink, alpha: Math.min(1, e * 3) }); c.restore();
-  }
-  fx.ring(c, t, Mt.lock, W / 2, 430, { r0: 120, r1: 700, col: C.pink, lw: 12, squash: 0.5, dur: 0.8 }); fx.burst(c, t, Mt.lock, W / 2, 430, { n: 34, cols: [C.pink, '#ffd9cc'], speed: 900, gravity: 300, size: 5, life: 1.0 });
-  if (t >= Mt.note) { const e = ez(t, Mt.note, Mt.note + 0.4); tx(c, 'better after one year (1.01^365)', W / 2, 610 + (1 - e) * 20, 28, { w: 600, stretch: 'normal', fill: C.pink, alpha: e, track: 1 }); }
-  c.restore();
-}
-// 2 · show up (or your own screenshot)
-function sShow(c, t, M) {
-  const Sh = TL.show; c.save(); cam(c, W, H, camOf(t, 8.6, 12.3));
-  if (M.shot) {
-    tunnel(c, t, { split: H / 2, speed: 0.35 });
-    const e = ez(t, Sh.rows, Sh.rows + 0.6, 'expo'), fw = M.face ? 760 : 820, fh = 470, x = W / 2 - fw / 2 - (M.face ? 95 : 0), y = H / 2 - fh / 2 + 20 + (1 - e) * 60;
-    for (let i = 5; i >= 0; i--) { c.fillStyle = i % 2 ? C.pink : C.ink; c.beginPath(); c.roundRect(x - i * 12, y - i * 12, fw + i * 24, fh + i * 24, 26 + i * 12); c.fill(); }
-    MEDIA.shot(c, x, y, fw, fh, { r: 22, zoom: 1 + 0.05 * prog(t, Sh.rows, 12.3), tint: '#e0715a' });
-    pill(c, 'SHOW YOUR WORK', W / 2, 62, 26, t, Sh.hl, { bg: C.ink, ink: C.pink });
-  } else {
-    c.fillStyle = C.ink; c.fillRect(0, 0, W, H);
-    for (let r = 0; r < 7; r++) {
-      const y = 50 + r * 104, dir = r % 2 ? 1 : -1, off = ((t * 60 * dir) % 600) - 600, big = r === 3, on = big && t > Sh.hl;
-      if (big) { const e = ez(t, Sh.hl, Sh.hl + 0.35, 'expo'); c.fillStyle = C.pink; c.fillRect(W / 2 - (W / 2) * e, y - 52, W * e, 104); }
-      const a = ez(t, Sh.rows + r * 0.06, Sh.rows + r * 0.06 + 0.4);
-      const gap = tw(c, 'SHOW UP', big ? 92 : 72) + 70;
-      for (let x = off; x < W + gap; x += gap) tx(c, 'SHOW UP', x, y, big ? 92 : 72, { align: 'left', fill: on ? C.ink : r % 2 ? C.pink : 'transparent', stroke: r % 2 || on ? null : C.pink, lw: 2.5, alpha: a });
-    }
-    pill(c, 'EVERY SINGLE DAY', W / 2, 668, 26, t, Sh.cap);
-  }
-  c.restore();
-}
-// 3 · end card
-function sEnd(c, t) {
-  const En = TL.end; c.save(); cam(c, W, H, camOf(t, 12.3, 16));
-  tunnel(c, t, { split: 220, speed: 0.8 });
-  rise(c, 'SMALL STEPS.', W / 2, 112, 100, t, En.w[0]);
-  loop(c, t, W / 2, 430, 360, { reveal: ez(t, En.loop, En.loop + 0.9, 'io3'), word: 'KEEP GOING · ', px: 28, hw: 56, flow: 90 });
-  if (t > En.w[1]) { const e = ez(t, En.w[1], En.w[1] + 0.35, 'expo'); tx(c, 'FOREVER.', W / 2, 640, 70, { fill: C.pink, sx: mix(1.4, 1, e), sy: mix(1.4, 1, e), alpha: e }); }
-  if (t > En.tag) { const e = ez(t, En.tag, En.tag + 0.4); tx(c, '@yourchannel', W - 60, 260, 22, { w: 700, stretch: 'normal', align: 'right', fill: C.ink, alpha: e }); }
+function chart(c, t, a) {
+  const B4 = TL.b4, x0 = 170, x1 = 1110, y0 = 600, y1 = 220, p = ez(t, B4.draw[0], B4.draw[1], 'io3'), days = 365 * p;
+  const X = (d) => mix(x0, x1, d / 365), Y = (v) => y0 - ((v) / 38) * (y0 - y1);
+  c.save(); c.globalAlpha = a;
+  c.save(); c.globalAlpha = a * 0.9; c.fillStyle = C.pink; c.beginPath(); c.roundRect(x0 - 90, y1 - 50, x1 - x0 + 160, y0 - y1 + 110, 28); c.fill(); c.restore();
+  rise(c, 'SAME EFFORT.', W / 2, 92, 52, t, B4.head, null); rise(c, 'OPPOSITE DIRECTION.', W / 2, 150, 52, t, B4.head + 0.15, null);
+  // axes
+  c.strokeStyle = C.ink; c.lineWidth = 2; c.beginPath(); c.moveTo(x0, y1 - 10); c.lineTo(x0, y0); c.lineTo(x1 + 10, y0); c.stroke();
+  [0, 90, 180, 270, 365].forEach((dd) => { c.beginPath(); c.moveTo(X(dd), y0); c.lineTo(X(dd), y0 + 8); c.stroke(); mono(c, dd === 365 ? '365 DAYS' : String(dd), X(dd), y0 + 28, 15, 1, { w: 700, track: 1 }); });
+  [1, 10, 20, 30].forEach((v) => { mono(c, v + '×', x0 - 34, Y(v), 15, 1, { w: 700, track: 0 }); c.save(); c.globalAlpha *= 0.2; c.setLineDash([3, 6]); c.beginPath(); c.moveTo(x0, Y(v)); c.lineTo(x1, Y(v)); c.stroke(); c.restore(); });
+  // hatched area under the rising curve
+  const path = new Path2D(); path.moveTo(X(0), y0); for (let dd = 0; dd <= days; dd += 3) path.lineTo(X(dd), Y(Math.pow(1.01, dd))); path.lineTo(X(days), Y(Math.pow(1.01, days))); path.lineTo(X(days), y0); path.closePath();
+  c.save(); c.clip(path); c.strokeStyle = C.ink; c.lineWidth = 3; for (let k = -800; k < 1400; k += 11) { c.beginPath(); c.moveTo(x0 + k, y0); c.lineTo(x0 + k + 420, y0 - 420); c.stroke(); } c.restore();
+  c.lineWidth = 5; c.strokeStyle = C.ink; c.beginPath(); for (let dd = 0; dd <= days; dd += 2) { const yy = Y(Math.pow(1.01, dd)); dd ? c.lineTo(X(dd), yy) : c.moveTo(X(dd), yy); } c.stroke();
+  // the falling curve hugs the floor: drawn dashed on top
+  c.setLineDash([10, 8]); c.lineWidth = 4; c.beginPath(); for (let dd = 0; dd <= days; dd += 2) { const yy = Y(Math.pow(0.99, dd)); dd ? c.lineTo(X(dd), yy) : c.moveTo(X(dd), yy); } c.stroke(); c.setLineDash([]);
+  if (p > 0.02) { const ex = X(days); c.fillStyle = C.ink; c.beginPath(); c.arc(ex, Y(Math.pow(1.01, days)), 9, 0, 7); c.fill(); c.beginPath(); c.arc(ex, Y(Math.pow(0.99, days)), 7, 0, 7); c.fill(); }
+  const la = ez(t, B4.labs, B4.labs + 0.4); mono(c, '+1% A DAY  37.8×', X(365) - 170, Y(37.8) + 6, 17, la, { w: 700, track: 1 }); mono(c, '−1% A DAY  0.03×', X(70), Y(0.03) - 30, 17, la, { w: 700, track: 1 });
   c.restore();
 }
 
 // =================================== OVERLAY ===================================
 function overlay(c, t, M) {
-  fx.bloom(c, { strength: 0.22, radius: 22, lift: 0.2 });
-  if (M.face) { const a = ez(t, 4.5, 4.9, 'over') * (1 - ez(t, 12.2, 12.4)); if (a > 0) { const r = 92 * a, x = W - 140, y = H - 140;
-    for (let i = 4; i >= 0; i--) { c.fillStyle = i % 2 ? C.pink : C.ink; c.beginPath(); c.arc(x, y, r + i * 7, 0, 7); c.fill(); }
-    MEDIA.face(c, x - r, y - r, r * 2, r * 2, { shape: 'circle', tint: '#b8604e' }); } }
-  fx.flash(c, t, W, H, FLASH);
-  fx.grain(c, t, W, H, 0.05, 12);
+  if (M.face) { const a = ez(t, 3.2, 3.7, 'out5') * (1 - ez(t, 16.6, 16.9)); if (a > 0) { const r = 86 * a, x = W - 130, y = H - 130; for (let i = 3; i >= 0; i--) { c.fillStyle = i % 2 ? C.pink : C.ink; c.beginPath(); c.arc(x, y, r + i * 6, 0, 7); c.fill(); } MEDIA.face(c, x - r, y - r, r * 2, r * 2, { shape: 'circle', tint: '#b8604e' }); } }
+  if (M.shot) { const B4 = TL.b4, a = ez(t, B4.labs, B4.labs + 0.5) * (1 - ez(t, B4.out, B4.out + 0.4)); if (a > 0) { const w = 300, h = 190, x = 210, y = 250; c.save(); c.globalAlpha = a; c.fillStyle = C.ink; c.fillRect(x + 8, y + 8, w, h); MEDIA.shot(c, x, y, w, h, { r: 0, tint: '#b8604e' }); c.restore(); mono(c, 'DAY 1 OF YOUR PRODUCT', x + w / 2, y + h + 26, 12, a, { w: 700 }); } }
+  fx.grain(c, t, W, H, 0.06, 12);
 }
 
 // =================================== SOUND ===================================
 function score(k) {
-  const Hk = TL.hook, Mt = TL.math, Sh = TL.show, En = TL.end;
-  k.drone(0, Hk.w[1], { note: 'D2', gain: 0.8 });
-  k.play('rise', 0.02, { d: Hk.w[1] - 0.02, gain: 0.7 });
-  k.play('hit', Hk.w[0], { gain: 0.7 }); k.play('hit', Hk.w[1], { gain: 1.1 }); k.play('boom', Hk.w[1], { gain: 0.6 });
-  k.play('swish', Hk.loop, { d: 1.1, gain: 0.6, top: 2600 }); k.play('chime', Hk.loop + 1.05, { notes: ['D6', 'A6'], gain: 0.8 });
-  k.play('pop', Hk.sub, { hz: 640, gain: 0.7 });
-  k.beat(Hk.w[1], CUTS[2].t, { style: 'tech', gain: 0.85, chords: [['D2', ['D3', 'F3', 'A3']], ['A#1', ['A#2', 'D3', 'F3']], ['F2', ['F3', 'A3', 'C4']], ['C2', ['C3', 'E3', 'G3']]] });
-  CUTS.forEach((q, i) => { k.play('swish', q.t - 0.03, { d: q.d + 0.05, gain: 0.8, dir: i % 2 ? -1 : 1 }); if (q.kind === 'blinds') k.play('glitch', q.t + 0.1, { gain: 0.35 }); });
-  k.play('hit', Mt.top, { gain: 0.7 }); k.play('hit', Mt.eq, { gain: 0.6 });
-  { let last = -1, prev = mult(Mt.cnt[0] - 0.01).toFixed(1); for (let t = Mt.cnt[0]; t < Mt.lock - 0.02; t += 1 / 240) { const v = mult(t).toFixed(1); if (v !== prev && t - last >= 1 / 12) { k.play('tick', t, { hz: 2600 + mult(t) * 40, gain: 0.5, soft: true }); last = t; } prev = v; } }
-  k.play('rise', Mt.cnt[0] + 0.2, { d: Mt.lock - Mt.cnt[0] - 0.2, gain: 0.6 });
-  k.play('boom', Mt.lock, { gain: 1.3 }); k.play('hit', Mt.lock, { gain: 1 }); k.play('shimmer', Mt.lock + 0.03, { gain: 0.9 });
-  k.play('pop', Mt.note, { hz: 520, gain: 0.4, soft: true });
-  for (let r = 0; r < 7; r++) k.play('tick', Sh.rows + r * 0.06, { hz: 3000 + r * 200, gain: 0.35 });
-  k.play('hit', Sh.hl, { gain: 0.9 }); k.play('swish', Sh.hl - 0.05, { d: 0.35, gain: 0.4 }); k.play('pop', Sh.cap, { hz: 700, gain: 0.6 });
-  k.play('swish', En.loop, { d: 0.9, gain: 0.5, top: 2400 });
-  k.play('hit', En.w[0], { gain: 0.8 }); k.play('rise', En.w[0] + 0.05, { d: En.w[1] - En.w[0] - 0.05, gain: 0.5 });
-  k.play('boom', En.w[1], { gain: 1.2 }); k.play('hit', En.w[1], { gain: 1.1 }); k.play('shimmer', En.w[1] + 0.04, { gain: 0.8 });
-  k.beat(En.w[1], TL.D - 0.1, { style: 'tech', gain: 0.85, chords: [['D2', ['D3', 'F3', 'A3']], ['A#1', ['A#2', 'D3', 'F3']]] });
-  k.play('blip', En.tag, { hz: 900, gain: 0.6 });
+  const B1 = TL.b1, B2 = TL.b2, B3 = TL.b3, B4 = TL.b4, B5 = TL.b5;
+  const UP = [['D2', ['D3', 'F#3', 'A3']], ['B1', ['B2', 'D3', 'F#3']], ['G1', ['G2', 'B2', 'D3']], ['A1', ['A2', 'C#3', 'E3']]];
+  const DN = [['D2', ['D3', 'F3', 'A3']], ['A#1', ['A#2', 'D3', 'F3']]];
+  k.drone(0, B1.b, { note: 'D2', gain: 0.6 }); k.play('rise', 0.02, { d: B1.b - 0.02, gain: 0.5 });
+  k.play('hit', B1.a, { gain: 0.7 }); k.play('hit', B1.b, { gain: 1 }); k.play('boom', B1.b, { gain: 0.5 });
+  k.beat(B1.b, B3.flip[0], { style: 'tech', gain: 0.75, chords: UP });
+  k.play('blip', B2.lab, { hz: 900, gain: 0.5 });
+  { let last = -1, prev = up(B2.cnt[0] - 0.01).toFixed(2); for (let t = B2.cnt[0]; t < B2.cnt[1] - 0.02; t += 1 / 240) { const v = up(t).toFixed(2); if (v !== prev && t - last >= 1 / 14) { k.play('tick', t, { hz: 2200 + up(t) * 50, gain: 0.45, soft: true }); last = t; } prev = v; } }
+  k.play('rise', B2.cnt[0], { d: B2.cnt[1] - B2.cnt[0], gain: 0.7 });
+  k.play('boom', B2.cnt[1], { gain: 1.3 }); k.play('hit', B2.cnt[1], { gain: 1.1 }); k.play('shimmer', B2.cnt[1] + 0.03, { gain: 0.8 });
+  k.play('swish', B3.flip[0], { d: 0.8, gain: 0.8, dir: -1, top: 2600 });
+  k.tone(B3.flip[0], { w: 'sawtooth', hz: [[0, 440], [0.8, 110]], d: 0.85, g: 0.06, f: 'lowpass', fc: 1200 });
+  k.play('hit', B3.a, { gain: 0.7 }); k.play('hit', B3.b, { gain: 0.8 });
+  k.beat(B3.a, B4.flip[0], { style: 'dark', bpm: 90, gain: 0.8, chords: DN });
+  { let last = -1, prev = down(B3.cnt[0] - 0.01).toFixed(2); for (let t = B3.cnt[0]; t < B3.cnt[1] - 0.02; t += 1 / 240) { const v = down(t).toFixed(2); if (v !== prev && t - last >= 1 / 14) { k.play('tick', t, { hz: 1400 * down(t) + 500, gain: 0.4, soft: true }); last = t; } prev = v; } }
+  k.play('thump', B3.cnt[1], { gain: 0.9 }); k.play('stamp', B3.cnt[1], { gain: 0.6 });
+  k.play('swish', B4.flip[0], { d: 0.7, gain: 0.7, top: 3000 }); k.play('hit', B4.head, { gain: 0.7 }); k.play('hit', B4.head + 0.15, { gain: 0.7 });
+  k.play('swell', B4.draw[0], { d: B4.draw[1] - B4.draw[0], gain: 0.5 }); k.play('chime', B4.labs, { notes: ['D6', 'A6'], gain: 0.6 });
+  k.beat(B4.head, TL.D - 0.1, { style: 'tech', gain: 0.75, chords: UP });
+  k.play('swish', B5.loop, { d: 1.0, gain: 0.5, top: 2200 }); k.play('hit', B5.a, { gain: 0.9 }); k.play('bell', B5.sig, { hz: 'D6', gain: 0.5 });
 }
 
-// =================================== STYLE ===================================
 const STYLE = {
-  name: 'Op Art Loop', family: 'Kinetic Type', W, H, D: TL.D, base: C.ink, poster: 3.2,
-  fonts: ['900 60px "Archivo"', '800 60px "Archivo"', '700 30px "Archivo"', '600 30px "Archivo"'],
-  scenes: [{ draw: sHook }, { draw: sMath }, { draw: sShow }, { draw: sEnd }],
-  cuts: CUTS, overlay, score,
+  name: 'Op Art Loop', family: 'Kinetic Type', W, H, D: TL.D, base: C.ink, poster: 6.5,
+  fonts: ['900 60px "Archivo"', '800 60px "Archivo"', '500 20px "JetBrains Mono"', '700 20px "JetBrains Mono"'],
+  scenes: [{ draw: shot }], cuts: [], overlay, score,
 };
 
 </script>

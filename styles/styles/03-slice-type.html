@@ -6,7 +6,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=DM+Sans:wght@500;700&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=JetBrains+Mono:wght@500;700&family=DM+Sans:wght@500;700&display=block">
 <style>
 /* Layout: a single-column studio player. Stage first, transport under it, then the "make it yours" media row. One dark look by choice. */
 :root {
@@ -16,8 +16,8 @@
   --ink: #f2f0eb;
   --dim: #9896a2;
   --line: #2b2a33;
-  --accent: #e9e7e2;
-  --on-accent: #0b0b0c;
+  --accent: #ff3b2f;
+  --on-accent: #ffffff;
   --ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 html, body { height: 100%; }
@@ -460,176 +460,223 @@ const STAGE = (() => {
 <script>
 // @name Slice Type
 // @family Kinetic Type
-// @fonts family=Unbounded:wght@400;600;800;900&family=DM+Sans:wght@500;700
-// @accent #e9e7e2
-// @onaccent #0b0b0c
+// @fonts family=Unbounded:wght@700;900&family=JetBrains+Mono:wght@500;700&family=DM+Sans:wght@500;700
+// @accent #ff3b2f
+// @onaccent #ffffff
 // =====================================================================================================
-// STYLE: Slice Type  ·  Haris AI Style Library
-// Monochrome editorial on a smoky near-black: huge wide white caps that arrive in horizontal slices and
-// get cut on a diagonal, thin outline echoes stacked under them, floating rings, dark glossy spheres and
-// a bundle of wave strands. Tiny corner labels. Demo topic: "Cut the noise."
+// STYLE: Slice Type v2  ·  Haris AI Style Library
+// An editor's point of view. Bone-white wide caps arrive as horizontal strips on a near-black cutting room,
+// a real timeline sits under the words, and every "cut" is literal: a red blade slices the clip, the two
+// halves drop away and the timeline ripple-closes. One accent colour, used only for the blade.
+// Demo script: "Nobody skips a video. They skip the first 3 seconds. Cut the intro, cut the 'hey guys',
+// cut the logo. Start with the point."
 // =====================================================================================================
 const W = 1280, H = 720;
-const { cl, mix, prog, ez, E, kick, shake, cam, fx, rand, noise } = HX;
-const C = { bg: '#0b0b0c', ink: '#f1efe9', dim: '#8a8890', mid: '#2a2a2e' };
-const FAM = '"Unbounded", "Arial Black", sans-serif', SANS = '"DM Sans", system-ui, sans-serif';
-const fnt = (px, w = 800) => `${w} ${px}px ${FAM}`;
+const { cl, mix, prog, ez, E, kick, shake, cam, fx, rand, drift } = HX;
+const C = { bg: '#0b0b0c', bone: '#eeebe4', dim: '#8d8a84', line: '#26262a', block: '#1d1d21', red: '#ff3b2f' };
+const WIDE = '"Unbounded", "Arial Black", sans-serif', MONO = '"JetBrains Mono", ui-monospace, monospace', SANS = '"DM Sans", system-ui, sans-serif';
 
+// ---------- timeline (picture and sound both read it) ----------
 const TL = {
-  D: 16,
-  hook: { a: 0.35, b: 0.85, cut: 1.7, tags: 2.4 },
-  idea: { a: 4.55, b: 4.95, chips: [5.8, 6.15, 6.5] },
-  shot: { a: 8.85, cut: 9.9, cap: 10.4 },
-  end: { a: 12.6, cut: 13.4, b: 13.75, tag: 14.5 },
+  D: 19,
+  b1: { a: 0.3, b: 0.9, out: 2.9 },
+  b2: { a: 3.2, three: 3.6, sec: 3.9, count: [3.6, 6.6], out: 6.3 },
+  b3: { tl: 6.3, heads: [6.9, 8.4, 9.9], cuts: [7.6, 9.1, 10.6], left: 11.4, out: 12.1 },
+  b4: { zoom: [12.1, 13.0], a: 13.1, b: 13.5, out: 16.2 },
+  b5: { slash: 16.6, name: 16.9, url: 17.3 },
 };
-const CUTS = [
-  { t: 4.2, d: 0.35, kind: 'glitch' },
-  { t: 8.45, d: 0.45, kind: 'slide', dir: 'l' },
-  { t: 12.2, d: 0.4, kind: 'blinds', n: 9 },
-];
-const KICK = [{ t: 0.35, a: 0.03 }, { t: 0.85, a: 0.06 }, { t: 1.7, a: 0.05 }, { t: 4.95, a: 0.04 }, { t: 9.9, a: 0.05 }, { t: 13.4, a: 0.06 }, { t: 13.75, a: 0.05 }];
-const SHAKE = [{ t: 1.7, a: 9 }, { t: 13.4, a: 11 }];
-const FLASH = [{ t: 1.7, a: 0.25 }, { t: 13.4, a: 0.3 }];
+const KICK = [{ t: 0.9, a: 0.035 }, { t: 3.6, a: 0.06, k: 3 }, ...TL.b3.cuts.map((t) => ({ t, a: 0.05, k: 4 })), { t: 13.5, a: 0.05 }];
+const SHAKE = TL.b3.cuts.map((t) => ({ t, a: 9, k: 9 })).concat([{ t: 3.6, a: 6 }]);
 
-// ---------- surface: smoky dark with a soft blurred ridge ----------
-let SMOKE = null;
-function smoke() {
-  if (SMOKE) return SMOKE; SMOKE = HX.layer(W, H); const x = SMOKE.getContext('2d'), r = rand('ridge');
-  const g = x.createRadialGradient(W / 2, H * 0.55, 60, W / 2, H * 0.55, 760); g.addColorStop(0, '#2b2b30'); g.addColorStop(1, '#09090a'); x.fillStyle = g; x.fillRect(0, 0, W, H);
-  x.filter = `blur(${26 * HX.R}px)`; x.fillStyle = '#3d3d43'; x.beginPath(); x.moveTo(0, H);
-  for (let i = 0; i <= 24; i++) { const px = (i / 24) * W, py = H * 0.62 - Math.sin((i / 24) * Math.PI) * 170 + r.range(-40, 40); x.lineTo(px, py); } x.lineTo(W, H); x.closePath(); x.fill();
-  x.fillStyle = '#1a1a1d'; x.beginPath(); x.moveTo(0, H); for (let i = 0; i <= 24; i++) x.lineTo((i / 24) * W, H * 0.78 - Math.sin((i / 24) * Math.PI * 2 + 1) * 50 + r.range(-20, 20)); x.lineTo(W, H); x.closePath(); x.fill();
-  return SMOKE;
+// ---------- type: strip reveal ----------
+const LAY = new Map();
+function wordLayer(s, px, col, fam = WIDE, w = 900, track = 0) {
+  const k = [s, px, col, fam, w, track].join('|'); if (LAY.has(k)) return LAY.get(k);
+  const m = HX.canvas(4, 4).getContext('2d'); m.font = `${w} ${px}px ${fam}`; m.letterSpacing = track + 'px';
+  const ww = Math.ceil(m.measureText(s).width + px * 0.3), hh = Math.ceil(px * 1.25);
+  const L = HX.layer(ww, hh), x = L.getContext('2d'); x.font = `${w} ${px}px ${fam}`; x.letterSpacing = track + 'px'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = col; x.fillText(s, ww / 2, hh / 2 + px * 0.05);
+  const o = { L, w: ww, h: hh }; LAY.set(k, o); return o;
 }
-function rings(c, t, seed = 'rg', n = 26, a = 1) {
-  const r = rand(seed); c.save(); c.strokeStyle = C.ink; c.globalAlpha *= a;
-  for (let i = 0; i < n; i++) { const R = r.range(5, 30), x = r.range(40, W - 40), sp = r.range(10, 26), y = ((r.range(0, H + 120) - t * sp) % (H + 120) + H + 120) % (H + 120) - 60; c.lineWidth = R > 18 ? 2.5 : 2; c.beginPath(); c.arc(x + Math.sin(t * 0.7 + i) * 8, y, R, 0, 7); c.stroke(); if (r() < 0.25) { c.beginPath(); c.arc(x + Math.sin(t * 0.7 + i) * 8 + R * 1.6, y + R * 0.4, R * 0.6, 0, 7); c.stroke(); } }
-  c.restore();
-}
-function strands(c, t, y, amp, a = 1) {
-  c.save(); c.strokeStyle = C.ink; c.lineWidth = 1.6; c.globalAlpha *= 0.85 * a;
-  for (let k = 0; k < 9; k++) { c.beginPath(); for (let i = 0; i <= 90; i++) { const u = i / 90, py = y + Math.sin(u * 9 + t * 1.3 + k * 0.55) * amp * (0.5 + 0.5 * Math.sin(u * 3 + k)); i ? c.lineTo(u * W, py) : c.moveTo(u * W, py); } c.stroke(); }
-  c.restore();
-}
-function sphere(c, x, y, R) { fx.shadow(c, x + R * 0.15, y + R * 0.95, R * 0.9, R * 0.25, 0.5); const g = c.createRadialGradient(x - R * 0.3, y - R * 0.35, R * 0.1, x, y, R); g.addColorStop(0, '#3c3c40'); g.addColorStop(0.7, '#111113'); g.addColorStop(1, '#050506'); c.fillStyle = g; c.beginPath(); c.arc(x, y, R, 0, 7); c.fill(); c.strokeStyle = 'rgba(241,239,233,0.35)'; c.lineWidth = 1.5; c.beginPath(); c.arc(x, y, R - 1, -2.6, -1.2); c.stroke(); }
-function labels(c, a, left = '@yourchannel', right = '#focus  #create') {
-  c.save(); c.globalAlpha *= a; c.fillStyle = C.ink; c.textBaseline = 'top';
-  c.font = `700 22px ${SANS}`; c.fillText(left.split(' ')[0], 54, 46); c.font = `500 18px ${SANS}`; c.fillStyle = C.dim; c.fillText('cut the noise', 54, 74);
-  c.textAlign = 'right'; c.font = `700 20px ${SANS}`; c.fillStyle = C.ink; c.fillText(right, W - 54, 46); c.restore();
-}
-// ---------- sliced type ----------
-const WORDS = new Map();
-function wordLayer(s, px, mode) {
-  const k = s + px + mode; if (WORDS.has(k)) return WORDS.get(k);
-  const m = HX.canvas(4, 4).getContext('2d'); m.font = fnt(px, 900); const w = Math.ceil(m.measureText(s).width + 20), h = Math.ceil(px * 1.35);
-  const L = HX.layer(w, h), x = L.getContext('2d'); x.font = fnt(px, 900); x.textBaseline = 'middle'; x.textAlign = 'center';
-  if (mode === 'fill') { x.fillStyle = C.ink; x.fillText(s, w / 2, h / 2 + px * 0.04); x.globalCompositeOperation = 'source-atop'; const r = rand('tex' + s); for (let i = 0; i < 900; i++) { x.fillStyle = `rgba(0,0,0,${r.range(0.03, 0.12)})`; x.fillRect(r() * w, r() * h, r.range(1, 3), r.range(1, 3)); } }
-  else { x.strokeStyle = C.ink; x.lineWidth = Math.max(3, px * 0.04); x.lineJoin = 'round'; x.strokeText(s, w / 2, h / 2 + px * 0.04); x.globalCompositeOperation = 'destination-out'; x.fillText(s, w / 2, h / 2 + px * 0.04); }
-  const o = { L, w, h }; WORDS.set(k, o); return o;
-}
-// slices: word arrives as N strips from alternating sides; cut: diagonal slash that offsets the top part
-function sliced(c, s, x, y, px, t, t0, o = {}) {
-  if (t < t0) return; const wl = wordLayer(s, px, o.mode || 'fill'), n = o.n || 7, sh = wl.h / n, cutT = o.cut, sc = o.scale || 1;
-  c.save(); c.translate(x, y); c.scale(sc, sc); c.globalAlpha *= o.alpha == null ? 1 : o.alpha;
-  const cutP = cutT == null ? 0 : ez(t, cutT, cutT + 0.25, 'expo'), dx = 26 * cutP, dy = -7 * cutP;
-  const draw = (clipTop) => {
-    for (let i = 0; i < n; i++) { const st = t0 + (i % 2 ? 0.05 : 0) + i * 0.025, e = ez(t, st, st + 0.42, 'expo'), off = (1 - e) * (i % 2 ? 1 : -1) * W * 0.6; if (e <= 0) continue;
-      HX.blitPart(c, wl.L, 0, i * sh, wl.w, sh + 1, -wl.w / 2 + off + (clipTop ? dx : 0), -wl.h / 2 + i * sh + (clipTop ? dy : 0), wl.w, sh + 1); }
-  };
-  if (cutT == null || t < cutT) draw(false);
-  else { const a = -0.17, b0 = 0; c.save(); c.beginPath(); c.moveTo(-wl.w, b0 + a * -wl.w); c.lineTo(wl.w, b0 + a * wl.w); c.lineTo(wl.w, -wl.h); c.lineTo(-wl.w, -wl.h); c.closePath(); c.clip(); draw(true); c.restore();
-    c.save(); c.beginPath(); c.moveTo(-wl.w, b0 + a * -wl.w); c.lineTo(wl.w, b0 + a * wl.w); c.lineTo(wl.w, wl.h); c.lineTo(-wl.w, wl.h); c.closePath(); c.clip(); draw(false); c.restore(); }
-  // the slash line itself
-  if (cutT != null && t > cutT - 0.15 && t < cutT + 0.5) { const u = ez(t, cutT - 0.15, cutT + 0.05, 'out3'), fade = 1 - prog(t, cutT + 0.1, cutT + 0.5); c.strokeStyle = `rgba(241,239,233,${fade})`; c.lineWidth = 3; c.beginPath(); c.moveTo(-wl.w * 0.65, -0.17 * -wl.w * 0.65); c.lineTo(mix(-wl.w * 0.65, wl.w * 0.65, u), -0.17 * mix(-wl.w * 0.65, wl.w * 0.65, u)); c.stroke(); }
-  c.restore();
-}
-function echo(c, s, x, y, px, t, t0, n = 2) { for (let i = n; i >= 1; i--) sliced(c, s, x, y + i * px * 0.42, px, t, t0 + i * 0.07, { mode: 'line', alpha: 0.5 / i, n: 5 }); sliced(c, s, x, y, px, t, t0, { mode: 'line', n: 5 }); }
-function small(c, s, x, y, px, a, o = {}) { c.save(); c.globalAlpha *= a; c.font = `${o.w || 700} ${px}px ${o.fam || SANS}`; c.letterSpacing = (o.track == null ? 4 : o.track) + 'px'; c.textAlign = o.align || 'center'; c.textBaseline = 'middle'; c.fillStyle = o.fill || C.ink; c.fillText(s, x, y); c.restore(); }
-function chip(c, s, x, y, t, t0) { if (t < t0) return; const e = ez(t, t0, t0 + 0.35, 'over', 2), w = HX.txt.width(c, s, `700 26px ${SANS}`, 4) + 60; c.save(); c.translate(x, y); c.scale(e, e); c.strokeStyle = C.ink; c.lineWidth = 2; c.beginPath(); c.roundRect(-w / 2, -28, w, 56, 28); c.stroke(); small(c, s, 0, 1, 26, 1); c.restore(); }
-
-// =================================== SCENES ===================================
-function camOf(t, a, b) { const o = camOf0(t, a, b), d = HX.drift(t, 1); o.x = (o.x || 0) + d.x; o.y = (o.y || 0) + d.y; o.r = (o.r || 0) + d.r; return o; }
-function camOf0(t, a, b) { const s = shake(t, SHAKE); return { z: 1 + 0.04 * ez(t, a, b, 'io3') + kick(t, KICK), x: s.x, y: s.y, r: s.r }; }
-function base(c, t, seed) { HX.blit(c, smoke(), 0, 0); fx.leak(c, t, W, H, ['120,120,140', '90,90,100'], 0.12, seed); rings(c, t, seed); }
-function sHook(c, t) {
-  const Hk = TL.hook; c.save(); cam(c, W, H, camOf(t, 0, 4.2)); base(c, t, 'r0');
-  strands(c, t, 600, 34, ez(t, 0.1, 0.8));
-  sliced(c, 'CUT THE', W / 2, 236, 72, t, Hk.a, { n: 5 });
-  sliced(c, 'NOISE.', W / 2, 372, 176, t, Hk.b, { cut: Hk.cut, n: 9 });
-  fx.burst(c, t, Hk.cut, W / 2, 372, { n: 30, cols: ['#ffffff'], speed: 1200, spread: 0.6, dir: -0.17, gravity: 120, size: 3.5, life: 0.6 }); fx.burst(c, t, Hk.cut, W / 2, 372, { n: 30, cols: ['#ffffff'], speed: 1200, spread: 0.6, dir: Math.PI - 0.17, gravity: 120, size: 3.5, life: 0.6, seed: 'q' });
-  labels(c, ez(t, Hk.tags, Hk.tags + 0.4));
-  c.restore();
-}
-function sIdea(c, t) {
-  const Id = TL.idea; c.save(); cam(c, W, H, camOf(t, 4.2, 8.45)); base(c, t, 'r1');
-  const spheres = [[160, 160, 70], [1120, 140, 54], [1060, 560, 90], [230, 590, 44], [640, 650, 34]];
-  spheres.forEach(([x, y, R], i) => { const e = ez(t, 4.4 + i * 0.1, 5.0 + i * 0.1, 'expo'); if (e > 0) sphere(c, x + Math.sin(t * 0.5 + i) * 10, y + Math.cos(t * 0.6 + i) * 8, R * e); });
-  sliced(c, 'ONE IDEA', W / 2, 250, 118, t, Id.a, { n: 7 });
-  echo(c, 'PER VIDEO', W / 2, 390, 96, t, Id.b);
-  chip(c, 'HOOK', 450, 615, t, Id.chips[0]); chip(c, 'POINT', 640, 615, t, Id.chips[1]); chip(c, 'PROOF', 830, 615, t, Id.chips[2]);
-  c.restore();
-}
-function sShot(c, t, M) {
-  const Sh = TL.shot; c.save(); cam(c, W, H, camOf(t, 8.45, 12.2)); base(c, t, 'r2');
-  if (M.shot) {
-    const fw = M.face ? 740 : 820, fh = 462, x = (M.face ? 560 : 640) - fw / 2, y = 150, n = 8, sh = fh / n;
-    for (let i = 0; i < n; i++) { const st = Sh.a + i * 0.04, e = ez(t, st, st + 0.5, 'expo'), off = (1 - e) * (i % 2 ? 1 : -1) * 900; if (e <= 0) continue; c.save(); c.beginPath(); c.rect(x + off, y + i * sh, fw, sh + 0.5); c.clip(); c.translate(off, 0); MEDIA.shot(c, x, y, fw, fh, { r: 0, zoom: 1.02 + 0.05 * prog(t, Sh.a, 12.2), tint: '#55555f' }); c.restore(); }
-    c.strokeStyle = C.ink; c.lineWidth = 2; if (t > Sh.a + 0.6) c.strokeRect(x, y, fw, fh);
-    small(c, "SHOW, DON'T TELL", W / 2, 96, 30, ez(t, Sh.cap, Sh.cap + 0.4), { fam: FAM, w: 800, track: 3 });
-  } else {
-    strands(c, t, 640, 26);
-    sliced(c, 'SHOW', W / 2, 270, 190, t, Sh.a, { cut: Sh.cut, n: 9 });
-    echo(c, "DON'T TELL.", W / 2, 448, 82, t, Sh.cap, 2);
+// strips arrive from alternating sides, then leave the opposite way. Motion blur comes from the renderer.
+function strips(c, s, x, y, px, t, tIn, tOut, o = {}) {
+  if (t < tIn || (tOut != null && t > tOut + 0.5)) return;
+  const G = wordLayer(s, px, o.col || C.bone, o.fam, o.w, o.track), n = o.n || 6, sh = G.h / n, far = o.far || 260;
+  c.save(); c.translate(x, y); if (o.scale) c.scale(o.scale, o.scale);
+  for (let i = 0; i < n; i++) {
+    const d = i % 2 ? 1 : -1, st = tIn + (o.stagger == null ? 0.028 : o.stagger) * i, inE = ez(t, st, st + 0.42, 'out5');
+    const outE = tOut == null ? 0 : ez(t, tOut + 0.025 * (n - i), tOut + 0.025 * (n - i) + 0.32, 'in3');
+    const off = (1 - inE) * far * d - outE * far * 1.6 * d; const a = Math.min(1, inE * 1.6) * (1 - outE);
+    if (a <= 0.001) continue; c.globalAlpha = a;
+    HX.blitPart(c, G.L, 0, i * sh, G.w, sh + 0.6, -G.w / 2 + off, -G.h / 2 + i * sh, G.w, sh + 0.6);
   }
-  labels(c, 1, '@yourchannel', '#show  #proof');
+  c.globalAlpha = 1; c.restore();
+}
+function mono(c, s, x, y, px, a, o = {}) { if (a <= 0) return; c.save(); c.globalAlpha *= a; c.font = `${o.w || 500} ${px}px ${MONO}`; c.letterSpacing = (o.track == null ? 2 : o.track) + 'px'; c.textAlign = o.align || 'left'; c.textBaseline = 'middle'; c.fillStyle = o.col || C.dim; c.fillText(s, x, y); c.restore(); }
+
+// ---------- the cutting room ----------
+let ROOM = null;
+function room() {
+  if (ROOM) return ROOM; ROOM = HX.layer(W, H); const x = ROOM.getContext('2d');
+  x.fillStyle = C.bg; x.fillRect(0, 0, W, H);
+  const g = x.createRadialGradient(W * 0.5, H * 0.42, 40, W * 0.5, H * 0.5, 820); g.addColorStop(0, 'rgba(255,250,240,0.075)'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.strokeStyle = 'rgba(238,235,228,0.05)'; x.lineWidth = 1; for (let i = 1; i < 12; i++) { x.beginPath(); x.moveTo((W / 12) * i, 0); x.lineTo((W / 12) * i, H); x.stroke(); }
+  // crop marks
+  x.strokeStyle = 'rgba(238,235,228,0.35)'; x.lineWidth = 1.5; [[44, 44, 1, 1], [W - 44, 44, -1, 1], [44, H - 44, 1, -1], [W - 44, H - 44, -1, -1]].forEach(([px, py, sx, sy]) => { x.beginPath(); x.moveTo(px, py + 18 * sy); x.lineTo(px, py); x.lineTo(px + 18 * sx, py); x.stroke(); });
+  return ROOM;
+}
+const tc = (t) => { const f = Math.floor(t * 24), s = Math.floor(f / 24); return `00:00:${String(s).padStart(2, '0')}:${String(f % 24).padStart(2, '0')}`; };
+function chrome(c, t, M) {
+  const a = 1 - ez(t, TL.b4.zoom[0], TL.b4.zoom[0] + 0.3) + ez(t, TL.b4.out, TL.b4.out + 0.4);
+  mono(c, tc(t), 70, 72, 15, cl(a) * 0.9, { col: C.bone });
+  mono(c, 'SEQ 01 · 24 FPS', 70, 96, 12, cl(a) * 0.6);
+  const cuts = TL.b3.cuts.filter((x) => t >= x).length;
+  mono(c, `CUTS ${cuts}/3`, W - 70, 72, 15, cl(a) * 0.9, { col: cuts ? C.red : C.bone, align: 'right' });
+}
+
+// ---------- timeline with literal cuts ----------
+const CLIPS = [
+  { id: 'intro', label: 'INTRO', w: 210, cut: 0 },
+  { id: 'hey', label: '"HEY GUYS"', w: 190, cut: 1 },
+  { id: 'logo', label: 'LOGO STING', w: 170, cut: 2 },
+  { id: 'point', label: 'THE POINT', w: 250, hero: true },
+  { id: 'proof', label: 'PROOF', w: 180 },
+];
+const TX = 140, TY = 540, TH = 70;
+function presence(cl0, t) { if (cl0.cut == null) return 1; const tc0 = TL.b3.cuts[cl0.cut]; return 1 - ez(t, tc0 + 0.32, tc0 + 0.82, 'io3'); }
+function clipBox(c, x, y, w, h, cl0, a = 1) {
+  c.save(); c.globalAlpha *= a; c.fillStyle = cl0.hero ? C.bone : C.block; c.beginPath(); c.roundRect(x + 2, y, w - 4, h, 6); c.fill();
+  if (!cl0.hero) { c.strokeStyle = 'rgba(238,235,228,0.16)'; c.lineWidth = 1; c.stroke(); }
+  // waveform texture
+  const r = rand('wf' + cl0.id); c.fillStyle = cl0.hero ? 'rgba(11,11,12,0.18)' : 'rgba(238,235,228,0.12)';
+  for (let i = 10; i < w - 10; i += 5) { const v = (0.2 + 0.8 * r()) * h * 0.32; c.fillRect(x + i, y + h * 0.66 - v / 2, 2, v); }
+  c.font = `700 13px ${MONO}`; c.letterSpacing = '1.5px'; c.textBaseline = 'middle'; c.fillStyle = cl0.hero ? C.bg : C.bone; c.fillText(cl0.label, x + 14, y + 20);
   c.restore();
 }
-function sEnd(c, t) {
-  const En = TL.end; c.save(); cam(c, W, H, camOf(t, 12.2, 16)); base(c, t, 'r3');
-  strands(c, t, 610, 40);
-  sliced(c, 'FOCUS', W / 2, 300, 200, t, En.a, { cut: En.cut, n: 9 });
-  echo(c, 'WINS.', W / 2, 470, 110, t, En.b, 2);
-  fx.burst(c, t, En.cut, W / 2, 300, { n: 36, cols: ['#ffffff'], speed: 1300, spread: 0.7, dir: -0.17, gravity: 120, size: 3.5, life: 0.6 }); fx.burst(c, t, En.cut, W / 2, 300, { n: 36, cols: ['#ffffff'], speed: 1300, spread: 0.7, dir: Math.PI - 0.17, gravity: 120, size: 3.5, life: 0.6, seed: 'q' });
-  small(c, '@yourchannel', W / 2, 660, 24, ez(t, En.tag, En.tag + 0.4), { track: 1 });
+function timeline(c, t) {
+  const B = TL.b3, enter = ez(t, B.tl, B.tl + 0.7, 'out5'); if (enter <= 0) return;
+  const y = TY + (1 - enter) * 220;
+  c.save(); c.globalAlpha = Math.min(1, enter * 1.5);
+  c.strokeStyle = C.line; c.lineWidth = 1; c.beginPath(); c.moveTo(TX - 40, y - 26); c.lineTo(TX + 1040, y - 26); c.stroke();
+  for (let i = 0; i <= 20; i++) { const xx = TX + i * 50; c.beginPath(); c.moveTo(xx, y - 26); c.lineTo(xx, y - (i % 4 ? 32 : 38)); c.stroke(); if (i % 4 === 0) mono(c, `0${i / 4}:00`, xx + 4, y - 44, 10, 0.5); }
+  mono(c, 'V1', TX - 46, y + TH / 2, 12, 0.7, { col: C.bone });
+  let x = TX;
+  CLIPS.forEach((cl0) => {
+    const p = presence(cl0, t), w = cl0.w;
+    if (cl0.cut != null && t >= B.cuts[cl0.cut]) { sliceFall(c, t, B.cuts[cl0.cut], x0of(cl0, B.cuts[cl0.cut]), y, w, cl0); }
+    else clipBox(c, x, y, w, TH, cl0);
+    x += w * p;
+  });
+  // playhead
+  const ph = TX + mix(0, 210, ez(t, B.tl + 0.4, B.cuts[0] - 0.1, 'io3')) * (t < B.cuts[0] ? 1 : 0) + (t > B.left ? ez(t, B.left, B.left + 0.6, 'io3') * 250 : 0);
+  c.strokeStyle = C.red; c.lineWidth = 2; c.beginPath(); c.moveTo(ph, y - 30); c.lineTo(ph, y + TH + 10); c.stroke(); c.fillStyle = C.red; c.beginPath(); c.moveTo(ph - 7, y - 38); c.lineTo(ph + 7, y - 38); c.lineTo(ph, y - 28); c.closePath(); c.fill();
   c.restore();
+}
+function x0of(target, t) { let x = TX; for (const cl0 of CLIPS) { if (cl0 === target) return x; x += cl0.w * presence(cl0, t); } return x; }
+// the blade: a red diagonal line sweeps through the clip, then the halves part and drop away
+function sliceFall(c, t, t0, x, y, w, cl0) {
+  const d = t - t0, cx = x + w / 2, cy = y + TH / 2, ang = -0.5, ux = Math.cos(ang), uy = Math.sin(ang), nx = -uy, ny = ux, F = 1400;
+  const sweep = ez(t, t0 - 0.12, t0 + 0.02, 'out3'), fall = Math.max(0, d - 0.08);
+  for (const side of [-1, 1]) {
+    // side -1: the half above the blade lifts and spins off; side 1: the half below drops
+    const dx = side < 0 ? -90 * fall - 120 * fall * fall : 60 * fall, dy = side < 0 ? -140 * fall + 900 * fall * fall : 1500 * fall * fall, rot = side < 0 ? -1.4 * fall * fall - 0.3 * fall : 0.8 * fall * fall;
+    c.save(); c.translate(cx + dx, cy + dy); c.rotate(rot); c.translate(-cx, -cy);
+    c.beginPath(); c.moveTo(cx - ux * F, cy - uy * F); c.lineTo(cx + ux * F, cy + uy * F); c.lineTo(cx + ux * F + nx * F * side, cy + uy * F + ny * F * side); c.lineTo(cx - ux * F + nx * F * side, cy - uy * F + ny * F * side); c.closePath(); c.clip();
+    clipBox(c, x, y, w, TH, cl0, cl(1 - fall * 1.6)); c.restore();
+  }
+  if (d < 0.45) {
+    const a = 1 - prog(t, t0 + 0.08, t0 + 0.45), L = w * 0.62, s0 = -L, s1 = mix(-L, L, sweep);
+    c.save(); c.globalAlpha = a; c.strokeStyle = C.red; c.lineWidth = 3; c.lineCap = 'round'; c.shadowColor = C.red; c.shadowBlur = 14;
+    c.beginPath(); c.moveTo(cx + ux * s0, cy + uy * s0); c.lineTo(cx + ux * s1, cy + uy * s1); c.stroke(); c.restore();
+    fx.burst(c, t, t0, cx + ux * L * 0.2, cy + uy * L * 0.2, { n: 14, cols: [C.red, '#ffd0c8'], speed: 520, spread: 0.7, dir: ang + Math.PI, gravity: 900, size: 2.2, life: 0.35 });
+  }
+}
+// =================================== THE SHOT ===================================
+const HEADS = [['CUT', ' THE INTRO.'], ['CUT', ' THE "HEY GUYS".'], ['CUT', ' THE LOGO.']];
+function headline(c, t, i, tIn, tOut) {
+  if (t < tIn || t > tOut + 0.5) return;
+  const px = 70, [a, b] = HEADS[i], m = HX.canvas(4, 4).getContext('2d'); m.font = `900 ${px}px ${WIDE}`; const wa = m.measureText(a).width, wb = m.measureText(b).width, x0 = W / 2 - (wa + wb) / 2;
+  strips(c, a, x0 + wa / 2, 330, px, t, tIn, tOut, { col: C.red, n: 5, far: 180 });
+  strips(c, b, x0 + wa + wb / 2, 330, px, t, tIn + 0.06, tOut, { n: 5, far: 180 });
+}
+function shot(c, t, M) {
+  const d = drift(t, 0.8), s = shake(t, SHAKE), z = 1 + kick(t, KICK) + 0.025 * ez(t, 0, 19, 'sine');
+  c.save(); HX.blit(c, room(), 0, 0);
+  // B4 zoom into THE POINT clip: the bone clip grows to fill the frame
+  const Z = TL.b4, zu = ez(t, Z.zoom[0], Z.zoom[1], 'ioExpo'), back = ez(t, Z.out, Z.out + 0.55, 'ioExpo');
+  cam(c, W, H, { z, x: d.x + s.x, y: d.y + s.y, r: d.r + s.r });
+  chrome(c, t, M);
+  // B1
+  const B1 = TL.b1; strips(c, 'NOBODY SKIPS', W / 2, 300, 104, t, B1.a, B1.out); strips(c, 'A VIDEO.', W / 2, 425, 104, t, B1.b, B1.out + 0.05);
+  // B2
+  const B2 = TL.b2;
+  strips(c, 'THEY SKIP THE FIRST', W / 2, 170, 52, t, B2.a, B2.out, { n: 4, far: 160 });
+  if (t > B2.three - 0.05 && t < B2.out + 0.6) {
+    const left = 3 - Math.floor(cl(t - B2.count[0], 0, 2.999)), e = ez(t, B2.three, B2.three + 0.5, 'out5'), o = ez(t, B2.out, B2.out + 0.4, 'in3');
+    const R = 150, cx = 360, cy = 395, p = prog(t, B2.count[0], B2.count[1]);
+    c.save(); c.globalAlpha = (1 - o); c.strokeStyle = C.line; c.lineWidth = 6; c.beginPath(); c.arc(cx, cy, R, 0, 7); c.stroke();
+    c.strokeStyle = C.red; c.lineCap = 'round'; c.beginPath(); c.arc(cx, cy, R, -Math.PI / 2 + p * Math.PI * 2, Math.PI * 1.5); c.stroke(); c.restore();
+    const flip = ez(t, B2.count[0] + (3 - left), B2.count[0] + (3 - left) + 0.25, 'out5');
+    strips(c, String(left), cx, cy + 8, 210 * mix(1.15, 1, flip), t, B2.three, B2.out, { n: 7, far: 120 });
+  }
+  strips(c, 'SECONDS.', 840, 400, 84, t, B2.sec, B2.out, { far: 200 });
+  // B3
+  const B3 = TL.b3;
+  B3.heads.forEach((th, i) => headline(c, t, i, th, i < 2 ? B3.heads[i + 1] - 0.35 : B3.left - 0.3));
+  strips(c, "WHAT'S LEFT?", W / 2, 330, 70, t, B3.left, Z.zoom[0] - 0.15, { n: 5, far: 180 });
+  if (zu < 1) timeline(c, t);
+  // zoom card: from the point clip's slot to full frame
+  if (t >= Z.zoom[0] && t < Z.out + 0.6) {
+    const sx = x0of(CLIPS[3], t), sy = TY, k = zu * (1 - back), bx = mix(sx + 2, -40, k), by = mix(sy, -40, k), bw = mix(CLIPS[3].w - 4, W + 80, k), bh = mix(TH, H + 80, k);
+    c.save(); c.fillStyle = C.bone; c.beginPath(); c.roundRect(bx, by, bw, bh, mix(6, 0, k)); c.fill(); c.clip();
+    if (M.shot) { const e = ez(t, Z.a - 0.2, Z.a + 0.4); c.globalAlpha = e; MEDIA.shot(c, 160, 230, 960, 400, { r: 10, zoom: 1.04 - 0.04 * prog(t, Z.a, Z.out), tint: '#3a3a40' }); c.globalAlpha = 1; strips(c, 'START WITH THE POINT.', W / 2, 140, 58, t, Z.a, Z.out - 0.1, { col: C.bg, n: 4, far: 160 }); }
+    else { strips(c, 'START WITH', W / 2, 270, 78, t, Z.a, Z.out - 0.1, { col: C.bg, n: 5, far: 200 }); strips(c, 'THE POINT.', W / 2, 400, 128, t, Z.b, Z.out, { col: C.bg, n: 7, far: 220 }); mono(c, 'EVERYTHING ELSE IS A CUT.', W / 2, 520, 16, ez(t, Z.b + 0.5, Z.b + 0.9) * (1 - ez(t, Z.out - 0.2, Z.out)), { col: '#4b4945', align: 'center', track: 4 }); }
+    c.restore();
+  }
+  c.restore();
+  // B5 end card (outside the camera, steady)
+  const F = TL.b5;
+  if (t > F.slash - 0.1) {
+    const u = ez(t, F.slash, F.slash + 0.35, 'out5'); c.save(); c.strokeStyle = C.red; c.lineWidth = 4; c.lineCap = 'round'; c.beginPath(); c.moveTo(W / 2 - 220, 412); c.lineTo(mix(W / 2 - 220, W / 2 + 220, u), mix(412, 392, u)); c.stroke(); c.restore();
+    strips(c, 'SLICE TYPE', W / 2, 330, 88, t, F.name, null, { n: 6 });
+    mono(c, 'HARIS AI · MOTION STYLES', W / 2, 462, 15, ez(t, F.url, F.url + 0.5), { col: C.bone, align: 'center', track: 5 });
+    mono(c, 'theharisai.com/styles', W / 2, 492, 14, ez(t, F.url + 0.15, F.url + 0.65), { align: 'center', track: 1 });
+  }
 }
 
 // =================================== OVERLAY ===================================
 function overlay(c, t, M) {
-  fx.bokeh(c, t, W, H, { n: 18, min: 10, max: 50, alpha: 0.1, seed: 'st' }); fx.bloom(c, { strength: 0.22, radius: 26, lift: 0.15 });
-  if (M.face) { const a = ez(t, 4.4, 4.8, 'over') * (1 - ez(t, 12.0, 12.2)); if (a > 0) { const r = 84 * a, x = W - 130, y = H - 140; MEDIA.face(c, x - r, y - r, r * 2, r * 2, { shape: 'circle', tint: '#45454d' }); c.strokeStyle = C.ink; c.lineWidth = 2.5; c.beginPath(); c.arc(x, y, r + 8, 0, 7); c.stroke(); c.lineWidth = 2; c.beginPath(); c.arc(x + r + 18, y - r + 4, 12, 0, 7); c.stroke(); } }
-  fx.flash(c, t, W, H, FLASH);
-  fx.vignette(c, W, H, 0.45);
-  fx.grain(c, t, W, H, 0.08, 12);
+  if (M.face) { const a = ez(t, 3.0, 3.5, 'out5') * (1 - ez(t, 16.0, 16.4)); if (a > 0) { const w = 230, h = 290, x = W - 60 - w, y = 130 + (1 - a) * 30; c.save(); c.globalAlpha = a; MEDIA.face(c, x, y, w, h, { r: 8, tint: '#3c3c42' }); c.strokeStyle = 'rgba(238,235,228,0.4)'; c.lineWidth = 1; c.strokeRect(x - 8, y - 8, w + 16, h + 16); mono(c, 'CAM A', x, y + h + 24, 11, 0.7); c.restore(); } }
+  fx.vignette(c, W, H, 0.55);
+  fx.grain(c, t, W, H, 0.07, 24);
 }
 
 // =================================== SOUND ===================================
 function score(k) {
-  const Hk = TL.hook, Id = TL.idea, Sh = TL.shot, En = TL.end;
-  k.drone(0, Hk.cut, { note: 'C2', gain: 0.8 });
-  k.play('swish', Hk.a - 0.05, { d: 0.35, gain: 0.5, dir: -1 }); k.play('hit', Hk.a + 0.05, { gain: 0.6 });
-  k.play('swish', Hk.b - 0.05, { d: 0.4, gain: 0.6 }); k.play('hit', Hk.b + 0.08, { gain: 1 });
-  k.play('rise', Hk.b + 0.2, { d: Hk.cut - Hk.b - 0.2, gain: 0.45 });
-  k.play('snap', Hk.cut - 0.1, { gain: 0.8 }); k.play('swish', Hk.cut - 0.15, { d: 0.2, gain: 0.8, top: 6000 }); k.play('boom', Hk.cut, { gain: 1.1 }); k.play('hit', Hk.cut, { gain: 0.8 });
-  k.play('tick', Hk.tags, { gain: 0.5 }); k.play('tick', Hk.tags + 0.08, { hz: 3200, gain: 0.4 });
-  k.beat(Hk.cut, CUTS[2].t, { style: 'dark', gain: 0.9, chords: [['C2', ['C3', 'D#3', 'G3']], ['G#1', ['G#2', 'C3', 'D#3']], ['A#1', ['A#2', 'D3', 'F3']], ['G1', ['G2', 'B2', 'D3']]] });
-  k.play('glitch', CUTS[0].t, { gain: 0.9 });
-  k.play('swish', Id.a - 0.05, { d: 0.4, gain: 0.5 }); k.play('hit', Id.a + 0.05, { gain: 0.8 }); k.play('swell', Id.b - 0.3, { d: 0.4, gain: 0.6 }); k.play('hit', Id.b + 0.05, { gain: 0.7 });
-  Id.chips.forEach((t, i) => k.play('pop', t, { hz: 600 + i * 120, gain: 0.6, pan: [-0.4, 0, 0.4][i] }));
-  k.play('swish', CUTS[1].t - 0.03, { d: 0.5, gain: 0.8, dir: -1 });
-  k.play('swish', Sh.a, { d: 0.5, gain: 0.5 }); k.play('snap', Sh.cut - 0.1, { gain: 0.7 }); k.play('hit', Sh.cut, { gain: 0.9 }); k.play('pop', Sh.cap, { hz: 520, gain: 0.5 });
-  k.play('glitch', CUTS[2].t + 0.05, { gain: 0.5 }); k.play('swish', CUTS[2].t, { d: 0.4, gain: 0.6 });
-  k.play('swish', En.a, { d: 0.4, gain: 0.6 }); k.play('hit', En.a + 0.08, { gain: 0.9 }); k.play('rise', En.a + 0.15, { d: En.cut - En.a - 0.15, gain: 0.5 });
-  k.play('snap', En.cut - 0.1, { gain: 0.8 }); k.play('boom', En.cut, { gain: 1.25 }); k.play('hit', En.cut, { gain: 1 }); k.play('hit', En.b, { gain: 0.7 });
-  k.beat(En.cut, TL.D - 0.1, { style: 'dark', gain: 0.9, chords: [['C2', ['C3', 'D#3', 'G3']], ['G#1', ['G#2', 'C3', 'D#3']]] });
-  k.play('tick', En.tag, { gain: 0.5 });
+  const B1 = TL.b1, B2 = TL.b2, B3 = TL.b3, Z = TL.b4, F = TL.b5;
+  k.drone(0, B2.a, { note: 'C2', gain: 0.6 });
+  k.play('swish', B1.a - 0.04, { d: 0.3, gain: 0.5, dir: -1 }); k.play('hit', B1.a + 0.05, { gain: 0.7 });
+  k.play('swish', B1.b - 0.04, { d: 0.3, gain: 0.5 }); k.play('hit', B1.b + 0.05, { gain: 0.9 });
+  k.play('swish', B1.out, { d: 0.35, gain: 0.35, top: 4000 });
+  k.play('hit', B2.a + 0.05, { gain: 0.5 }); k.play('boom', B2.three, { gain: 0.8 }); k.play('hit', B2.three, { gain: 0.9 });
+  for (let i = 0; i < 3; i++) { k.play('tick', B2.count[0] + i, { hz: 2600, gain: 0.7 }); k.play('tick', B2.count[0] + i + 0.5, { hz: 1800, gain: 0.3, soft: true }); }
+  k.play('hit', B2.sec + 0.05, { gain: 0.6 });
+  k.beat(B2.three, Z.zoom[0], { style: 'dark', bpm: 96, gain: 0.7, chords: [['C2', ['C3', 'D#3', 'G3']], ['G#1', ['G#2', 'C3', 'D#3']]] });
+  k.play('swish', B3.tl, { d: 0.6, gain: 0.5, dir: 1, top: 2200 }); k.play('thump', B3.tl + 0.55, { gain: 0.5 });
+  B3.heads.forEach((t) => { k.play('swish', t - 0.04, { d: 0.28, gain: 0.35 }); k.play('hit', t + 0.06, { gain: 0.55 }); });
+  B3.cuts.forEach((t, i) => { k.play('snap', t - 0.1, { gain: 0.9, pan: -0.2 + i * 0.2 }); k.play('swish', t - 0.12, { d: 0.14, gain: 0.7, top: 7000 }); k.play('stamp', t, { gain: 0.7 }); k.play('swish', t + 0.3, { d: 0.5, gain: 0.25, top: 1200, dir: -1, soft: true }); k.play('click', t + 0.75, { gain: 0.5 }); });
+  k.play('hit', B3.left + 0.05, { gain: 0.6 });
+  k.play('rise', B3.left + 0.2, { d: Z.zoom[0] - B3.left, gain: 0.6 }); k.play('swish', Z.zoom[0], { d: 0.9, gain: 0.7, top: 3000 });
+  k.play('hit', Z.a, { gain: 0.7 }); k.play('boom', Z.b, { gain: 1.2 }); k.play('hit', Z.b, { gain: 1 });
+  k.beat(Z.b, Z.out, { style: 'dark', bpm: 96, gain: 0.8, chords: [['C2', ['C3', 'D#3', 'G3']], ['A#1', ['A#2', 'D3', 'F3']]] });
+  k.play('swish', Z.out, { d: 0.55, gain: 0.6, dir: -1 });
+  k.play('snap', F.slash, { gain: 0.7 }); k.play('hit', F.name + 0.05, { gain: 0.8 }); k.play('bell', F.url, { hz: 'G5', gain: 0.5 });
+  k.drone(F.slash, TL.D, { note: 'C2', gain: 0.5 });
 }
 
 const STYLE = {
-  name: 'Slice Type', family: 'Kinetic Type', W, H, D: TL.D, base: C.bg, poster: 2.6,
-  fonts: ['900 60px "Unbounded"', '800 60px "Unbounded"', '700 24px "DM Sans"', '500 20px "DM Sans"'],
-  scenes: [{ draw: sHook }, { draw: sIdea }, { draw: sShot }, { draw: sEnd }],
-  cuts: CUTS, overlay, score,
+  name: 'Slice Type', family: 'Kinetic Type', W, H, D: TL.D, base: C.bg, poster: 10.75,
+  fonts: ['900 60px "Unbounded"', '700 60px "Unbounded"', '500 20px "JetBrains Mono"', '700 20px "JetBrains Mono"', '500 20px "DM Sans"'],
+  scenes: [{ draw: shot }], cuts: [], overlay, score,
 };
 
 </script>
