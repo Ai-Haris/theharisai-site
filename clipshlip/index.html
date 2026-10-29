@@ -1,0 +1,1324 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://theharisai.com/clipshlip/">
+<meta property="og:url" content="https://theharisai.com/clipshlip/">
+    <title>ClipShlip — long videos into short captioned clips, on your own machine</title>
+    <meta name="description" content="Turn a podcast into vertical clips with burned-in captions. Urdu, Hindi and Hinglish are first-class. Runs entirely on your computer. Free. Made by Haris Ai.">
+    <meta property="og:title" content="ClipShlip — by Haris Ai">
+    <meta property="og:description" content="Long videos into short captioned clips. On your machine. Free.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Devanagari:wght@700&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --black: #000;
+            --coal: #0A0A0B;
+            --slate: #141416;
+            --edge: #212124;
+            --lime: #C6F32F;
+            --lime-dim: #8FB021;
+            --white: #fff;
+            --grey: #9B9B9F;
+            --dim: #5A5A5E;
+            --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --display: 'Anton', Impact, sans-serif;
+            --mono: 'JetBrains Mono', ui-monospace, monospace;
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+        
+        html {
+            scroll-behavior: smooth
+        }
+        
+        body {
+            margin: 0;
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden
+        }
+        
+        a {
+            color: inherit
+        }
+        
+         ::selection {
+            background: var(--lime);
+            color: #000
+        }
+        
+        .rail {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 14px;
+            z-index: 2;
+            pointer-events: none;
+            background: repeating-linear-gradient(180deg, rgba(198, 243, 47, .22) 0 10px, transparent 10px 34px);
+            mask-image: linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+            animation: roll 3.2s linear infinite
+        }
+        
+        .rail.l {
+            left: 9px
+        }
+        
+        .rail.r {
+            right: 9px
+        }
+        
+        @keyframes roll {
+            to {
+                background-position-y: 34px
+            }
+        }
+        /* ── nav, now carrying the maker credit ── */
+        
+        nav {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px clamp(28px, 5vw, 64px);
+            flex-wrap: wrap
+        }
+        
+        .cell {
+            width: 20px;
+            height: 26px;
+            border-radius: 4px;
+            position: relative;
+            flex: 0 0 auto;
+            background: linear-gradient(180deg, #1b1b1d, #08080a);
+            border: 1.5px solid var(--lime);
+            box-shadow: 0 0 12px rgba(198, 243, 47, .35)
+        }
+        
+        .cell::before,
+        .cell::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            bottom: 3px;
+            width: 2px;
+            background: repeating-linear-gradient(180deg, var(--lime) 0 2px, transparent 2px 5px);
+            opacity: .9
+        }
+        
+        .cell::before {
+            left: 2px
+        }
+        
+        .cell::after {
+            right: 2px
+        }
+        
+        .wordmark {
+            font-family: var(--display);
+            font-size: 19px;
+            letter-spacing: .02em
+        }
+        
+        .wordmark span {
+            color: var(--lime)
+        }
+        
+        .byline {
+            font-family: var(--mono);
+            font-size: 10.5px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--dim);
+            border-left: 1px solid var(--edge);
+            padding-left: 12px;
+            margin-left: 2px
+        }
+        
+        .byline b {
+            color: var(--grey);
+            font-weight: 500
+        }
+        
+        nav .spacer {
+            flex: 1
+        }
+        
+        .ig {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            text-decoration: none;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: .04em;
+            color: var(--grey);
+            border: 1px solid var(--edge);
+            border-radius: 100px;
+            padding: 7px 13px;
+            background: var(--coal);
+            transition: border-color .16s, color .16s, transform .16s
+        }
+        
+        .ig:hover {
+            border-color: var(--lime);
+            color: var(--lime);
+            transform: translateY(-1px)
+        }
+        
+        .ig svg {
+            width: 14px;
+            height: 14px;
+            flex: 0 0 auto
+        }
+        
+        .ig:focus-visible {
+            outline: 2px solid var(--lime);
+            outline-offset: 3px
+        }
+        
+        .ver {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--dim);
+            letter-spacing: .08em
+        }
+        
+        .hero {
+            position: relative;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+            gap: clamp(28px, 5vw, 72px);
+            align-items: center;
+            padding: clamp(20px, 3.5vw, 48px) clamp(28px, 5vw, 64px) clamp(56px, 7vw, 96px);
+            max-width: 1240px;
+            margin: 0 auto
+        }
+        
+        .glow {
+            position: absolute;
+            inset: -10% -20% 20%;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(58% 46% at 62% 34%, rgba(198, 243, 47, .10), transparent 68%), radial-gradient(48% 40% at 10% 78%, rgba(198, 243, 47, .05), transparent 70%)
+        }
+        
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--lime);
+            border: 1px solid rgba(198, 243, 47, .28);
+            border-radius: 100px;
+            padding: 6px 13px;
+            margin-bottom: 26px
+        }
+        
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--lime);
+            box-shadow: 0 0 0 0 rgba(198, 243, 47, .55);
+            animation: pulse 2.4s ease-out infinite
+        }
+        
+        @keyframes pulse {
+            70% {
+                box-shadow: 0 0 0 8px rgba(198, 243, 47, 0)
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(198, 243, 47, 0)
+            }
+        }
+        
+        h1 {
+            font-family: var(--display);
+            font-weight: 400;
+            margin: 0 0 22px;
+            font-size: clamp(42px, 6.2vw, 84px);
+            line-height: .94;
+            letter-spacing: -.005em
+        }
+        
+        h1 em {
+            font-style: normal;
+            color: var(--lime);
+            text-shadow: 0 0 34px rgba(198, 243, 47, .32)
+        }
+        
+        .sub {
+            font-size: clamp(15px, 1.55vw, 18px);
+            line-height: 1.62;
+            color: var(--grey);
+            max-width: 50ch;
+            margin: 0 0 14px
+        }
+        
+        .sub strong {
+            color: var(--white);
+            font-weight: 600
+        }
+        
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 26px 0 32px;
+            padding: 0;
+            list-style: none
+        }
+        
+        .facts li {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: .05em;
+            color: var(--grey);
+            border: 1px solid var(--edge);
+            border-radius: 6px;
+            padding: 6px 11px;
+            background: var(--coal)
+        }
+        
+        .facts b {
+            color: var(--lime);
+            font-weight: 700
+        }
+        
+        .dl {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+        
+        .btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            text-decoration: none;
+            border-radius: 11px;
+            padding: 15px 24px;
+            font-weight: 700;
+            font-size: 14.5px;
+            border: 1px solid transparent;
+            transition: transform .16s ease, box-shadow .16s ease, border-color .16s
+        }
+        
+        .btn svg {
+            width: 19px;
+            height: 19px;
+            flex: 0 0 auto
+        }
+        
+        .btn small {
+            display: block;
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: .05em;
+            opacity: .62;
+            margin-top: 2px
+        }
+        
+        .btn-primary {
+            background: var(--lime);
+            color: #080808;
+            box-shadow: 0 8px 26px rgba(198, 243, 47, .24)
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 34px rgba(198, 243, 47, .36)
+        }
+        
+        .btn-secondary {
+            background: var(--slate);
+            color: var(--white);
+            border-color: var(--edge)
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            border-color: var(--lime-dim);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .6)
+        }
+        
+        .soon {
+            border-left: 3px solid var(--lime);
+            padding-left: 13px;
+            margin-top: 16px
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .22), transparent);
+            transform: skewX(-18deg)
+        }
+        
+        .btn:hover::after {
+            animation: sheen .75s ease
+        }
+        
+        @keyframes sheen {
+            to {
+                left: 145%
+            }
+        }
+        
+        .btn:focus-visible {
+            outline: 2px solid var(--lime);
+            outline-offset: 3px
+        }
+        
+        .note {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--dim);
+            margin-top: 16px;
+            line-height: 1.75
+        }
+        
+        .note b {
+            color: var(--grey);
+            font-weight: 500
+        }
+        
+        .note code {
+            color: var(--lime);
+            background: var(--slate);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10.5px
+        }
+        
+        .note a {
+            color: var(--grey);
+            text-underline-offset: 3px
+        }
+        /* ── maker card, sitting under the downloads ── */
+        
+        .makercard {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            margin-top: 26px;
+            padding: 18px 20px;
+            background: var(--coal);
+            border: 1px solid var(--edge);
+            border-radius: 14px;
+            position: relative;
+            overflow: hidden
+        }
+        
+        .makercard::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--lime);
+            box-shadow: 0 0 18px rgba(198, 243, 47, .5)
+        }
+        
+        .mc-txt {
+            flex: 1 1 210px;
+            min-width: 0
+        }
+        
+        .mc-txt strong {
+            display: block;
+            font-family: var(--display);
+            font-weight: 400;
+            font-size: 20px;
+            letter-spacing: .01em;
+            margin-bottom: 5px
+        }
+        
+        .mc-txt strong em {
+            font-style: normal;
+            color: var(--lime)
+        }
+        
+        .mc-txt span {
+            font-size: 12.5px;
+            color: var(--grey);
+            line-height: 1.55;
+            display: block
+        }
+        
+        .mc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+            flex: 0 0 auto;
+            background: var(--lime);
+            color: #080808;
+            font-weight: 700;
+            font-size: 13.5px;
+            border-radius: 10px;
+            padding: 11px 17px;
+            box-shadow: 0 6px 20px rgba(198, 243, 47, .2);
+            transition: transform .16s, box-shadow .16s
+        }
+        
+        .mc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(198, 243, 47, .34)
+        }
+        
+        .mc-btn:focus-visible {
+            outline: 2px solid var(--white);
+            outline-offset: 3px
+        }
+        
+        .mc-btn svg {
+            width: 16px;
+            height: 16px
+        }
+        
+        .stage {
+            display: flex;
+            justify-content: center
+        }
+        
+        .phone {
+            position: relative;
+            width: min(298px, 84vw);
+            aspect-ratio: 9.32/19.5;
+            flex: 0 0 auto;
+            border-radius: 46px;
+            padding: 9px;
+            background: linear-gradient(150deg, #3a3d42, #17181b 32%, #0b0c0e 62%, #26282c);
+            box-shadow: 0 0 0 1.5px #050505, 0 34px 80px rgba(0, 0, 0, .8), 0 0 70px rgba(198, 243, 47, .07);
+            animation: float 7s ease-in-out infinite
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+            50% {
+                transform: translateY(-9px)
+            }
+        }
+        
+        .screen {
+            position: absolute;
+            inset: 9px;
+            border-radius: 38px;
+            overflow: hidden;
+            background: #08080A
+        }
+        
+        .scene {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(56% 40% at 50% 33%, rgba(116, 166, 255, .22), transparent 66%), radial-gradient(46% 36% at 74% 64%, rgba(255, 176, 104, .13), transparent 64%), linear-gradient(168deg, #0d1420, #15191f 46%, #1b1610)
+        }
+        
+        .silhouette {
+            position: absolute;
+            left: 50%;
+            top: 34%;
+            transform: translateX(-50%);
+            width: 38%;
+            aspect-ratio: 1/1.1;
+            border-radius: 50% 50% 46% 46%;
+            background: rgba(0, 0, 0, .5)
+        }
+        
+        .shoulders {
+            position: absolute;
+            bottom: 0;
+            left: 12%;
+            right: 12%;
+            height: 44%;
+            border-radius: 52% 52% 0 0;
+            background: rgba(0, 0, 0, .55)
+        }
+        
+        .vig {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(118% 88% at 50% 40%, transparent 48%, rgba(0, 0, 0, .72) 100%)
+        }
+        
+        .island {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 33%;
+            height: 27px;
+            border-radius: 18px;
+            background: #000;
+            z-index: 4
+        }
+        /* the app's own watermark, exactly where it lands on a real clip */
+        
+        .mark {
+            position: absolute;
+            right: 8%;
+            bottom: 11%;
+            z-index: 3;
+            font-family: var(--mono);
+            font-size: 8.5px;
+            letter-spacing: .08em;
+            color: rgba(255, 255, 255, .5);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, .9)
+        }
+        
+        .capwrap {
+            position: absolute;
+            left: 7%;
+            right: 7%;
+            bottom: 26%;
+            z-index: 3;
+            text-align: center
+        }
+        
+        .cap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+            gap: .26em .3em;
+            line-height: 1.14
+        }
+        
+        .w {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(9px) scale(.86);
+            transform-origin: center 72%;
+            text-shadow: -2px 0 #000, 2px 0 #000, 0 -2px #000, 0 2px #000, 0 .05em .1em rgba(0, 0, 0, .75)
+        }
+        
+        .w.on {
+            animation: pop .34s cubic-bezier(.2, 1.5, .42, 1) forwards
+        }
+        
+        @keyframes pop {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1)
+            }
+        }
+        
+        .w.key {
+            color: var(--lime)
+        }
+        
+        .cap.latin .w {
+            font-family: var(--display);
+            font-size: min(30px, 7.6vw);
+            text-transform: uppercase;
+            letter-spacing: .01em
+        }
+        
+        .cap.nastaliq {
+            direction: rtl
+        }
+        
+        .cap.nastaliq .w {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: min(23px, 5.9vw);
+            font-weight: 700;
+            line-height: 1.9
+        }
+        
+        .cap.deva .w {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-weight: 700;
+            font-size: min(25px, 6.4vw)
+        }
+        
+        .scriptlabel {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 6.5%;
+            z-index: 3;
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 9.5px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .38);
+            transition: opacity .3s
+        }
+        
+        .strip {
+            position: relative;
+            z-index: 5;
+            border-top: 1px solid var(--edge);
+            border-bottom: 1px solid var(--edge);
+            background: var(--coal);
+            overflow: hidden;
+            padding: 15px 0
+        }
+        
+        .marquee {
+            display: flex;
+            gap: 56px;
+            width: max-content;
+            animation: slide 34s linear infinite
+        }
+        
+        .marquee span {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            color: var(--dim);
+            white-space: nowrap
+        }
+        
+        .marquee span b {
+            color: var(--lime-dim);
+            font-weight: 500
+        }
+        
+        @keyframes slide {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+        
+        .whatsnew {
+            position: relative;
+            z-index: 5;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 clamp(28px, 5vw, 64px) clamp(52px, 7vw, 88px)
+        }
+
+        /* The one item nobody could have spotted on their own gets the weight. */
+        .headline-fix {
+            border: 1px solid var(--edge);
+            border-left: 3px solid var(--lime);
+            border-radius: 12px;
+            background: var(--coal);
+            padding: 24px 26px;
+            margin: 0 0 22px
+        }
+
+        .headline-fix h3 {
+            font-size: 17px;
+            margin: 0 0 10px;
+            letter-spacing: -.01em
+        }
+
+        .headline-fix p {
+            margin: 0 0 10px;
+            font-size: 13.5px;
+            line-height: 1.62;
+            color: var(--dim)
+        }
+
+        .headline-fix p:last-child { margin-bottom: 0 }
+        .headline-fix b { color: var(--white) }
+
+        .nums {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: .06em;
+            margin: 14px 0 0;
+            padding: 13px 0 0;
+            border-top: 1px solid var(--edge)
+        }
+
+        .nums span { color: var(--dim) }
+        .nums b { color: var(--lime); font-weight: 700 }
+
+        .newgrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+            gap: 1px;
+            background: var(--edge);
+            border: 1px solid var(--edge);
+            border-radius: 14px;
+            overflow: hidden
+        }
+
+        .new {
+            background: var(--coal);
+            padding: 24px 22px 26px
+        }
+
+        .new h4 {
+            font-size: 15px;
+            margin: 0 0 8px;
+            font-weight: 700;
+            letter-spacing: -.01em
+        }
+
+        .new p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--dim)
+        }
+
+        .new .was {
+            display: block;
+            margin-top: 9px;
+            font-family: var(--mono);
+            font-size: 10.5px;
+            letter-spacing: .04em;
+            color: var(--dim);
+            opacity: .74
+        }
+
+        .how {
+            position: relative;
+            z-index: 5;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: clamp(52px, 7vw, 88px) clamp(28px, 5vw, 64px)
+        }
+        
+        .kicker {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin: 0 0 30px
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+            gap: 1px;
+            background: var(--edge);
+            border: 1px solid var(--edge);
+            border-radius: 14px;
+            overflow: hidden
+        }
+        
+        .step {
+            background: var(--coal);
+            padding: 26px 24px 28px
+        }
+        
+        .step .n {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--lime);
+            letter-spacing: .1em;
+            margin-bottom: 14px
+        }
+        
+        .step h3 {
+            font-size: 16px;
+            margin: 0 0 8px;
+            font-weight: 700;
+            letter-spacing: -.01em
+        }
+        
+        .step p {
+            margin: 0;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: var(--grey)
+        }
+        
+        footer {
+            position: relative;
+            z-index: 5;
+            border-top: 1px solid var(--edge);
+            padding: 30px clamp(28px, 5vw, 64px) 42px;
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+            justify-content: space-between
+        }
+        
+        .made {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-size: 14px;
+            color: var(--grey)
+        }
+        
+        .made b {
+            color: var(--white);
+            font-weight: 700
+        }
+        
+        .made a {
+            color: var(--lime);
+            text-decoration: none;
+            font-weight: 600
+        }
+        
+        .made a:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px
+        }
+        
+        .legal {
+            font-family: var(--mono);
+            font-size: 10.5px;
+            color: var(--dim);
+            letter-spacing: .04em;
+            line-height: 1.8
+        }
+        
+        @media (max-width:900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-bottom: 56px
+            }
+            .stage {
+                order: -1;
+                margin-bottom: 6px
+            }
+            .phone {
+                width: min(250px, 68vw)
+            }
+            .rail {
+                display: none
+            }
+            .byline {
+                display: none
+            }
+        }
+        
+        @media (prefers-reduced-motion:reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none!important;
+                transition: none!important
+            }
+            .w {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="rail l"></div>
+    <div class="rail r"></div>
+
+    <nav>
+        <span class="cell"></span>
+        <span class="wordmark">CLIP<span>SHLIP</span></span>
+        <span class="byline">by <b>Haris&nbsp;Ai</b></span>
+        <span class="spacer"></span>
+        <a class="ig" href="https://instagram.com/theharis.ai" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.39.67-.66 1.09-1.33 1.39-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.39-2.12C21.32 1.35 20.65.93 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>            @theharis.ai
+        </a>
+        <span class="ver">v1.4.0 · FREE</span>
+    </nav>
+
+    <header class="hero">
+        <div class="glow"></div>
+
+        <div>
+            <span class="eyebrow"><span class="dot"></span>Runs on your machine</span>
+
+            <h1>Long videos in.<br>Short clips <em>out.</em></h1>
+
+            <p class="sub">Point it at a podcast, lecture or interview. It finds the moments worth cutting, reframes them to&nbsp;9:16, and burns in captions in the style you pick.</p>
+            <p class="sub"><strong>Urdu, Hindi and Hinglish are first-class</strong> — not an afterthought bolted onto an English tool.</p>
+
+            <ul class="facts">
+                <li><b>74</b> caption styles</li>
+                <li><b>15</b> languages</li>
+                <li><b>0</b> uploads</li>
+                <li>No account, no key</li>
+            </ul>
+
+            <div class="dl">
+                <!-- The file itself, not the release page. `download` asks the
+                     browser to save rather than navigate. -->
+                <a class="btn btn-primary" id="win" download href="https://github.com/Ai-Haris/ClipShlip-Releases/releases/download/v1.4.0/ClipShlip-Setup-1.4.0-Windows.exe">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.6l7.4-1v7.1H3zM11.5 4.4L21 3v8.7h-9.5zM3 12.8h7.4v7.1L3 18.5zM11.5 12.8H21V21l-9.5-1.3z"/></svg>
+                    <span>Download for Windows<small>.EXE · 185 MB · v1.4.0</small></span>
+                </a>
+                <!-- ⚠️ 1.3.0 ON PURPOSE. There is no 1.4 macOS build yet, and
+                     pointing this at a v1.4.0 mac file that does not exist would
+                     hand every Mac visitor a 404. It moves to 1.4.0 the day the
+                     mac zip is uploaded, and not before. -->
+                <a class="btn btn-secondary" id="mac" download href="https://github.com/Ai-Haris/ClipShlip-Releases/releases/download/v1.3.0/ClipShlip-1.3.0-arm64-mac.zip">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>
+                    <span>Download for macOS<small>APPLE SILICON · 158 MB · v1.3.0</small></span>
+                </a>
+                <!-- ⚠️ A BUTTON, NOT A LINK, because it goes nowhere. An <a>
+                     with href="#" jumps the page to the top, which reads as the
+                     site breaking rather than as an answer. -->
+                <button class="btn btn-secondary" id="mobile" type="button" aria-describedby="soon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 1h10a2 2 0 012 2v18a2 2 0 01-2 2H7a2 2 0 01-2-2V3a2 2 0 012-2zm0 3v15h10V4H7zm5 16.2a.9.9 0 100 1.8.9.9 0 000-1.8z"/></svg>
+                    <span>Mobile<small>IPHONE &amp; ANDROID</small></span>
+                </button>
+            </div>
+
+            <p class="note soon" id="soon" hidden role="status"><b>Mobile is coming soon.</b> ClipShlip does its work on your own machine — transcribing, cutting and rendering — and that is the part a phone cannot do yet. It is being worked on.</p>
+
+            <p class="note">Unsigned for now. <b>Windows:</b> More info → Run anyway. <b>macOS:</b> if it says “damaged”, that message is wrong — run <code>xattr -cr /path/to/ClipShlip.app</code> in Terminal once, then open it. <a href="https://github.com/Ai-Haris/ClipShlip-Releases/releases/latest">Full install notes →</a></p>
+
+            <div class="makercard">
+                <span class="cell" style="width:22px;height:29px"></span>
+                <span class="mc-txt">
+        <strong>Built by <em>Haris&nbsp;Ai</em></strong>
+        <span>A solo build from Rawalpindi, because no clipping tool set Urdu properly.</span>
+                </span>
+                <a class="mc-btn" href="https://instagram.com/theharis.ai" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.39.67-.66 1.09-1.33 1.39-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.39-2.12C21.32 1.35 20.65.93 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>                    Follow
+                </a>
+            </div>
+        </div>
+
+        <div class="stage">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scene"><span class="silhouette"></span><span class="shoulders"></span></div>
+                    <div class="vig"></div>
+                    <div class="island"></div>
+                    <div class="capwrap">
+                        <div class="cap latin" id="cap"></div>
+                    </div>
+                    <div class="mark">@theharis.ai</div>
+                    <div class="scriptlabel" id="slabel">LATIN</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="strip">
+        <div class="marquee" id="mq"></div>
+    </div>
+
+    <section class="whatsnew" id="whatsnew">
+        <p class="kicker">New in 1.4 — what 1.3 could not do</p>
+
+        <!-- ⚠️ THIS ONE LEADS BECAUSE IT IS THE ONE NOBODY COULD HAVE SEEN.
+             Every other item is a thing you can choose to use. This is a thing
+             that was happening to clips people had already posted. -->
+        <div class="headline-fix">
+            <h3>Your captions were running late, and you could not have known</h3>
+            <p>Caption images are laid along the clip one after another, and the app measured each one's length wrongly whenever two overlapped. Every overlap was counted twice, so every caption after it landed late — and the error added up as the clip went on.</p>
+            <p>Measured across <b>141 caption tracks</b> made by ordinary runs: <b>35 drift by more than one frame</b>, and the worst ends up <b>9.9 seconds behind the audio</b>. Its last ten seconds of captions belong to a different part of the clip entirely.</p>
+            <p>Fixed — all 141 now land on time. But <b>clips you already exported with 1.3 have it baked in.</b> If something you posted felt out of step, this is why. Re-exporting in 1.4 fixes it.</p>
+            <div class="nums">
+                <span>more than a frame late <b>35/141 → 0/141</b></span>
+                <span>worst drift <b>9.9s → 0.0s</b></span>
+            </div>
+        </div>
+
+        <div class="newgrid">
+            <div class="new">
+                <h4>Change where a clip starts and ends</h4>
+                <p>Drag the two handles under the timeline. The clip is re-cut, re-captioned, and your end card, watermark and music go back on — about twenty seconds, because none of the slow analysis runs again. Drag outwards to rescue a word that got cut off.</p>
+                <span class="was">1.3 — the boundaries were final</span>
+            </div>
+            <div class="new">
+                <h4>Take a word out of the middle</h4>
+                <p>Tick words in the transcript and remove them. The audio goes with them and the clip closes up — for a stumble, a repeated sentence, or a name you would rather not broadcast.</p>
+                <span class="was">1.3 — nothing could be removed</span>
+            </div>
+            <div class="new">
+                <h4>Fix a misheard name once</h4>
+                <p>Whisper gets a name wrong the same way every time. Correct a word now changes it everywhere in the project at once, and tells you how many it found before it changes anything.</p>
+                <span class="was">1.3 — once per clip, every clip</span>
+            </div>
+            <div class="new">
+                <h4>Nudge the captions</h4>
+                <p>Move every caption up to half a second either way, watching the preview redraw against the speech. There for the projects where the words land a fraction early or a fraction late.</p>
+                <span class="was">1.3 — nothing you could do</span>
+            </div>
+            <div class="new">
+                <h4>Turn captions off</h4>
+                <p>Before the run, beside the style: burn them in, or none at all. With none, nothing is drawn on the picture — and your end card, watermark and music are still added, because those are not captions.</p>
+                <span class="was">1.3 — every clip got captions</span>
+            </div>
+            <div class="new">
+                <h4>Export a clean copy</h4>
+                <p>A <b>Captions: OFF</b> button beside Export hands you the clip with nothing drawn on it. It loses the end card and watermark too — all three are burnt in by the same pass, and the screen says so.</p>
+                <span class="was">1.3 — only the captioned one</span>
+            </div>
+            <div class="new">
+                <h4>Choose the cover frame</h4>
+                <p>Scrub to any frame and use it as the poster, or save it out as a PNG for a thumbnail.</p>
+                <span class="was">1.3 — always 20% into the clip</span>
+            </div>
+            <div class="new">
+                <h4>Short clips are captioned, not re-cut</h4>
+                <p>“Upload short clips” said your edit would be left alone and then cut it anyway — an 18.8s clip came back as 17.4s, trimmed at both ends. Now your cut is your cut.</p>
+                <span class="was">1.3 — it said so and did not do it</span>
+            </div>
+            <div class="new">
+                <h4>Your post copy leaves with the clip</h4>
+                <p>Every export writes a .txt beside the video: title, a caption per platform, hashtags, description and call to action — written so Urdu and Hindi open correctly in Notepad.</p>
+                <span class="was">1.3 — trapped in the app, one field at a time</span>
+            </div>
+            <div class="new">
+                <h4>It says there is no speech model before the run</h4>
+                <p>Transcription is the third stage, so starting without a model used to mean reading your video and extracting all of its audio first — minutes on a long podcast — and only then admitting it could not transcribe.</p>
+                <span class="was">1.3 — you found out after the wait</span>
+            </div>
+            <div class="new">
+                <h4>The editor fits on the screen</h4>
+                <p>The style list was a thousand pixels tall, so every control under it sat below the fold, and the middle column had no scrollbar at all — the trim handles and the Export button simply ran off the bottom of the window.</p>
+                <span class="was">1.3 — Export was unreachable</span>
+            </div>
+            <div class="new">
+                <h4>Roman Urdu reads better</h4>
+                <p>Common words that came out as <b>majhe</b>, <b>mire</b>, <b>chka</b> and <b>bn</b> now come out as <b>mujhe</b>, <b>mere</b>, <b>chuka</b> and <b>ban</b>.</p>
+                <span class="was">1.3 — you fixed them by hand</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="how">
+        <p class="kicker">What happens when you press Generate</p>
+        <div class="steps">
+            <div class="step">
+                <div class="n">01</div>
+                <h3>It listens</h3>
+                <p>Speech is transcribed on your own machine. Nothing leaves the computer.</p>
+            </div>
+            <div class="step">
+                <div class="n">02</div>
+                <h3>It picks</h3>
+                <p>Finds the moments worth cutting, and tells you why it scored each one.</p>
+            </div>
+            <div class="step">
+                <div class="n">03</div>
+                <h3>It reframes</h3>
+                <p>Follows whoever is speaking and crops to vertical, without the seasick camera.</p>
+            </div>
+            <div class="step">
+                <div class="n">04</div>
+                <h3>It captions</h3>
+                <p>Word-by-word captions in Latin, Nastaliq or Devanagari — burned into the frame.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="made"><span class="cell" style="width:16px;height:21px"></span>Made by <b>Haris&nbsp;Ai</b> · <a href="https://instagram.com/theharis.ai" target="_blank" rel="noopener">@theharis.ai</a></span>
+        <span class="legal">Free to use, including commercially. No redistribution, rebranding or resale.<br>Bundles FFmpeg and whisper.cpp under their own licences.</span>
+    </footer>
+
+    <script>
+        (function() {
+            "use strict";
+            var LINES = [{
+                cls: 'latin',
+                label: 'LATIN',
+                words: [
+                    ['this', 0],
+                    ['changed', 1],
+                    ['everything', 0]
+                ]
+            }, {
+                cls: 'latin',
+                label: 'ROMAN URDU',
+                words: [
+                    ['mujhe', 0],
+                    ['yeh', 0],
+                    ['samajh', 1],
+                    ['aaya', 0]
+                ]
+            }, {
+                cls: 'nastaliq',
+                label: 'NASTALIQ',
+                words: [
+                    ['یہ', 0],
+                    ['بات', 1],
+                    ['سمجھ', 0],
+                    ['آئی', 0]
+                ]
+            }, {
+                cls: 'deva',
+                label: 'DEVANAGARI',
+                words: [
+                    ['मुझे', 0],
+                    ['यह', 0],
+                    ['समझ', 1],
+                    ['आया', 0]
+                ]
+            }];
+            var cap = document.getElementById('cap'),
+                label = document.getElementById('slabel'),
+                i = 0,
+                timers = [];
+
+            function clearTimers() {
+                timers.forEach(clearTimeout);
+                timers = [];
+            }
+
+            function play() {
+                clearTimers();
+                var line = LINES[i];
+                cap.className = 'cap ' + line.cls;
+                cap.innerHTML = '';
+                label.textContent = line.label;
+
+                line.words.forEach(function(pair, n) {
+                    var el = document.createElement('span');
+                    el.className = 'w' + (pair[1] ? ' key' : '');
+                    el.textContent = pair[0];
+                    cap.appendChild(el);
+                    timers.push(setTimeout(function() {
+                        el.classList.add('on');
+                    }, 150 + n * 210));
+                });
+
+                var hold = 1500 + line.words.length * 210;
+                timers.push(setTimeout(function() {
+                    cap.style.transition = 'opacity .3s';
+                    cap.style.opacity = '0';
+                    label.style.opacity = '.15';
+                    timers.push(setTimeout(function() {
+                        cap.style.opacity = '1';
+                        label.style.opacity = '';
+                        i = (i + 1) % LINES.length;
+                        play();
+                    }, 320));
+                }, hold));
+            }
+            play();
+
+            var items = ['Local transcription', 'Nastaliq captions', 'Roman Urdu', 'Speaker tracking',
+                '9:16 · 4:5 · 1:1', 'Word-by-word animation', 'Music with ducking',
+                'Your own watermark', 'No account', 'Free'
+            ];
+            var mq = document.getElementById('mq'),
+                html = '';
+            for (var r = 0; r < 2; r++)
+                items.forEach(function(t) {
+                    html += '<span><b>/</b> ' + t + '</span>';
+                });
+            mq.innerHTML = html;
+        })();
+    </script>
+<script>
+    /* The mobile button says the one true thing there is to say. Revealed
+       rather than alerted: an alert() has to be dismissed before the page can
+       be read again, and this is an answer, not an interruption. */
+    (function () {
+        var btn = document.getElementById('mobile');
+        var soon = document.getElementById('soon');
+        if (!btn || !soon) return;
+        btn.addEventListener('click', function () {
+            soon.hidden = false;
+            soon.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    })();
+
+    /*
+     * The download buttons point themselves at the current release.
+     *
+     * ⚠️ WHY THIS IS NOT JUST A /releases/latest/download/ LINK. That shortcut
+     * needs the FILENAME to be the same in every release, and ours carries the
+     * version — ClipShlip-Setup-1.4.0-Windows.exe. So the page asks GitHub what
+     * the newest release is and reads the real asset names out of the answer.
+     *
+     * ⚠️ THE HARD-CODED HREFS IN THE HTML ARE THE FALLBACK, NOT DEAD WEIGHT.
+     * This request can fail — GitHub rate-limits unauthenticated calls, a
+     * visitor may be offline, a browser may block it. When it does, nothing is
+     * touched and the buttons keep working with whatever is written in the
+     * markup. A download page whose buttons depend on a third-party request
+     * succeeding is a download page that is sometimes broken.
+     *
+     * ⚠️ A DRAFT RELEASE IS NOT RETURNED BY THIS ENDPOINT, which is correct:
+     * its assets are 404 to the public, so pointing at it would be worse than
+     * pointing at the previous version.
+     */
+    (function () {
+        var REPO = 'Ai-Haris/ClipShlip-Releases';
+
+        var mb = function (bytes) { return Math.round(bytes / 1048576) + ' MB'; };
+
+        var apply = function (el, asset, tag, label) {
+            if (!el || !asset) return;
+            el.href = asset.browser_download_url;
+            var small = el.querySelector('small');
+            if (small) small.textContent = label + ' · ' + mb(asset.size) + ' · ' + tag;
+        };
+
+        fetch('https://api.github.com/repos/' + REPO + '/releases/latest', {
+            headers: { Accept: 'application/vnd.github+json' },
+        })
+            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+            .then(function (rel) {
+                var assets = rel.assets || [];
+                var find = function (re) {
+                    for (var i = 0; i < assets.length; i++) {
+                        if (re.test(assets[i].name)) return assets[i];
+                    }
+                    return null;
+                };
+                var tag = rel.tag_name || '';
+
+                /* ⚠️ NEVER LET THE ANSWER DOWNGRADE THE PAGE. GitHub's "latest"
+                   ignores drafts and pre-releases, so while 1.4 sits unpublished
+                   this endpoint still answers 1.3.0 — and applying that would
+                   rewrite a correct 1.4 button back to the older build. The
+                   markup is a floor, not a guess: only a NEWER tag is applied. */
+                var num = function (t) {
+                    var m = /(\d+)\.(\d+)\.(\d+)/.exec(t || '');
+                    return m ? (+m[1]) * 1e6 + (+m[2]) * 1e3 + (+m[3]) : -1;
+                };
+                var onPage = document.getElementById('win');
+                if (num(tag) < num(onPage && onPage.getAttribute('href'))) return;
+
+                var win = find(/Windows\.exe$/i);
+                var mac = find(/mac\.zip$/i);
+
+                apply(document.getElementById('win'), win, tag, '.EXE');
+                apply(document.getElementById('mac'), mac, tag, 'APPLE SILICON');
+
+                /* ⚠️ ONLY WHEN THERE IS A WINDOWS BUILD IN IT. The badge is the
+                   page's claim about what you can download, and a release that
+                   shipped macOS alone would make that claim false. */
+                var badge = document.querySelector('.ver');
+                if (badge && tag && win) badge.textContent = tag + ' · FREE';
+            })
+            .catch(function () { /* the markup already says something true */ });
+    })();
+</script>
+</body>
+
+</html>
