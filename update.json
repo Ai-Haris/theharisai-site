@@ -21,6 +21,9 @@
   "update_sha256": "876264ce7c6158d8f8d0a7b37906023b18eab5fb2778e0575a97c291c357506b",
   "installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Setup_1.4.4.exe",
   "installer_size": 42251987,
-  "mac_installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Mac_1.4.4.dmg",
+  "mac_installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.5/OMNITUBE_Mac_1.4.5.dmg",
+  "mac_update_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.5/OMNITUBE_mac_update_1.4.5.zip",
+  "mac_update_sha256": "6e738fa5e5d63d66fb8254a2ab756025046c727815e1f58138e838d3240008a3",
+  "mac_update_size": 2971120,
   "portable_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.4.4/OMNITUBE_Portable_1.4.4.zip"
 }
