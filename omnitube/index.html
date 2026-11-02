@@ -9,12 +9,12 @@
 <meta name="description" content="OMNITUBE by Haris Ai turns a script into a finished YouTube video on your own PC: narration, AI scenes, video clips, music, captions, thumbnails, Shorts and dubbing. Free, no watermark, no per-minute fees.">
 <meta property="og:title" content="OMNITUBE by Haris Ai · Script in. Video out.">
 <meta property="og:description" content="A free AI video studio that runs on your own PC. Paste a script, get a finished YouTube video.">
-<meta property="og:image" content="https://theharisai.com/omnitube/assets/shots/storyboard.webp?v=142">
+<meta property="og:image" content="https://theharisai.com/omnitube/assets/shots/storyboard.webp?v=150">
 <meta property="og:url" content="https://theharisai.com/omnitube/">
 <link rel="canonical" href="https://theharisai.com/omnitube/">
 <meta name="theme-color" content="#0a0a0d">
 <link rel="icon" href="assets/favicon.png">
-<link rel="preload" as="image" href="assets/shots/storyboard.webp?v=142">
+<link rel="preload" as="image" href="assets/shots/storyboard.webp?v=150">
 <style>
 @font-face{font-family:Urbanist;src:url(assets/fonts/urbanist-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:Urbanist;src:url(assets/fonts/urbanist-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
@@ -240,7 +240,7 @@ footer a:hover{color:var(--text)}
         <li><b>My styles:</b> make your own picture style from a few words or from 1 to 6 example pictures, and use it as the default for new videos.</li>
         <li><b>Characters speak in their own voices:</b> write a line as <code>@Mira: Where are you going?</code> on its own line and Mira says it in her voice.</li>
         <li><b>New offline voices:</b> Spanish, Hindi, Portuguese, French and Italian, plus more Spanish and Portuguese online voices. If an online voice fails, OMNITUBE switches to an offline voice of the same language.</li>
-        <li><b>How to use, inside the app:</b> every screen and option explained, with tips and the exact page to get each account key.</li>
+        <li><b>How to use, inside the app:</b> every screen and option explained, with tips, real screenshots and the exact page to get each account key.</li>
         <li><b>Clearer setup:</b> older NVIDIA cards (GTX 10 series, Quadro P) get the light cloud setup instead of a big download, and OMNITUBE tells you when your PC is low on memory and which program is using it.</li>
       </ul></div>
       <div><h4>New in Pro</h4><ul>
@@ -251,6 +251,12 @@ footer a:hover{color:var(--text)}
         <li><b>Use OMNITUBE from Claude:</b> ask Claude to write a script and make the video in OMNITUBE.</li>
         <li><b>Move Pro yourself:</b> move your license to a new PC from the Pro page, and Pro keeps working offline for up to 14 days.</li>
       </ul></div>
+    </div>
+    <div class="looks" style="margin-top:22px">
+      <figure><img loading="lazy" src="assets/shots/pacing.webp?v=150" alt="Pacing Fast, Normal or Calm on the Storyboard" style="object-position:top"><figcaption>Pacing</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/dialogue.webp?v=150" alt="Characters speak in their own voices" style="object-position:top"><figcaption>Dialogue</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/watermark.webp?v=150" alt="Watermark with live preview" style="object-position:top"><figcaption>Watermark (Pro)</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/claude15.webp?v=150" alt="Publish via Upload-Post and use OMNITUBE from Claude" style="object-position:top"><figcaption>Publish and Claude (Pro)</figcaption></figure>
     </div>
   </div>
 
@@ -497,10 +503,10 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
       </ul>
     </div>
     <div class="looks" id="looks" style="grid-template-columns:1fr">
-      <figure style="aspect-ratio:auto"><img loading="lazy" src="assets/shots/timeline.webp?v=142" alt="OMNITUBE Timeline editor"><figcaption>Timeline editor</figcaption></figure>
+      <figure style="aspect-ratio:auto"><img loading="lazy" src="assets/shots/timeline.webp?v=150" alt="OMNITUBE Timeline editor"><figcaption>Timeline editor</figcaption></figure>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <figure><img loading="lazy" src="assets/shots/cloud.webp?v=142" alt="Cloud or On my PC, model per scene" style="object-position:top"><figcaption>Cloud models</figcaption></figure>
-        <figure><img loading="lazy" src="assets/shots/cast14.webp?v=142" alt="Characters with cloud sheets and voices" style="object-position:top"><figcaption>Characters</figcaption></figure>
+        <figure><img loading="lazy" src="assets/shots/cloud.webp?v=150" alt="Cloud or On my PC, model per scene" style="object-position:top"><figcaption>Cloud models</figcaption></figure>
+        <figure><img loading="lazy" src="assets/shots/cast14.webp?v=150" alt="Characters with cloud sheets and voices" style="object-position:top"><figcaption>Characters</figcaption></figure>
       </div>
     </div>
   </div>
@@ -589,24 +595,29 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
 <script>
 // Tour: app screenshots that change by themselves
 const SHOTS = [
+  ["new", "Create", "<b>Create.</b> Pick a single video, a whole season or a kids rhyme, choose Cloud or On my PC, then a video type. Paste a script and press Make my video."],
+  ["storyboard", "Storyboard", "<b>Storyboard.</b> Every scene with its picture, its line of the script and the characters in it. Change any prompt, shot or picture, or turn it into a video clip."],
+  ["pacing", "Pacing", "<b>New in 1.5: Pacing.</b> Fast, Normal or Calm. One picture can carry two or three scenes as a close-up and a pan, so videos build faster and cloud videos cost less."],
+  ["longvideo", "3 hour videos", "<b>Long videos.</b> A 2 hour 45 minute sleep story: 800 scenes, voiced and pictured, made on one home PC."],
+  ["styles", "34 styles", "<b>34 image styles</b> in 6 groups, plus your own styles in 1.5. Pick one and every picture and every person follows it."],
+  ["cast", "Characters", "<b>Character Studio.</b> A reference sheet keeps each face and outfit the same in every scene, and every character gets a voice."],
+  ["dialogue", "Dialogue", "<b>New in 1.5: Dialogue.</b> Write <code>@Mira: line</code> and Mira says it in her own voice, while the narrator reads the rest."],
+  ["watermark", "Watermark", "<b>New in 1.5 Pro: Watermark.</b> Your logo or channel name on every video, Short and editor export, with a live preview."],
+  ["output2", "Titles and thumbnails", "<b>Ready to upload.</b> Three titles, three thumbnails, a description and tags for YouTube Studio."],
+  ["pro15", "Pro", "<b>OMNITUBE Pro.</b> Cloud script writer, Documentary Studio, cloud pictures and video, Timeline, lip sync, 4K export and more, with your own keys."],
+  ["guide", "How to use", "<b>New in 1.5: How to use.</b> Every screen and option explained inside the app, with the exact page to get each account key."],
   ["timeline", "Timeline", "<b>Timeline editor (Pro).</b> Live preview, every part on its own track, drag to edit, captions and your own files."],
-  ["new", "Create", "<b>Create.</b> Pick a single video, a whole season or a kids rhyme, then a video type. Paste a script and press Make my video."],
-  ["storyboard", "Storyboard", "<b>Storyboard.</b> Every scene with its picture, its line of the script and the character in it. Change any prompt, shot or picture."],
-  ["styles", "34 styles", "<b>34 image styles</b> in 6 groups. Pick one and every picture and every person follows it."],
-  ["cast", "Characters", "<b>Characters.</b> A full-body reference sheet keeps each face and outfit the same in every scene."],
   ["places", "Places", "<b>Places.</b> A scene sheet keeps every room and street the same, from every side."],
   ["captions", "Captions", "<b>13 caption styles,</b> previewed on a picture from your own video, with font, size and colours."],
   ["rhyme", "Rhyme mode", "<b>Rhyme mode.</b> A sung kids video from your lyrics, with the same character and street in every line."],
   ["explainer", "Doodle explainer", "<b>Doodle explainers.</b> A new picture every 2 seconds, hard cuts and text cards, like the big explainer channels."],
   ["documentary", "Documentary", "<b>Documentary.</b> Real archive and stock footage for every scene, no GPU needed for the clips."],
-  ["output", "Your video", "<b>Your video.</b> Watch it in the app, download it, and get the subtitles file for YouTube."],
-  ["output2", "Titles and thumbnails", "<b>Ready to upload.</b> Three titles, a description and three thumbnails to A/B test in YouTube Studio."],
 ];
 const DUR = 6000;
 (function tour() {
   const stack = document.getElementById("stack"), tabs = document.getElementById("stabs"), cap = document.getElementById("scap"), box = document.getElementById("tour");
   SHOTS.forEach(([id, label], i) => {
-    const im = new Image(); im.alt = "OMNITUBE " + label; im.src = "assets/shots/" + id + ".webp?v=142";
+    const im = new Image(); im.alt = "OMNITUBE " + label; im.src = "assets/shots/" + id + ".webp?v=150";
     im.loading = i ? "lazy" : "eager"; im.decoding = "async"; im.width = 1800; im.height = 1113; stack.appendChild(im);
     const b = document.createElement("button"); b.textContent = label; b.onclick = () => { show(i); }; tabs.appendChild(b);
   });
