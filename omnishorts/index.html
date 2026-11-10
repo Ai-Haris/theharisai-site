@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Omni Shorts · Free Claude Skill for Faceless Shorts · Haris Ai</title>
+<meta name="description" content="Omni Shorts is a free Claude skill that makes narrated faceless Shorts, TikToks and Reels fully in code on your own computer. Free local voice, word-synced captions, 8 styles, no API keys, no credits.">
+<link rel="canonical" href="https://theharisai.com/omnishorts/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Omni Shorts: a free Claude skill for faceless Shorts">
+<meta property="og:description" content="Topic in, finished MP4 out. Script, free AI voice, word-synced captions, animation, sound and music, all made in code. 8 styles, $0.">
+<meta property="og:url" content="https://theharisai.com/omnishorts/">
+<meta property="og:image" content="https://theharisai.com/omnishorts/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://theharisai.com/omnishorts/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0a0a0d;--bg2:#111116;--panel:#15151b;--panel2:#1b1b22;
+  --ink:#f2efe9;--dim:#9a97a0;--faint:#5d5b64;--line:#24232b;--line2:#33323b;
+  --red:#ff4655;--red2:#ff7a45;--cyan:#4fd1e8;
+  --display:"Urbanist","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.6 var(--display);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+h1,h2,h3{margin:0;line-height:1.08;letter-spacing:-.02em}
+h2{font-size:clamp(30px,4.4vw,48px);font-weight:800}
+.lead{color:var(--dim);font-size:clamp(16px,1.6vw,19px);max-width:640px;margin:0}
+section{padding:88px 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;gap:14px;margin-bottom:36px}
+
+nav{position:sticky;top:0;z-index:20;background:rgba(10,10,13,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;white-space:nowrap}
+.brand img{width:30px;height:30px;border-radius:8px}
+.brand span{color:var(--dim);font-weight:600}
+.links{display:flex;gap:22px;margin-left:auto;font-weight:600;font-size:15px;color:var(--dim)}
+.links a:hover{color:var(--ink)}
+.nav-cta{background:var(--red);color:#fff;font-weight:800;font-size:14px;padding:9px 16px;border-radius:999px;white-space:nowrap}
+.nav-cta:hover{filter:brightness(1.1)}
+
+.hero{padding:72px 0 40px;position:relative}
+.hero::before{content:"";position:absolute;inset:-120px 0 auto;height:620px;background:radial-gradient(60% 55% at 70% 20%,rgba(255,70,85,.16),transparent 70%),radial-gradient(45% 40% at 15% 30%,rgba(79,209,232,.08),transparent 70%);pointer-events:none;z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:var(--panel);border-radius:999px;padding:7px 14px;font:600 13px/1 var(--mono);color:var(--dim)}
+.pill b{color:var(--ink)}
+.dot{width:7px;height:7px;border-radius:50%;background:#3ee08f;box-shadow:0 0 10px #3ee08f}
+.hero h1{font-size:clamp(46px,7.4vw,92px);font-weight:900;margin:22px 0 18px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--red),var(--red2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{margin-bottom:30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:14px;padding:15px 22px;font-weight:800;font-size:16px;border:1px solid transparent;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-main{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;box-shadow:0 10px 30px -10px rgba(255,70,85,.6)}
+.btn-ghost{border-color:var(--line2);background:var(--panel)}
+.btn small{font:500 12px/1 var(--mono);opacity:.8}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;color:var(--dim);font-size:14px;font-weight:600}
+.facts span::before{content:"✓";color:var(--red);margin-right:7px;font-weight:900}
+.dl-count{margin-top:14px;font:500 13px/1.4 var(--mono);color:var(--faint)}
+.dl-count b{color:var(--ink)}
+.stack{position:relative;aspect-ratio:16/11}
+.stack img{position:absolute;width:82%;border-radius:14px;border:1px solid var(--line2);box-shadow:0 30px 60px -20px rgba(0,0,0,.8)}
+.stack img:nth-child(1){left:0;top:0;transform:rotate(-3deg)}
+.stack img:nth-child(2){right:0;top:16%;transform:rotate(2.5deg)}
+.stack img:nth-child(3){left:9%;bottom:0;transform:rotate(-1deg)}
+
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:56px}
+.strip div{background:var(--bg2);padding:22px}
+.strip b{display:block;font-size:30px;font-weight:900}
+.strip span{color:var(--dim);font-size:14px;font-weight:600}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--line2);transform:translateY(-2px)}
+.card .shot{background:#000;cursor:zoom-in}
+.card .shot img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.card .body{padding:18px 20px 20px;display:grid;gap:8px}
+.card .top{display:flex;align-items:baseline;gap:10px}
+.num{font:700 13px/1 var(--mono);color:var(--red)}
+.card h3{font-size:22px;font-weight:800}
+.tag{margin-left:auto;font:500 11px/1 var(--mono);color:var(--dim);border:1px solid var(--line2);border-radius:999px;padding:5px 9px;white-space:nowrap}
+.card p{margin:0;color:var(--dim);font-size:15px}
+.card .ex{font-size:14px;color:var(--ink)}
+.card .ex i{font-style:normal;color:var(--faint);font-family:var(--mono);font-size:12px;margin-right:6px}
+.flag{background:linear-gradient(90deg,var(--red),var(--red2));color:#fff;border:0}
+
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;counter-reset:s}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.step::before{counter-increment:s;content:"0" counter(s);font:700 12px/1 var(--mono);color:var(--red);display:block;margin-bottom:12px}
+.step b{display:block;font-size:17px;font-weight:800;margin-bottom:4px}
+.step span{color:var(--dim);font-size:14px;line-height:1.45;display:block}
+.note{margin:18px 0 0;color:var(--dim);font-size:15px}
+
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+.inst{display:grid;gap:14px}
+.istep{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+.istep h3{font-size:18px;font-weight:800;display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.istep h3 i{font:700 12px/1 var(--mono);font-style:normal;background:var(--red);color:#fff;border-radius:7px;padding:5px 7px}
+.istep p{margin:0 0 10px;color:var(--dim);font-size:15px}
+.code{display:flex;align-items:center;gap:10px;background:#07070a;border:1px solid var(--line2);border-radius:11px;padding:11px 12px;font:500 13.5px/1.45 var(--mono);color:#d9f6fb;overflow-x:auto}
+.code code{white-space:pre;flex:1}
+.copy{flex:none;background:var(--panel2);border:1px solid var(--line2);border-radius:8px;padding:5px 10px;font:600 12px/1 var(--mono);color:var(--dim)}
+.copy:hover{color:var(--ink)}
+.copy.ok{color:#3ee08f;border-color:#3ee08f}
+.side{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;gap:14px}
+.side h3{font-size:18px;font-weight:800}
+.side ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.side li{display:flex;gap:10px;color:var(--dim);font-size:15px}
+.side li b{color:var(--ink);font-weight:700}
+.side li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--cyan);margin-top:9px}
+.prompt{background:linear-gradient(135deg,rgba(255,70,85,.12),rgba(255,122,69,.05));border:1px solid rgba(255,70,85,.35);border-radius:16px;padding:20px}
+.prompt p{margin:0 0 10px;font:600 12px/1 var(--mono);color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.prompt q{display:block;font-size:19px;font-weight:700;quotes:none}
+
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+.feat b{display:block;font-size:17px;font-weight:800;margin-bottom:6px}
+.feat span{color:var(--dim);font-size:14.5px}
+.feat code{font-family:var(--mono);font-size:12.5px;color:#d9f6fb;background:#07070a;border:1px solid var(--line2);border-radius:6px;padding:1px 6px}
+
+details{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 20px;margin-bottom:10px}
+summary{list-style:none;cursor:pointer;padding:18px 0;font-weight:800;font-size:17px;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--red);font:700 20px/1 var(--mono)}
+details[open] summary::after{content:"\2212"}
+details p{margin:0 0 18px;color:var(--dim)}
+details a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+.band{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px}
+.band img{width:64px;height:64px;border-radius:16px}
+.band h3{font-size:24px;font-weight:800;margin-bottom:6px}
+.band p{margin:0;color:var(--dim)}
+
+footer{border-top:1px solid var(--line);padding:30px 0 48px;color:var(--faint);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+footer a:hover{color:var(--ink)}
+
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:16px;z-index:50;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-height:92vh;border-radius:12px}
+
+@media (max-width:980px){
+  .hero-grid,.two{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(3,1fr)}
+  .feats{grid-template-columns:1fr 1fr}
+  .stack{max-width:560px}
+}
+@media (max-width:680px){
+  .links{display:none}
+  .nav-cta{margin-left:auto}
+  .brand span{display:none}
+  .grid,.feats{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:1fr 1fr}
+  section{padding:64px 0}
+  .band{grid-template-columns:1fr}
+  .btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="/"><img src="/images/logos/omni-shorts.png" alt=""> Omni Shorts <span>by Haris Ai</span></a>
+  <div class="links">
+    <a href="#styles">Styles</a><a href="#how">How it works</a><a href="#install">Install</a><a href="#faq">FAQ</a><a href="/#products">Products</a>
+  </div>
+  <a class="nav-cta" href="https://github.com/Ai-Haris/omni-shorts-releases/releases/latest/download/omni-shorts.zip">Download free</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <span class="pill"><i class="dot"></i> <b>Free Claude skill</b> · v1.0 · 8 styles</span>
+      <h1>Faceless Shorts, <em>made in code.</em></h1>
+      <p class="lead">Give Claude a topic. Omni Shorts writes the script, voices it with a free local AI voice, syncs every caption to the word, animates each shot, adds sound and music, and renders the MP4. YouTube Shorts, TikTok and Reels, all on your own computer.</p>
+      <div class="ctas">
+        <a class="btn btn-main" href="https://github.com/Ai-Haris/omni-shorts-releases/releases/latest/download/omni-shorts.zip">Download the skill <small>.zip · 12.5 MB</small></a>
+        <a class="btn btn-ghost" href="#install">How to install</a>
+      </div>
+      <div class="facts"><span>No API keys</span><span>No credits</span><span>No AI video</span><span>$0 per short</span></div>
+      <div class="dl-count" id="dlc" hidden><b id="dln">0</b> downloads</div>
+    </div>
+    <div class="stack" aria-hidden="true">
+      <img src="img/night-file.webp" alt="">
+      <img src="img/tall-tale.webp" alt="">
+      <img src="img/deep-dive.webp" alt="">
+    </div>
+  </div>
+  <div class="strip">
+    <div><b>8</b><span>ready styles, each with a finished example</span></div>
+    <div><b>$0</b><span>local Kokoro voice and Whisper timing</span></div>
+    <div><b>9:16</b><span>Shorts by default, 16:9 when you ask</span></div>
+    <div><b>MP4</b><span>checked by Claude before you see it</span></div>
+  </div>
+</div></header>
+
+<section id="styles"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">The styles</span>
+    <h2>Eight looks. Pick one per channel.</h2>
+    <p class="lead">Every style comes with a style sheet, a full style guide and a finished example project that renders as is. Click a sheet to see it large. In Claude, just ask "show me the styles".</p>
+  </div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">How it works</span>
+    <h2>Topic in. Finished MP4 out.</h2>
+    <p class="lead">Claude shows you the plan (narration, captions, every shot) and waits for your yes before it builds anything.</p>
+  </div>
+  <div class="flow">
+    <div class="step"><b>Script</b><span>Claude writes it the way a person talks, with checked facts and sources.</span></div>
+    <div class="step"><b>Voice</b><span>Kokoro AI voice, local and free. Or ElevenLabs, or your own recording.</span></div>
+    <div class="step"><b>Word timing</b><span>Whisper finds every word, so each cut and caption lands on it.</span></div>
+    <div class="step"><b>Shots</b><span>Drawn in code: canvas and three.js 3D, camera always moving.</span></div>
+    <div class="step"><b>Sound</b><span>Sound effects and music mixed under the voice, ducked and faded.</span></div>
+    <div class="step"><b>Render</b><span>Headless Chrome captures every frame, ffmpeg makes the MP4.</span></div>
+  </div>
+  <p class="note">Before the full render you get a storyboard (one frame per shot) to approve. Optional: when you ask, Claude uploads the finished short to your YouTube channel through Zapier, after confirming title, visibility and category.</p>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Install</span>
+    <h2>Three steps, about ten minutes.</h2>
+  </div>
+  <div class="two">
+    <div class="inst">
+      <div class="istep">
+        <h3><i>1</i> Download and unzip</h3>
+        <p>Put the <b>omni-shorts</b> folder in your Claude skills folder:</p>
+        <div class="code"><code>~/.claude/skills/omni-shorts/</code><button class="copy" type="button">Copy</button></div>
+      </div>
+      <div class="istep">
+        <h3><i>2</i> Run setup and the self test</h3>
+        <p>Inside that folder. Setup installs the free voice (about 340 MB) and Whisper (about 0.5 GB) and prints <b>All set</b>. The self test renders a short clip and prints <b>SELFTEST PASSED</b>. Or simply ask Claude to run both for you.</p>
+        <div class="code"><code>bash scripts/setup.sh</code><button class="copy" type="button">Copy</button></div>
+        <div class="code" style="margin-top:8px"><code>bash scripts/selftest.sh</code><button class="copy" type="button">Copy</button></div>
+      </div>
+      <div class="istep">
+        <h3><i>3</i> Ask for your first short</h3>
+        <p>Start a new Claude session, type <b>/omni-shorts</b> or just ask in plain words:</p>
+        <div class="code"><code>Make a Deep Dive 3D short: what happens if you crack your knuckles?</code><button class="copy" type="button">Copy</button></div>
+      </div>
+    </div>
+    <aside class="side">
+      <h3>What you need</h3>
+      <ul>
+        <li><span><b>Claude Code</b>, or Claude with a linked computer</span></li>
+        <li><span><b>Node.js 22+</b>, <b>ffmpeg</b>, <b>Google Chrome</b>, <b>Python 3.10+</b></span></li>
+        <li><span>About <b>1 GB</b> free for the voice and Whisper models</span></li>
+        <li><span>No graphics card needed, no paid AI service</span></li>
+        <li><span><b>Windows:</b> run the scripts in Git Bash (comes with Git for Windows; Claude Code already uses it)</span></li>
+      </ul>
+      <div class="prompt"><p>Missing something?</p><q>Claude installs it the free, official way and asks before anything that needs a password.</q></div>
+    </aside>
+  </div>
+</div></section>
+
+<section id="new"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">In this version</span>
+    <h2>Built for real channels.</h2>
+  </div>
+  <div class="feats">
+    <div class="feat"><b>Storyboard approval</b><span>One labelled frame per shot. You say yes before the full render.</span></div>
+    <div class="feat"><b>Real 3D models</b><span>Load your own GLB models into the 3D styles, posed in code.</span></div>
+    <div class="feat"><b>Music library</b><span>Set <code>"music": "mystery"</code> and it picks a track from your mood folder, loops, ducks and fades.</span></div>
+    <div class="feat"><b>Real sound effects</b><span>Drop your own WAV files in and they replace the built-in sound for that cue.</span></div>
+    <div class="feat"><b>ElevenLabs voice</b><span>Optional, with your own key. Each sentence is cached, so re-renders cost nothing.</span></div>
+    <div class="feat"><b>16:9 too</b><span>Landscape 1920x1080 for regular YouTube videos. Shorts stay the default.</span></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">FAQ</span>
+    <h2>Questions</h2>
+  </div>
+  <details><summary>Is it really free?</summary><p>Yes. The skill is free and every part of the pipeline runs on your computer: the Kokoro voice, Whisper word timing, drawing, sound and rendering. There are no API keys, no credits and no per-video fee. Only your Claude plan is used, as for any chat.</p></details>
+  <details><summary>Can I use the videos on my monetized channel?</summary><p>Yes. The code, stories, drawings and sound in the skill are original and free to use in your videos. Claude writes original scripts and checks facts against reliable sources. Use a format you like, never another creator's script or shots.</p></details>
+  <details><summary>Does it work on Windows and Mac?</summary><p>Both. On Windows, run the scripts in Git Bash. Any normal laptop works, no graphics card is needed.</p></details>
+  <details><summary>Which style should I pick?</summary><p>Body and science "what happens if": Deep Dive 3D or Inside Out. Mysteries and true crime: Night File 3D. Survival tips: Stick Story. History: Paper Atlas. Funny true stories: Tall Tale 3D. How things work or grow: Cutaway 3D. Build it yourself, problem by problem: Build Site 3D. Keep one style and one voice per channel.</p></details>
+  <details><summary>Can it upload to YouTube for me?</summary><p>Yes, when you ask. Claude uploads the finished short to your channel through Zapier and confirms the title, visibility and category first.</p></details>
+  <details><summary>How is this different from OMNITUBE?</summary><p>Omni Shorts makes short animated videos drawn entirely in code, inside Claude. <a href="/omnitube/">OMNITUBE</a> is a full desktop video studio for long YouTube videos and documentaries, with AI images, clips, voices and editing.</p></details>
+  <details><summary>Where do I get help?</summary><p>Message me on WhatsApp at +92 348 5563133 or email <a href="mailto:haris@theharisai.com">haris@theharisai.com</a>.</p></details>
+</div></section>
+
+<section style="padding-top:56px"><div class="wrap">
+  <div class="band">
+    <img src="/images/logos/omnitube.png" alt="">
+    <div><h3>Want long videos and documentaries?</h3><p>OMNITUBE turns a script into a full YouTube video: AI scenes, voice, music, captions, edit and render. Free to download.</p></div>
+    <a class="btn btn-ghost" href="/omnitube/">See OMNITUBE</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© 2026 Haris Ai · Omni Shorts</span>
+  <span><a href="/">theharisai.com</a> · <a href="/styles/">Motion Styles</a> · <a href="mailto:haris@theharisai.com">haris@theharisai.com</a></span>
+</div></footer>
+
+<div class="lb" id="lb"><img alt=""></div>
+
+<script>
+const STYLES = [
+  ["deep-dive","Deep Dive 3D","Flagship","3D \"what happens if\" body and science explainers: sculpted people in sunlit sets, glowing x-ray bodies, camera trips through blood vessels.","What happens if you hold your breath?"],
+  ["night-file","Night File 3D","Mysteries","Unsolved mysteries and true crime in dark 3D rooms with one light, faceless people, typewriter dates and case-file inserts.","The man who jumped out of a plane"],
+  ["inside-out","Inside Out","2D","Flat 2D x-ray explainers: a simple hero, cutaways into the body, bold 1 to 3 word captions, a cut every few seconds.","What if you swallow gum?"],
+  ["stick-story","Stick Story","Survival","Stick figures with acting eyes in flat rooms, day and night, with gold numbered step cards.","What if the power went out for 3 days?"],
+  ["paper-atlas","Paper Atlas","History","History in cut paper: parchment maps, crimson routes, gold date ribbons and period figures.","How one bakery burned down London"],
+  ["tall-tale","Tall Tale 3D","Funny","Funny true stories: flat cartoon people acting in a sunny 3D town, camera always moving, one word at a time.","The girl who was mailed to grandma"],
+  ["cutaway","Cutaway 3D","How it works","\"How a small thing becomes a big thing\": a toy-like 3D place sliced open, building up shot by shot with label pills.","How a hole in the ground becomes a water well"],
+  ["build-site","Build Site 3D","Build it","A realistic dig site seen from the side. A worker builds it, every line a problem or its fix, weather shows time passing.","How a hole becomes a root cellar"]
+];
+const g = document.getElementById('grid');
+STYLES.forEach((s,i)=>{
+  const a = document.createElement('article'); a.className='card';
+  a.innerHTML = `<div class="shot" data-src="img/${s[0]}.webp"><img src="img/${s[0]}.webp" alt="${s[1]} style sheet" width="1280" height="720" decoding="async"></div>
+  <div class="body"><div class="top"><span class="num">0${i+1}</span><h3>${s[1]}</h3><span class="tag${i===0?' flag':''}">${s[2]}</span></div>
+  <p>${s[3]}</p><div class="ex"><i>Example</i>${s[4]}</div></div>`;
+  g.appendChild(a);
+});
+const lb=document.getElementById('lb');
+document.addEventListener('click',e=>{
+  const sh=e.target.closest('.shot'); if(sh){lb.querySelector('img').src=sh.dataset.src;lb.classList.add('on');return}
+  if(e.target.closest('#lb')) lb.classList.remove('on');
+  const c=e.target.closest('.copy'); if(c){
+    const t=c.parentElement.querySelector('code').textContent;
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{c.textContent='Copied';c.classList.add('ok');setTimeout(()=>{c.textContent='Copy';c.classList.remove('ok')},1600)}).catch(()=>{});
+  }
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+
+// Download counter from GitHub Releases (cached 15 min, hidden when 0 or unavailable)
+(function(){
+  const K='os_dl', show=n=>{if(n>0){document.getElementById('dln').textContent=n.toLocaleString();document.getElementById('dlc').hidden=false}};
+  try{const c=JSON.parse(localStorage.getItem(K)||'null'); if(c&&Date.now()-c.t<9e5){show(c.n);return}}catch(e){}
+  fetch('https://api.github.com/repos/Ai-Haris/omni-shorts-releases/releases').then(r=>r.ok?r.json():[]).then(rs=>{
+    let n=0; (rs||[]).forEach(r=>(r.assets||[]).forEach(a=>{if(/\.zip$/i.test(a.name))n+=a.download_count||0}));
+    try{localStorage.setItem(K,JSON.stringify({t:Date.now(),n}))}catch(e){}
+    show(n);
+  }).catch(()=>{});
+})();
+</script>
+</body>
+</html>
