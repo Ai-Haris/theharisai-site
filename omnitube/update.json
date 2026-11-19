@@ -1,8 +1,9 @@
 {
-  "version": "2.0.0",
-  "date": "2026-11-19",
+  "version": "2.0.1",
+  "date": "2026-11-20",
   "headline": "OMNITUBE 2 is here: Omni Shorts, Channel Doctor and 7 app languages",
   "notes": [
+    "2.0.1: project tabs (Script, Voice, Look, Cast, Storyboard) work again, Documentary Studio look step fixed",
     "Omni Shorts (Pro): type a topic and get a finished Short drawn in code, in 8 styles (Tall Tale, Cutaway, Deep Dive, Night File, Build Site, Inside Out, Stick Story, Paper Atlas)",
     "Pick the writer: an API writer for the best look (Claude Sonnet on OpenRouter, about $0.08 per Short) or a free model on your PC",
     "Make with Claude: Claude Desktop writes the video, OMNITUBE voices and renders it",
@@ -14,17 +15,14 @@
     "New glass look, new menu (Omni Cinema and Omni Shorts), Settings and Pro pages with tabs, help popups",
     "Free for every OMNITUBE buyer, Pro and Lifetime: your key keeps working"
   ],
-  "installer_file": "OMNITUBE_Setup_2.0.0.exe",
-  "update_file": "OMNITUBE_update_2.0.0.zip",
-  "portable_file": "OMNITUBE_Portable_2.0.0.zip",
-  "update_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_update_2.0.0.zip",
-  "update_size": 48742056,
-  "update_sha256": "5c676627e7cca7a2c17cf294b1815fe8c598a9a5cadfcda64fb98240d6cc8be4",
-  "installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Setup_2.0.0.exe",
-  "installer_size": 58596625,
-  "portable_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Portable_2.0.0.zip",
-  "mac_installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Mac_2.0.0.dmg",
-  "mac_update_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_mac_update_2.0.0.zip",
-  "mac_update_sha256": "86e03567273dc344273fe9fe0c3cb1cd82e07f86ca5eaf1f04ec27d6148d99e7",
-  "mac_update_size": 19283356
+  "installer_file": "OMNITUBE_Setup_2.0.1.exe",
+  "update_file": "OMNITUBE_update_2.0.1.zip",
+  "portable_file": "OMNITUBE_Portable_2.0.1.zip",
+  "update_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.1/OMNITUBE_update_2.0.1.zip",
+  "update_size": 48741984,
+  "update_sha256": "e90b386b96224cba2c40fd28ecbd630939ca394a67fecc8951d11024c1b5873a",
+  "installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.1/OMNITUBE_Setup_2.0.1.exe",
+  "installer_size": 58600198,
+  "portable_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.1/OMNITUBE_Portable_2.0.1.zip",
+  "mac_installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Mac_2.0.0.dmg"
 }
