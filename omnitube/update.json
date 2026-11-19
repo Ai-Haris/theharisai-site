@@ -18,10 +18,10 @@
   "update_file": "OMNITUBE_update_2.0.0.zip",
   "portable_file": "OMNITUBE_Portable_2.0.0.zip",
   "update_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_update_2.0.0.zip",
-  "update_size": 48740317,
-  "update_sha256": "7126d70ddbce34b7135e2026874f077fea1e28242e1da073a20f448742a9c1e8",
+  "update_size": 48742056,
+  "update_sha256": "5c676627e7cca7a2c17cf294b1815fe8c598a9a5cadfcda64fb98240d6cc8be4",
   "installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Setup_2.0.0.exe",
-  "installer_size": 58595607,
+  "installer_size": 58596625,
   "portable_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Portable_2.0.0.zip",
   "mac_installer_url": "https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.5.0/OMNITUBE_Mac_1.5.0.dmg"
 }
