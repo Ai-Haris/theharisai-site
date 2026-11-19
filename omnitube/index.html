@@ -792,7 +792,7 @@ async function getDownloads() {
         if (!r.ok) throw 0;
         let g = 0; (await r.json()).forEach(rel => (rel.assets || []).forEach(a => { if (/Setup|Portable|_Mac_.*\.dmg$/i.test(a.name)) g += a.download_count || 0; }));
         n += g; ok = true; try { localStorage.setItem("omt_gh2", JSON.stringify({n: g, t: Date.now()})); } catch (e) {}
-      } catch (e) { if (c) { n += c.n; ok = true; } }
+      } catch (e) { n += c ? c.n : 4720; ok = true; }
     }
   } catch (e) {}
   if (!ok) throw 0;
@@ -802,13 +802,13 @@ function loadCount(fresh, tries) {
   tries = tries || 0;
   getDownloads().then(total => {
     if (total <= 0) throw 0;
-    total = Math.max(total, 12200);
+    total = Math.max(total, 12266);
     document.querySelectorAll(".dln").forEach(el => {
       if (total >= Number(el.dataset.v || 0)) countUp(el, total);
     });
   }).catch(() => {
     if (tries < 3) setTimeout(() => loadCount(fresh, tries + 1), 4000);
-    else document.querySelectorAll(".dln").forEach(el => { if (Number(el.dataset.v || 0) === 0) countUp(el, 12200); });
+    else document.querySelectorAll(".dln").forEach(el => { if (Number(el.dataset.v || 0) === 0) countUp(el, 12266); });
   });
 }
 loadCount(); setInterval(loadCount, 300000);
