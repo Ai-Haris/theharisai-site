@@ -5,7 +5,7 @@
 <base href="/omnitube/">
 <script>if (location.pathname === "/omnitube") history.replaceState(null, "", "/omnitube/" + location.search + location.hash);</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OMNITUBE by Haris Ai · Free AI video studio for YouTube</title>
+<title>OMNITUBE 2 by Haris Ai · Free AI video studio for YouTube</title>
 <meta name="description" content="OMNITUBE by Haris Ai turns a script into a finished YouTube video on your own PC: narration, AI scenes, video clips, music, captions, thumbnails, Shorts and dubbing. Free, no watermark, no per-minute fees.">
 <meta property="og:title" content="OMNITUBE by Haris Ai · Script in. Video out.">
 <meta property="og:description" content="A free AI video studio that runs on your own PC. Paste a script, get a finished YouTube video.">
@@ -32,8 +32,37 @@ img{max-width:100%;display:block}
 .glow{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .glow i{position:absolute;border-radius:50%;filter:blur(120px)}
 .glow .g1{width:900px;height:640px;background:radial-gradient(closest-side,#d3101f,transparent);opacity:.24;top:-280px;right:-200px}
+.glow .g3{width:700px;height:520px;background:radial-gradient(closest-side,#7c2bff,transparent);opacity:.08;top:120%;right:-240px}
 .glow .g2{width:760px;height:560px;background:radial-gradient(closest-side,#ff4a2c,transparent);opacity:.1;top:55%;left:-260px}
 main,header,footer{position:relative;z-index:1}
+body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%)}
+.card,.step,.req div,details,.rel,.docu,.final,.o2box{box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 18px 50px rgba(0,0,0,.28)}
+.card:hover{border-color:rgba(255,45,64,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 22px 60px rgba(0,0,0,.35),0 0 40px rgba(255,45,64,.08)}
+.new2{display:inline-flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-radius:999px;border:1px solid rgba(255,45,64,.45);
+  background:linear-gradient(135deg,rgba(255,45,64,.16),rgba(255,106,61,.06));font-weight:700;font-size:14px;color:var(--text);box-shadow:0 0 30px rgba(255,45,64,.18)}
+.new2 b{padding:3px 10px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-size:12px;letter-spacing:.6px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:900px;margin:30px auto 0}
+.stats div{padding:16px 10px;border-radius:18px;border:1px solid var(--line);background:var(--glass)}
+.stats b{display:block;font:800 28px/1.1 Urbanist,sans-serif;background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.stats span{color:var(--muted);font-size:13.5px;font-weight:600}
+/* Omni Shorts */
+.o2box{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;margin-top:40px;padding:30px;border-radius:28px;border:1px solid rgba(255,45,64,.35);
+  background:radial-gradient(120% 120% at 0% 0%,rgba(255,45,64,.14),transparent 55%),linear-gradient(160deg,var(--glass2),var(--glass) 60%)}
+.o2box h3{margin:10px 0 8px;font-size:30px;line-height:1.15}
+.o2box>div>p{color:var(--muted);margin:0 0 14px}
+.o2box ul{margin:0;padding-left:18px;color:var(--muted);font-size:15.5px}.o2box li{margin:8px 0}.o2box li b{color:var(--text)}
+.phones{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+.phones figure{margin:0;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line2);aspect-ratio:16/10;background:#111;cursor:zoom-in}
+.phones figure.w{grid-column:span 2}
+.phones img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s ease}
+.phones figure:hover img{transform:scale(1.03)}
+.phones figcaption{position:absolute;left:8px;bottom:8px;padding:3px 10px;border-radius:999px;background:rgba(0,0,0,.7);font:700 12px/1.6 Urbanist,sans-serif}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.chips span{padding:6px 12px;border-radius:999px;border:1px solid var(--line2);background:var(--glass);font-size:13.5px;font-weight:700;color:var(--text)}
+.chips span i{font-style:normal;color:var(--a2);margin-left:4px;font-size:11px}
+@media (max-width:900px){.o2box{grid-template-columns:1fr;padding:22px}.stats{grid-template-columns:1fr 1fr}}
 /* nav */
 header{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:rgba(10,10,13,.62);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:22px;height:68px}
@@ -69,7 +98,7 @@ h1 span{background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background
 /* showcase */
 .showcase{margin:58px auto 0;max-width:1140px}
 .frame{padding:10px;border-radius:26px;border:1px solid var(--line2);background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:0 50px 120px rgba(0,0,0,.6),0 0 90px rgba(255,45,64,.16)}
-.stack{position:relative;aspect-ratio:1520/940;border-radius:18px;overflow:hidden;background:#111}
+.stack{position:relative;aspect-ratio:1600/1000;border-radius:18px;overflow:hidden;background:#111}
 .stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.012);transition:opacity .6s ease,transform 1.2s ease}
 .stack img.on{opacity:1;transform:none}
 .stabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:22px}
@@ -163,30 +192,30 @@ footer a:hover{color:var(--text)}
 @media (max-width:600px){.grid,.steps,.req{grid-template-columns:1fr}.hero{padding-top:56px}section{padding:64px 0}.by{display:none}
   .gallery{grid-auto-rows:150px}.gallery figure.t{grid-row:span 1}.rel{padding:22px}
   .stabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.stabs button{flex:none}
-  .vtabs{display:flex;width:100%}.vtabs button{flex:1;padding:0 8px}}
+  .vtabs{display:flex;width:100%;overflow-x:auto;scrollbar-width:none}.vtabs button{flex:none;padding:0 14px}}
 @media (prefers-reduced-motion:reduce){.stack img{transition:none}.stabs button.on:after{animation:none}}
 </style>
 </head>
 <body>
-<div class="glow"><i class="g1"></i><i class="g2"></i></div>
+<div class="glow"><i class="g1"></i><i class="g2"></i><i class="g3"></i></div>
 <header><div class="wrap nav">
   <a class="brand" href="#"><img src="assets/app_icon.png" alt=""><span class="word">OMNI<b>TUBE</b></span><span class="by">by Haris Ai</span></a>
-  <nav><a href="#features">Features</a><a href="#gallery">Gallery</a><a href="#whatsnew">What's new</a><a href="#howtouse">How to use</a><a href="#pro">Pro</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a></nav>
-  <a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.5.0/OMNITUBE_Setup_1.5.0.exe">Download</a>
+  <nav><a href="#shorts">Omni Shorts</a><a href="#features">Features</a><a href="#gallery">Gallery</a><a href="#whatsnew">What's new</a><a href="#howtouse">How to use</a><a href="#pro">Pro</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a></nav>
+  <a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Setup_2.0.0.exe">Download</a>
 </div></header>
 
 <main>
 <div class="wrap hero">
-  <a class="pill" href="#whatsnew"><span class="dot"></span><span id="relnote">OMNITUBE 1.4 is here: a real Timeline editor and Pro cloud mode</span></a>
-  <h1>Script in.<br><span>Video out.</span></h1>
-  <p class="lead">A free AI video studio that runs on your own PC. Paste a script and OMNITUBE makes the finished YouTube video: narration, AI scenes and clips, music, captions, thumbnails, Shorts and dubbing.</p>
+  <a class="new2" href="#whatsnew"><span id="relnote">OMNITUBE 2 is here: Omni Shorts, Channel Doctor and 7 app languages</span><b>NEW 2.0</b></a>
+  <h1>Bring the story.<br><span>Get the video.</span></h1>
+  <p class="lead">A free AI video studio for your own PC. Paste a script and OMNITUBE makes the finished YouTube video: narration, AI scenes and clips, music, captions and thumbnails. New in 2.0: type a topic and <b style="color:var(--text)">Omni Shorts</b> draws a finished Short in 3D, voiced and captioned.</p>
   <div class="cta">
-    <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.5.0/OMNITUBE_Setup_1.5.0.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
+    <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Setup_2.0.0.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
     <a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.5.0/OMNITUBE_Mac_1.5.0.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a>
     <a class="btn big" href="#tour">Take the tour</a>
   </div>
-  <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>people have downloaded OMNITUBE</span></div>
-  <div class="meta"><b id="vlabel">v1.4</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees</div>
+  <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
+  <div class="meta"><b id="vlabel">v2.0</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees · Mac: 1.5 now, 2.0 soon</div>
   <div class="meta"><a class="saclink" href="#sac">Windows blocked the installer? Here is the fix.</a>&ensp;&middot;&ensp;<a class="saclink" href="#mac-install" onclick="var e=document.getElementById('mac-install');if(e)e.open=true">On a Mac? Here is how to open it.</a></div>
 
   <div class="showcase" id="tour">
@@ -195,6 +224,39 @@ footer a:hover{color:var(--text)}
     <p class="scap" id="scap"></p>
   </div>
 </div>
+
+<section id="shorts"><div class="wrap">
+  <div class="kicker">New in OMNITUBE 2</div>
+  <h2>Omni Shorts: a topic in, a finished Short out</h2>
+  <p class="sub">Shorts and long videos drawn in code, the way the 3D explainer channels are made. OMNITUBE writes the script, records the voice, times every word, animates every shot, adds sound and music and renders the MP4. Runs on any laptop, no graphics card needed.</p>
+  <div class="o2box">
+    <div>
+      <span class="v new">OMNITUBE PRO</span>
+      <h3>8 styles, one button</h3>
+      <div class="chips"><span>Tall Tale<i>3D</i></span><span>Cutaway<i>3D</i></span><span>Deep Dive<i>3D</i></span><span>Night File<i>3D</i></span><span>Build Site<i>3D</i></span><span>Inside Out</span><span>Stick Story</span><span>Paper Atlas</span></div>
+      <ul>
+        <li><b>Pick your writer:</b> an API writer for the best look (Claude Sonnet on OpenRouter, about $0.08 per script), or a free AI model that runs on your PC.</li>
+        <li><b>Make with Claude:</b> Claude Desktop writes the video and OMNITUBE renders it.</li>
+        <li><b>Shorts and long videos:</b> 9:16 Shorts, and 16:9 long videos in chapters with chapter markers.</li>
+        <li><b>Batch Builder:</b> paste many topics and get a Short for every day, with a posting plan for your audience's time zone.</li>
+        <li><b>Channels:</b> save the style, voice, look and upload texts of each channel once.</li>
+        <li><b>Ready to upload:</b> 3 titles, description, tags and a thumbnail for every Short, plus a picture check that marks wrong shots.</li>
+      </ul>
+    </div>
+    <div class="phones" id="o2pics">
+      <figure class="w"><img loading="lazy" src="assets/shots/o2styles.webp?v=200" alt="Omni Shorts style picker"><figcaption>8 styles</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/o2cutaway.webp?v=200" alt="Cutaway 3D Short made by Omni Shorts"><figcaption>Cutaway 3D</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/o2talltale.webp?v=200" alt="Tall Tale 3D Short made by Omni Shorts"><figcaption>Tall Tale 3D</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/o2writer.webp?v=200" alt="Voice, length and writer"><figcaption>Voice and writer</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/o2batch.webp?v=200" alt="Batch Builder"><figcaption>Batch Builder</figcaption></figure>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Channel Doctor<span class="v new">FREE</span></h3><p>Paste your channel link and get a score with clear tips: titles, upload rhythm, Shorts vs long videos and what to repeat.</p></div>
+    <div class="card"><h3>7 app languages<span class="v new">FREE</span></h3><p>English, Arabic, Spanish, Hindi, Urdu, Portuguese and French, with right-to-left layout for Arabic and Urdu.</p></div>
+    <div class="card"><h3>Setup your way<span class="v new">FREE</span></h3><p>On first start pick Pro (cloud), Free local or Omni Shorts. Only what you pick is downloaded, about 0.9 GB for Omni Shorts.</p></div>
+  </div>
+</div></section>
 
 <section id="features"><div class="wrap">
   <div class="kicker">Features</div>
@@ -228,11 +290,39 @@ footer a:hover{color:var(--text)}
   <h2>Every version, in plain words</h2>
   <p class="sub">OMNITUBE updates itself from inside the app. Your projects, voices and models always stay where they are.</p>
   <div class="vtabs" role="tablist">
-    <button class="on" data-v="v15">Version 1.5</button><button data-v="v14">Version 1.4</button><button data-v="v13">Version 1.3</button><button data-v="v12">Version 1.2</button><button data-v="v11">Version 1.1</button><button data-v="v10">Version 1.0</button>
+    <button class="on" data-v="v20">Version 2.0</button><button data-v="v15">Version 1.5</button><button data-v="v14">Version 1.4</button><button data-v="v13">Version 1.3</button><button data-v="v12">Version 1.2</button><button data-v="v11">Version 1.1</button><button data-v="v10">Version 1.0</button>
   </div>
 
-  <div class="rel on" id="v15">
-    <div class="rh"><h3>OMNITUBE 1.5</h3><time datetime="2026-11-02">2 November 2026</time><span class="tag">LATEST</span></div>
+  <div class="rel on" id="v20">
+    <div class="rh"><h3>OMNITUBE 2.0</h3><time datetime="2026-11-19">19 November 2026</time><span class="tag">LATEST</span></div>
+    <p>The biggest update so far: Omni Shorts makes finished Shorts and long videos drawn in code, plus Channel Doctor, a new welcome setup, 7 app languages and a new glass look. <b style="color:var(--text)">Free for every OMNITUBE buyer, Pro and Lifetime:</b> update from the button in the app, your key keeps working. Windows now, Mac soon (Mac users keep 1.5 until then).</p>
+    <div class="groups">
+      <div><h4>New in Pro: Omni Shorts</h4><ul>
+        <li><b>8 styles:</b> Tall Tale 3D, Cutaway 3D, Deep Dive 3D, Night File 3D, Build Site 3D, Inside Out, Stick Story and Paper Atlas.</li>
+        <li><b>Topic in, video out:</b> script, voice, word-synced captions, animated shots, sound and music, rendered to MP4.</li>
+        <li><b>Your writer:</b> an API writer for the best look (Claude Sonnet on OpenRouter, about $0.08 per script) or a free model on your PC. Not happy with a free draft? Make it again with the API in one click.</li>
+        <li><b>Make with Claude:</b> Claude Desktop writes the video, OMNITUBE renders it.</li>
+        <li><b>Long videos</b> in chapters (16:9), <b>Batch Builder</b> with a posting plan, and <b>Channels</b> with style, voice, look and upload texts.</li>
+        <li><b>Upload kit:</b> 3 titles, description, tags and a thumbnail for every Short. A picture check marks shots that do not match the words.</li>
+      </ul></div>
+      <div><h4>New for everyone</h4><ul>
+        <li><b>Channel Doctor:</b> paste your channel link, get a score and clear tips to grow.</li>
+        <li><b>Welcome setup:</b> choose Pro, Free local or Omni Shorts. Only what you pick is downloaded.</li>
+        <li><b>App languages:</b> English, Arabic, Spanish, Hindi, Urdu, Portuguese and French.</li>
+        <li><b>New look:</b> glass design, a new menu with Omni Cinema (your full videos) and Omni Shorts, Settings and Pro pages with tabs, and help popups on every screen.</li>
+        <li><b>Live progress</b> of every running video in the corner of every page.</li>
+      </ul></div>
+    </div>
+    <div class="looks" style="margin-top:22px">
+      <figure><img loading="lazy" src="assets/shots/o2make.webp?v=200" alt="Omni Shorts: make a video" style="object-position:top"><figcaption>Omni Shorts</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/o2claude.webp?v=200" alt="Make with Claude" style="object-position:top"><figcaption>Make with Claude</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/o2setup.webp?v=200" alt="Setup Center with Omni Shorts" style="object-position:top"><figcaption>Setup Center</figcaption></figure>
+      <figure><img loading="lazy" src="assets/shots/o2doctor.webp?v=200" alt="Channel Doctor" style="object-position:top"><figcaption>Channel Doctor (free)</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="rel" id="v15">
+    <div class="rh"><h3>OMNITUBE 1.5</h3><time datetime="2026-11-02">2 November 2026</time></div>
     <p>Cheaper cloud videos, your own picture style, characters with their own voices and five new offline languages. Pro adds your own watermark, publishing to YouTube, TikTok and Instagram, and making videos by chatting with Claude. Free update for everyone, from the Update button in the app. Windows and Mac (Apple Silicon, macOS 12 or newer). New: the full <a href="OMNITUBE_User_Guide_1.5.pdf" target="_blank" rel="noopener">User Guide as a PDF</a>.</p>
     <div class="groups">
       <div><h4>New for everyone</h4><ul>
@@ -486,7 +576,7 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
   <div class="kicker">OMNITUBE Pro</div>
   <h2>Same app, more power</h2>
   <p class="sub">Pro is the same OMNITUBE, made in the cloud on your own API keys, so it runs on any laptop. You pay the AI providers directly (usually $0.50 to $2 per video), nothing extra to us. Free stays free, with no watermark and no limits.</p>
-  <div class="prostatus"><span class="dot"></span>Launch offer is back. Pro: $20 one time, with 1 year of updates on one PC. Lifetime: $99, Windows + Mac and every future version, only 30 spots.</div>
+  <div class="prostatus"><span class="dot"></span>Launch offer is back. Pro: $20 one time, with 1 year of updates on one PC. Lifetime: $99, Windows + Mac and every future version, only 30 spots. OMNITUBE 2 is included for every buyer.</div>
   <div class="cta" style="margin-top:18px;justify-content:flex-start"><a class="btn primary big" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get OMNITUBE Pro, $20</a></div>
 
   <div class="docu">
@@ -512,6 +602,7 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
   </div>
 
   <div class="grid">
+    <div class="card"><h3>New in 2.0: Omni Shorts</h3><p>Finished Shorts and long videos drawn in code in 8 styles, with Batch Builder, Channels, an upload kit and Make with Claude. Runs on any laptop.</p></div>
     <div class="card"><h3>21 channel styles</h3><p>Business, true crime, history, war, space, science, internet culture, engineering and more. Each with its own fonts, background, frames, colour grade and pacing. Pick one by its preview.</p></div>
     <div class="card"><h3>Motion graphics</h3><p>Name labels, years and numbers that count up, newspaper clippings, social posts, timelines, evidence boards, HUD callouts, spec panels, maps and chapter cards, placed from the script.</p></div>
     <div class="card"><h3>Editing like a pro channel</h3><p>A cut every 2 to 3 seconds (faster at the start), push-ins and pans with speed ramps, transitions, music ducking and sound effects on every graphic.</p></div>
@@ -541,13 +632,19 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
     <div><b>Memory</b><span>16 GB RAM</span><small>32 GB recommended for AI video</small></div>
     <div><b>Storage</b><span>60 GB free</span><small>An SSD makes models load faster</small></div>
   </div>
-  <p class="sub" style="margin-top:20px"><b>On a Mac:</b> Apple Silicon (M1 and later), macOS 12 Monterey or newer. Voices, scripts, captions, music and editing run on your Mac. Images and video clips are made in the cloud with OMNITUBE Pro, so no graphics card is needed.</p>
+  <p class="sub" style="margin-top:20px"><b>Omni Shorts (2.0):</b> any laptop with Windows 10 or 11, Node.js 22 and Chrome or Edge. Setup downloads about 0.9 GB (voice and captions). No graphics card needed.</p>
+  <p class="sub" style="margin-top:12px"><b>On a Mac:</b> Apple Silicon (M1 and later), macOS 12 Monterey or newer. Voices, scripts, captions, music and editing run on your Mac. Images and video clips are made in the cloud with OMNITUBE Pro, so no graphics card is needed.</p>
 </div></section>
 
 <section id="faq"><div class="wrap">
   <div class="kicker">FAQ</div>
   <h2>Questions</h2>
   <div class="faq">
+    <details><summary>What is new in OMNITUBE 2, and do I have to pay again?</summary><p>No. OMNITUBE 2 is a free update for everyone who bought OMNITUBE, Pro and Lifetime. Click the update button in the app or download the new installer above, and your key keeps working. New: Omni Shorts (finished Shorts and long videos drawn in code, 8 styles), Channel Doctor, a welcome setup, 7 app languages and a new look. Pro includes updates for 1 year; Lifetime includes every future version.</p></details>
+    <details><summary>What is Omni Shorts?</summary><p>Omni Shorts (Pro) turns a topic into a finished Short: script, voice, word-synced captions, animated 3D or 2D shots, sound and music, rendered to MP4 on your PC. Pick one of 8 styles, a voice and a length. It also makes long videos in chapters, many Shorts at once (Batch Builder) and an upload kit with titles, tags and a thumbnail.</p></details>
+    <details><summary>Does Omni Shorts need an API key? What does a Short cost?</summary><p>No key is needed: a free AI model can write the video on your PC. For the best look, add an OpenRouter key and pick Claude Sonnet as the writer, about $0.08 per Short. Voice, captions and rendering are always free on your PC. You can also make it with Claude Desktop.</p></details>
+    <details><summary>Is OMNITUBE 2 on Mac?</summary><p>Not yet. Windows gets 2.0 first. Mac users keep 1.5 (the Mac download above), and the Mac version of 2.0 follows soon as a free update.</p></details>
+    <details><summary>Can I use OMNITUBE in my language?</summary><p>Yes. The app itself speaks English, Arabic, Spanish, Hindi, Urdu, Portuguese and French. Pick the language on the welcome screen or in Settings.</p></details>
     <details><summary>Is OMNITUBE really free?</summary><p>Yes. There is no watermark, no subscription and no limit on minutes or videos. It runs on your own computer, so making more videos costs nothing extra.</p></details>
     <details><summary>What is new in 1.5, and is the update free?</summary><p>Yes, 1.5 is a free update for everyone. Open OMNITUBE and click the update button, or download the new installer above. New: Calm pacing (up to 3x cheaper cloud videos), your own picture styles, characters with their own voices, Spanish, Hindi, Portuguese, French and Italian offline voices, and a How to use page inside the app. Pro adds the full cost estimate, your own watermark, publishing to YouTube, TikTok and Instagram, and using OMNITUBE from Claude. See <a href="#whatsnew">What's new</a>.</p></details>
     <details><summary>How much does a cloud video cost, and how do I keep it low?</summary><p>Cloud mode (Pro) uses your own AI accounts, so you pay the providers directly and OMNITUBE adds nothing. Before every cloud build you see a cost range, and after it the real amount spent. To keep it low: set Pacing to Calm on the Storyboard, make a short test video first, use the free voices, and make pictures on your PC if you have an NVIDIA RTX card.</p></details>
@@ -567,16 +664,16 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
     <details><summary>My antivirus flags OMNITUBE (for example Avast "IDP.Generic").</summary><p>That is a false positive: the app is new and not code-signed yet, and some antivirus tools flag every new unsigned program. Add the OMNITUBE folder as an exception, or restore the file from the antivirus quarantine. A signed version is on the way.</p></details>
     <details><summary>A build stopped with an error. Do I start again?</summary><p>No. Click <b>Resume</b>: finished voices, images and clips are kept and OMNITUBE continues from where it stopped.</p></details>
     <details><summary>Something is not working. How do I get help?</summary><p>Open Setup Center and click <b>Repair OMNITUBE</b>, it fixes most problems. Still stuck? Click <b>Create error report</b> in the same place and send the file from your Desktop to <a href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">@theharisai</a>.</p></details>
-    <details><summary>What is OMNITUBE Pro? Is it paid?</summary><p>Pro is an optional one-time paid upgrade. It is the same app with extra power: the Documentary Studio with 21 channel styles, Premiere Pro and CapCut export, cloud AI video and images with your own API keys, ElevenLabs voices, lip sync, multi-GPU and auto publishing. The price will be announced on <a href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">@theharisai</a>. The free version stays free, with no watermark and no limits.</p></details>
+    <details><summary>What is OMNITUBE Pro? Is it paid?</summary><p>Pro is an optional one-time paid upgrade: $20 for Pro on one PC with 1 year of updates, or $99 for Lifetime (Windows + Mac and every future version, only 30 spots). It adds Omni Shorts, the Documentary Studio, Timeline editor, cloud AI video and images with your own API keys, ElevenLabs voices, lip sync, publishing and more. <a class="saclink" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get OMNITUBE Pro</a>.</p></details>
   </div>
 </div></section>
 
 <section><div class="wrap final">
   <h2>Make your first video today</h2>
   <p class="sub" style="margin:0 auto 30px">Install it, click Auto setup, paste a script.</p>
-  <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.5.0/OMNITUBE_Setup_1.5.0.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
+  <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.0/OMNITUBE_Setup_2.0.0.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
   <a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v1.5.0/OMNITUBE_Mac_1.5.0.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a>
-  <div class="meta" id="sizelabel">Windows installer · about 42 MB</div>
+  <div class="meta" id="sizelabel">Windows installer · about 59 MB</div>
   <div class="meta"><a class="saclink" href="#sac">Blocked by Smart App Control? Here is the fix.</a></div>
   <div class="dlc" style="justify-content:center;margin:18px auto 0"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads so far</span></div>
   <div class="community">
@@ -595,30 +692,30 @@ Leo stepped out of the shadows. &quot;You found it, didn&apos;t you.&quot;</code
 <script>
 // Tour: app screenshots that change by themselves
 const SHOTS = [
-  ["new", "Create", "<b>Create.</b> Pick a single video, a whole season or a kids rhyme, choose Cloud or On my PC, then a video type. Paste a script and press Make my video."],
+  ["o2make", "Omni Shorts", "<b>New in 2.0: Omni Shorts.</b> Type a topic, pick a style, a voice and a writer, and get a finished Short drawn in code."],
+  ["o2styles", "8 Short styles", "<b>8 styles</b> for Shorts: Tall Tale, Cutaway, Deep Dive, Night File and Build Site in 3D, plus Inside Out, Stick Story and Paper Atlas."],
+  ["o2cutaway", "Cutaway 3D", "<b>A finished Short.</b> \"How a hole becomes a swimming pool\" in Cutaway 3D: script, voice, captions, labels and shots, written by Claude Sonnet."],
+  ["o2talltale", "Tall Tale 3D", "<b>Story Shorts.</b> \"The man who sold the Eiffel Tower twice\" in Tall Tale 3D, with characters, places and big word pills."],
+  ["o2writer", "Writer", "<b>Pick your writer.</b> An API writer for the best look (about $0.08 per Short) or a free model on your PC. Voice and length on the same page."],
+  ["o2batch", "Batch Builder", "<b>Batch Builder.</b> Paste many topics and get a Short for every day, with a posting plan for your audience's time zone."],
+  ["o2claude", "Make with Claude", "<b>Make with Claude.</b> Claude Desktop writes the video and OMNITUBE voices and renders it."],
+  ["o2long", "Long videos", "<b>Long videos in chapters.</b> 16:9 chapters joined into one film, with chapter markers for the description."],
+  ["o2doctor", "Channel Doctor", "<b>Channel Doctor (free).</b> Paste your channel link and get a score with clear tips."],
+  ["o2setup", "Setup Center", "<b>Setup your way.</b> Pro, Free local or Omni Shorts: only what you pick is downloaded."],
   ["storyboard", "Storyboard", "<b>Storyboard.</b> Every scene with its picture, its line of the script and the characters in it. Change any prompt, shot or picture, or turn it into a video clip."],
-  ["pacing", "Pacing", "<b>New in 1.5: Pacing.</b> Fast, Normal or Calm. One picture can carry two or three scenes as a close-up and a pan, so videos build faster and cloud videos cost less."],
   ["longvideo", "3 hour videos", "<b>Long videos.</b> A 2 hour 45 minute sleep story: 800 scenes, voiced and pictured, made on one home PC."],
   ["styles", "34 styles", "<b>34 image styles</b> in 6 groups, plus your own styles in 1.5. Pick one and every picture and every person follows it."],
   ["cast", "Characters", "<b>Character Studio.</b> A reference sheet keeps each face and outfit the same in every scene, and every character gets a voice."],
-  ["dialogue", "Dialogue", "<b>New in 1.5: Dialogue.</b> Write <code>@Mira: line</code> and Mira says it in her own voice, while the narrator reads the rest."],
-  ["watermark", "Watermark", "<b>New in 1.5 Pro: Watermark.</b> Your logo or channel name on every video, Short and editor export, with a live preview."],
   ["output2", "Titles and thumbnails", "<b>Ready to upload.</b> Three titles, three thumbnails, a description and tags for YouTube Studio."],
-  ["pro15", "Pro", "<b>OMNITUBE Pro.</b> Cloud script writer, Documentary Studio, cloud pictures and video, Timeline, lip sync, 4K export and more, with your own keys."],
-  ["guide", "How to use", "<b>New in 1.5: How to use.</b> Every screen and option explained inside the app, with the exact page to get each account key."],
   ["timeline", "Timeline", "<b>Timeline editor (Pro).</b> Live preview, every part on its own track, drag to edit, captions and your own files."],
-  ["places", "Places", "<b>Places.</b> A scene sheet keeps every room and street the same, from every side."],
-  ["captions", "Captions", "<b>13 caption styles,</b> previewed on a picture from your own video, with font, size and colours."],
-  ["rhyme", "Rhyme mode", "<b>Rhyme mode.</b> A sung kids video from your lyrics, with the same character and street in every line."],
-  ["explainer", "Doodle explainer", "<b>Doodle explainers.</b> A new picture every 2 seconds, hard cuts and text cards, like the big explainer channels."],
   ["documentary", "Documentary", "<b>Documentary.</b> Real archive and stock footage for every scene, no GPU needed for the clips."],
 ];
 const DUR = 6000;
 (function tour() {
   const stack = document.getElementById("stack"), tabs = document.getElementById("stabs"), cap = document.getElementById("scap"), box = document.getElementById("tour");
   SHOTS.forEach(([id, label], i) => {
-    const im = new Image(); im.alt = "OMNITUBE " + label; im.src = "assets/shots/" + id + ".webp?v=150";
-    im.loading = i ? "lazy" : "eager"; im.decoding = "async"; im.width = 1800; im.height = 1113; stack.appendChild(im);
+    const im = new Image(); im.alt = "OMNITUBE " + label; im.src = "assets/shots/" + id + ".webp?v=" + (id.startsWith("o2") ? 200 : 150);
+    im.loading = i ? "lazy" : "eager"; im.decoding = "async"; im.width = 1600; im.height = 1000; stack.appendChild(im);
     const b = document.createElement("button"); b.textContent = label; b.onclick = () => { show(i); }; tabs.appendChild(b);
   });
   box.style.setProperty("--dur", DUR / 1000 + "s");
@@ -645,6 +742,7 @@ const GAL = [
 ];
 document.getElementById("gal").innerHTML = GAL.map(([f, c, cls]) =>
   `<figure class="${cls}"><img src="assets/${f.startsWith("thumb") ? f : "gallery/" + f}.webp" alt="${c}, made with OMNITUBE" loading="lazy" decoding="async"><figcaption>${c}</figcaption></figure>`).join("");
+document.getElementById("o2pics").addEventListener("click", e => { const im = e.target.closest("figure")?.querySelector("img"); if (im) zoom(im.src); });
 document.getElementById("gal").addEventListener("click", e => { const im = e.target.closest("figure")?.querySelector("img"); if (im) zoom(im.src); });
 function zoom(src) { const lb = document.getElementById("lb"); lb.querySelector("img").src = src; lb.classList.add("on"); }
 document.getElementById("lb").addEventListener("click", () => document.getElementById("lb").classList.remove("on"));
@@ -686,14 +784,14 @@ async function getDownloads() {
     (await r.json()).forEach(x => { if (x.key === "installer" || x.key === "portable") { n += Number(x.value) || 0; ok = true; } });
   } catch (e) {}
   try {
-    let c = null; try { c = JSON.parse(localStorage.getItem("omt_gh") || "null"); } catch (e) {}
+    let c = null; try { c = JSON.parse(localStorage.getItem("omt_gh2") || "null"); } catch (e) {}
     if (c && Date.now() - c.t < 900000) { n += c.n; ok = true; }
     else {
       try {
         const r = await fetch("https://api.github.com/repos/Ai-Haris/omnitube-releases/releases?per_page=100");
         if (!r.ok) throw 0;
-        let g = 0; (await r.json()).forEach(rel => (rel.assets || []).forEach(a => { if (/Setup|Portable/i.test(a.name)) g += a.download_count || 0; }));
-        n += g; ok = true; try { localStorage.setItem("omt_gh", JSON.stringify({n: g, t: Date.now()})); } catch (e) {}
+        let g = 0; (await r.json()).forEach(rel => (rel.assets || []).forEach(a => { if (/Setup|Portable|_Mac_.*\.dmg$/i.test(a.name)) g += a.download_count || 0; }));
+        n += g; ok = true; try { localStorage.setItem("omt_gh2", JSON.stringify({n: g, t: Date.now()})); } catch (e) {}
       } catch (e) { if (c) { n += c.n; ok = true; } }
     }
   } catch (e) {}
@@ -704,13 +802,13 @@ function loadCount(fresh, tries) {
   tries = tries || 0;
   getDownloads().then(total => {
     if (total <= 0) throw 0;
-    total = Math.max(total, 7558);
+    total = Math.max(total, 12200);
     document.querySelectorAll(".dln").forEach(el => {
       if (total >= Number(el.dataset.v || 0)) countUp(el, total);
     });
   }).catch(() => {
     if (tries < 3) setTimeout(() => loadCount(fresh, tries + 1), 4000);
-    else document.querySelectorAll(".dln").forEach(el => { if (Number(el.dataset.v || 0) === 0) countUp(el, 7558); });
+    else document.querySelectorAll(".dln").forEach(el => { if (Number(el.dataset.v || 0) === 0) countUp(el, 12200); });
   });
 }
 loadCount(); setInterval(loadCount, 300000);
