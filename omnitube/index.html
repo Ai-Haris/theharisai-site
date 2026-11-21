@@ -804,7 +804,17 @@ function loadCount(fresh, tries) {
   });
 }
 loadCount(); setInterval(loadCount, 300000);
-document.querySelectorAll(".dl").forEach(a => a.addEventListener("click", () => setTimeout(() => loadCount(true), 3000)));
+// Realtime: every download click is counted at once (server keeps it from double counting with GitHub)
+function dlClick(kind) {
+  fetch(DL_URL + "?click=" + kind, {method: "POST", keepalive: true, cache: "no-store"})
+    .then(r => r.json()).then(d => {
+      const n = Number(d.total) || 0; if (n <= 0) return;
+      try { localStorage.setItem("omt_dl3", String(n)); } catch (e) {}
+      document.querySelectorAll(".dln").forEach(el => { if (n >= Number(el.dataset.v || 0)) countUp(el, n); });
+    }).catch(() => {});
+}
+document.querySelectorAll(".dl").forEach(a => a.addEventListener("click", () => dlClick("win")));
+document.querySelectorAll(".dlmac").forEach(a => a.addEventListener("click", () => dlClick("mac")));
 // Mac download: scroll to and open Mac install FAQ
 document.querySelectorAll(".dlmac").forEach(a => a.addEventListener("click", () => {
   const el = document.getElementById("mac-install");
