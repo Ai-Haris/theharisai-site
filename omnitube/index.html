@@ -231,40 +231,54 @@ footer a:hover{color:var(--text)}
 @keyframes tkbg{to{background-position:200% 0}}
 @keyframes flash{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(1.08)}}
 @media (prefers-reduced-motion:reduce){.tk-track,.ticker,.tk-i .chip,.of.hot{animation:none}}
-.hlogo{display:inline-flex;align-items:center;gap:14px}
-.hlogo img{width:68px;height:68px;border-radius:19px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 0 48px rgba(255,45,64,.5)}
-.hlogo .w{font:800 40px/1 Urbanist,sans-serif;letter-spacing:.02em;color:var(--text)}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+main .wrap.hero{padding-top:26px}
+.hlogo{display:inline-flex;align-items:center;gap:12px}
+.hlogo img{width:52px;height:52px;border-radius:15px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 0 40px rgba(255,45,64,.55)}
+.hlogo .w{font:800 32px/1 Urbanist,sans-serif;letter-spacing:.02em;color:var(--text)}
 .hlogo .w b{background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hlogo .v{align-self:flex-start;padding:3px 9px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font:800 12px/1.4 Urbanist,sans-serif;letter-spacing:.04em}
-.hero h1{font-size:clamp(38px,6.3vw,78px);letter-spacing:-1.8px;margin:28px 0 16px}
+.hlogo .v{align-self:flex-start;padding:2px 8px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font:800 11px/1.4 Urbanist,sans-serif}
+.hero h1{font-size:clamp(36px,5.6vw,68px);letter-spacing:-1.6px;margin:16px 0 10px}
 @media(min-width:900px){.hero h1{white-space:nowrap}}
-.ofs{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:860px;margin:36px auto 0;text-align:left;scroll-margin-top:120px}
-.of{position:relative;display:flex;flex-direction:column;padding:28px 26px 20px;border-radius:24px;border:1px solid var(--line2);background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02));box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 20px 60px rgba(0,0,0,.35);transition:transform .25s,box-shadow .25s,border-color .25s;color:var(--text)}
-.of:hover{transform:translateY(-4px);border-color:rgba(255,45,64,.5);box-shadow:0 26px 70px rgba(255,45,64,.18)}
-.of.hot{border:1.5px solid transparent;background:linear-gradient(165deg,#1d1013,#120c0e) padding-box,linear-gradient(120deg,#ff2d40,#ffb04a,#ff2d40,#ff6a3d,#ff2d40) border-box;background-size:100% 100%,300% 300%;animation:ofborder 5s linear infinite;box-shadow:0 24px 80px rgba(255,45,64,.28)}
-.of.hot:hover{box-shadow:0 30px 90px rgba(255,45,64,.4)}
-@keyframes ofborder{to{background-position:0 0,300% 0}}
-.of-rib{position:absolute;top:-14px;left:50%;transform:translateX(-50%);padding:7px 16px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font:800 12px/1 Urbanist,sans-serif;letter-spacing:.1em;white-space:nowrap;box-shadow:0 10px 30px rgba(255,45,64,.5)}
+.hero .lead{font-size:clamp(16px,1.7vw,18px);max-width:680px}
+.hero .cta{margin-top:22px}
+.ofs{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:880px;margin:30px auto 0;text-align:left;scroll-margin-top:120px}
+.of{position:relative;display:flex;padding:2px;border-radius:22px;color:var(--text);background:conic-gradient(from var(--ang),rgba(255,255,255,.1) 0deg,rgba(255,255,255,.1) 190deg,#ff2d40 250deg,#fff 290deg,#ff6a3d 320deg,rgba(255,255,255,.1) 360deg);animation:ofspin 3.2s linear infinite;box-shadow:0 18px 60px rgba(255,45,64,.2);transition:transform .25s}
+.of.hot{background:conic-gradient(from var(--ang),#ff2d40,#ffb04a,#ff2d40,#ff6a3d,#ffd36e,#ff2d40);animation:ofspin 2.4s linear infinite,ofglow 1.6s ease-in-out infinite}
+.of:hover{transform:translateY(-4px) scale(1.012)}
+@keyframes ofspin{to{--ang:360deg}}
+@keyframes ofglow{0%,100%{box-shadow:0 0 30px rgba(255,45,64,.35)}50%{box-shadow:0 0 75px rgba(255,106,61,.7)}}
+.of-in{position:relative;overflow:hidden;flex:1;display:flex;flex-direction:column;gap:10px;padding:20px 22px 16px;border-radius:20px;background:linear-gradient(160deg,#1b1215,#0f0b0d)}
+.of.hot .of-in{background:linear-gradient(160deg,#2c1014,#140b0d)}
+.of-in::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.13),transparent);transform:skewX(-18deg);animation:ofshine 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes ofshine{0%,40%{left:-70%}100%{left:140%}}
 .of-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.of-name{font-weight:800;font-size:19px}
-.of-off{padding:5px 10px;border-radius:8px;background:rgba(62,224,143,.12);border:1px solid rgba(62,224,143,.35);color:var(--ok);font-weight:800;font-size:12px;letter-spacing:.06em}
-.of-price{display:flex;align-items:flex-end;gap:12px;margin:16px 0 2px}
-.of-price b{font:800 66px/.9 Urbanist,sans-serif;letter-spacing:-2px}
-.of-price .was{display:flex;flex-direction:column;gap:3px;padding-bottom:5px}
-.of-price s{color:var(--faint);font-size:21px;font-weight:700}
-.of-price .was span{color:var(--muted);font-size:13.5px;font-weight:600}
-.of ul{list-style:none;margin:16px 0 18px;padding:0;display:grid;gap:8px;color:var(--muted);font-size:14.5px}
-.of li{display:flex;gap:9px;align-items:baseline}
-.of li::before{content:"\2713";color:var(--ok);font-weight:800;flex:none}
-.of-timer{display:flex;align-items:center;gap:7px;margin:0 0 14px;color:var(--muted);font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.of-timer i{font-style:normal;display:inline-flex;align-items:baseline;gap:2px;padding:7px 9px;border-radius:10px;background:rgba(255,45,64,.12);border:1px solid rgba(255,45,64,.35)}
-.of-timer i b{color:#fff;font:800 18px/1 Urbanist,sans-serif;font-variant-numeric:tabular-nums}
-.of-timer i small{color:var(--faint);font-size:11px}
-.of-btn{margin-top:auto;display:flex;align-items:center;justify-content:center;height:52px;border-radius:14px;font-weight:800;font-size:16px;border:1px solid var(--line2);background:rgba(255,255,255,.06);transition:background .2s}
-.of:hover .of-btn{background:rgba(255,255,255,.11)}
-.of.hot .of-btn{border:0;background:linear-gradient(135deg,var(--a),var(--a2));box-shadow:0 14px 36px rgba(255,45,64,.45)}
-.of-note{margin-top:10px;text-align:center;color:var(--faint);font-size:12.5px}
-@media(max-width:760px){.ofs{grid-template-columns:1fr;gap:28px}.of.hot{order:-1}.of-price b{font-size:56px}.hlogo img{width:54px;height:54px}.hlogo .w{font-size:32px}}
+.of-name{font-weight:800;font-size:18px}
+.of-off{padding:5px 11px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-weight:800;font-size:12px;letter-spacing:.06em;box-shadow:0 0 18px rgba(255,45,64,.65);animation:flash 1s ease-in-out infinite}
+.of-price{display:flex;align-items:center;gap:12px}
+.of-price b{display:inline-block;transform-origin:left center;font:800 58px/.95 Urbanist,sans-serif;letter-spacing:-2px;background:linear-gradient(180deg,#fff,#ffc4b6);-webkit-background-clip:text;background-clip:text;color:transparent;animation:ofpop 2.4s ease-in-out infinite}
+@keyframes ofpop{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.of-price .was{display:flex;flex-direction:column;gap:2px}
+.of-price s{position:relative;align-self:flex-start;text-decoration:none;color:var(--faint);font-size:22px;font-weight:800}
+.of-price s::after{content:"";position:absolute;left:-3px;right:-3px;top:50%;height:3px;border-radius:2px;background:#ff2d40;box-shadow:0 0 8px #ff2d40;transform-origin:left;animation:ofstrike 2.4s ease-in-out infinite}
+@keyframes ofstrike{0%{transform:scaleX(0)}30%,100%{transform:scaleX(1)}}
+.of-price .was span{color:var(--muted);font-size:13px;font-weight:700}
+.of-feat{color:var(--muted);font-size:14px;line-height:1.5}
+.of-timer{display:flex;align-items:center;gap:6px;color:#ffb04a;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.of-timer i{font-style:normal;display:inline-flex;align-items:baseline;gap:2px;padding:5px 8px;border-radius:9px;background:rgba(255,45,64,.16);border:1px solid rgba(255,45,64,.5)}
+.of-timer i b{color:#fff;font:800 17px/1 Urbanist,sans-serif;font-variant-numeric:tabular-nums}
+.of-timer i small{color:var(--faint);font-size:10px}
+.of-timer i.sec{animation:oftick 1s ease-out infinite}
+@keyframes oftick{0%{background:rgba(255,45,64,.55);box-shadow:0 0 14px rgba(255,45,64,.7)}100%{background:rgba(255,45,64,.16);box-shadow:none}}
+.of-btn{position:relative;overflow:hidden;margin-top:auto;display:flex;align-items:center;justify-content:center;height:48px;border-radius:13px;color:#fff;font-weight:800;font-size:16px;background:linear-gradient(135deg,var(--a),var(--a2));box-shadow:0 10px 30px rgba(255,45,64,.45)}
+.of.hot .of-btn{animation:ofbtn 1.6s ease-in-out infinite}
+@keyframes ofbtn{0%,100%{box-shadow:0 10px 30px rgba(255,45,64,.45)}50%{box-shadow:0 10px 50px rgba(255,140,61,.9)}}
+.of-btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:ofshine 2.2s ease-in-out infinite}
+.of-rib{position:absolute;z-index:3;top:-14px;left:50%;padding:6px 14px;border-radius:999px;background:#fff;color:#ff2d40;font:800 12px/1 Urbanist,sans-serif;letter-spacing:.1em;white-space:nowrap;box-shadow:0 8px 26px rgba(255,45,64,.6);transform:translateX(-50%);animation:ofrib 1s ease-in-out infinite}
+@keyframes ofrib{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.09)}}
+.of-note{text-align:center;color:var(--faint);font-size:12px}
+@media(max-width:760px){.ofs{grid-template-columns:1fr;gap:28px}.of.hot{order:-1}.of-price b{font-size:50px}.hlogo img{width:44px;height:44px}.hlogo .w{font-size:27px}}
+@media (prefers-reduced-motion:reduce){.of,.of.hot,.of-in::after,.of-off,.of-price b,.of-price s::after,.of.hot .of-btn,.of-btn::after,.of-rib,.of-timer i.sec{animation:none}}
 </style>
 </head>
 <body>
@@ -281,36 +295,34 @@ footer a:hover{color:var(--text)}
   <a class="hlogo" href="#whatsnew" aria-label="OMNITUBE 2"><img src="assets/app_icon.png" alt="OMNITUBE logo"><span class="w">OMNI<b>TUBE</b></span><span class="v">2.0</span></a>
   <span id="relnote" hidden></span>
   <h1>Faceless videos in <span>one click.</span></h1>
-  <p class="lead">Paste a script or type a topic. OMNITUBE writes, voices, animates and edits a finished YouTube video or Short, right on your PC.<br><b style="color:var(--text)">Free to download, no watermark.</b></p>
+  <p class="lead">Paste a script or type a topic. OMNITUBE writes, voices, animates and edits the whole YouTube video or Short on your PC. <b style="color:var(--text)">Free, no watermark.</b></p>
   <div class="cta">
     <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
     <a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a>
   </div>
   <div class="ofs" id="deals">
-    <a class="of" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
-      <div class="of-top"><span class="of-name">OMNITUBE Pro</span><span class="of-off">SAVE 50%</span></div>
+    <a class="of" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener"><div class="of-in">
+      <div class="of-top"><span class="of-name">OMNITUBE Pro</span><span class="of-off">50% OFF</span></div>
       <div class="of-price"><b>$20</b><span class="was"><s>$40</s><span>one time</span></span></div>
-      <ul><li>Runs on any laptop with cloud AI</li><li>Omni Shorts, Documentary Studio, Timeline editor</li><li>1 PC, Windows or Mac</li></ul>
-      <span class="of-btn">Get Pro &rarr;</span>
+      <div class="of-feat">Runs on any laptop &middot; Omni Shorts &middot; Documentary Studio &middot; Timeline editor &middot; 1 PC</div>
+      <span class="of-btn">Get Pro for $20 &rarr;</span>
       <div class="of-note">Pay once. No subscription.</div>
-    </a>
-    <a class="of hot offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener">
-      <span class="of-rib">ONLY 5 SPOTS</span>
-      <div class="of-top"><span class="of-name">Lifetime</span><span class="of-off">SAVE 50%</span></div>
+    </div></a>
+    <a class="of hot offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener"><span class="of-rib">&#128293; ONLY 5 SPOTS</span><div class="of-in">
+      <div class="of-top"><span class="of-name">Lifetime</span><span class="of-off">50% OFF</span></div>
       <div class="of-price"><b>$50</b><span class="was"><s>$99</s><span>pay once, forever</span></span></div>
-      <ul><li>Everything in Pro</li><li>Windows + Mac, every future version</li><li>Priority personal support</li></ul>
-      <div class="of-timer">Ends in <i><b class="t-h">00</b><small>h</small></i><i><b class="t-m">00</b><small>m</small></i><i><b class="t-s">00</b><small>s</small></i></div>
+      <div class="of-feat">Everything in Pro &middot; Windows + Mac &middot; every future version</div>
+      <div class="of-timer">Ends in <i><b class="t-h">00</b><small>h</small></i><i><b class="t-m">00</b><small>m</small></i><i class="sec"><b class="t-s">00</b><small>s</small></i></div>
       <span class="of-btn">Grab Lifetime for $50 &rarr;</span>
       <div class="of-note">Code 5LIFE50 is added for you. Pick Lifetime at checkout.</div>
-    </a>
-    <a class="of hot offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
-      <span class="of-rib">ONLY 30 SPOTS</span>
+    </div></a>
+    <a class="of hot offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener"><span class="of-rib">ONLY 30 SPOTS</span><div class="of-in">
       <div class="of-top"><span class="of-name">Lifetime</span></div>
       <div class="of-price"><b>$99</b><span class="was"><span>pay once, forever</span></span></div>
-      <ul><li>Everything in Pro</li><li>Windows + Mac, every future version</li><li>Priority personal support</li></ul>
+      <div class="of-feat">Everything in Pro &middot; Windows + Mac &middot; every future version</div>
       <span class="of-btn">Get Lifetime &rarr;</span>
       <div class="of-note">Pay once. No subscription.</div>
-    </a>
+    </div></a>
   </div>
   <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
   <div class="meta"><b id="vlabel">v2.0</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees · Mac (Apple Silicon)</div>
