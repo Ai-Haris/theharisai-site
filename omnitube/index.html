@@ -195,6 +195,29 @@ footer a:hover{color:var(--text)}
   .vtabs{display:flex;width:100%;overflow-x:auto;scrollbar-width:none}.vtabs button{flex:none;padding:0 14px}}
 @media (prefers-reduced-motion:reduce){.stack img{transition:none}.stabs button.on:after{animation:none}}
 .faq pre.cmd{margin:10px 0 12px;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);overflow-x:auto;white-space:pre;font:13px/1.5 ui-monospace,Consolas,monospace;color:var(--text)}
+[hidden]{display:none!important}
+.offer{display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px;padding:7px 16px 7px 7px;border-radius:999px;border:1px solid rgba(255,45,64,.45);background:rgba(255,45,64,.09);font-weight:700;font-size:14.5px;color:var(--text);box-shadow:0 0 30px rgba(255,45,64,.12)}
+.offer:hover{border-color:rgba(255,45,64,.8)}
+.offer .hot{padding:4px 11px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-size:12px;font-weight:800;letter-spacing:.04em}
+.offer s{color:var(--faint);font-weight:600}
+.cd{font-weight:800;color:#f5b83d;white-space:nowrap}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;padding:28px 26px 24px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(160deg,var(--glass2),var(--glass) 60%);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 18px 50px rgba(0,0,0,.28)}
+.plan.hot{border-color:rgba(255,45,64,.6);background:linear-gradient(160deg,rgba(255,45,64,.14),var(--glass) 65%);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 24px 70px rgba(255,45,64,.2)}
+.plan .tag{position:absolute;top:-13px;left:24px;padding:5px 12px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-size:12px;font-weight:800;letter-spacing:.05em;box-shadow:0 8px 24px rgba(255,45,64,.4)}
+.plan h3{margin:0;font-size:18px;color:var(--muted);font-weight:800;letter-spacing:.02em}
+.plan .price{display:flex;align-items:baseline;gap:10px;margin:10px 0 2px}
+.plan .price b{font-size:46px;line-height:1.05;font-weight:800;color:var(--text)}
+.plan .price s{color:var(--faint);font-size:24px;font-weight:700}
+.plan .per{color:var(--muted);font-size:14.5px}
+.plan ul{margin:18px 0 22px;padding:0;list-style:none;color:var(--muted);font-size:15px;display:grid;gap:9px}
+.plan li{display:flex;gap:9px}
+.plan li::before{content:"\2713";color:var(--ok);font-weight:800;flex:none}
+.plan .acts{margin-top:auto;display:grid;gap:10px}
+.plan .acts .btn{width:100%;justify-content:center}
+.plan .note{margin:12px 0 0;color:var(--faint);font-size:13px;line-height:1.5}
+.plan .note b{color:var(--muted)}
+@media(max-width:900px){.pricing{grid-template-columns:1fr}.plan.hot{order:-1}}
 </style>
 </head>
 <body>
@@ -214,6 +237,7 @@ footer a:hover{color:var(--text)}
     <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
     <a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a>
   </div>
+  <div><a class="offer offer-on" href="#pricing"><span class="hot">50% OFF</span>Lifetime <s>$99</s> $50 for the first 5 people<span>&middot; ends in <span class="cd">today</span></span></a></div>
   <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
   <div class="meta"><b id="vlabel">v2.0</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees · Mac (Apple Silicon)</div>
   <div class="meta"><a class="saclink" href="#sac">Windows blocked the installer? Here is the fix.</a>&ensp;&middot;&ensp;<a class="saclink" href="#mac-install" onclick="var e=document.getElementById('mac-install');if(e)e.open=true">On a Mac? Here is how to open it.</a></div>
@@ -351,8 +375,39 @@ footer a:hover{color:var(--text)}
   <div class="kicker">OMNITUBE Pro</div>
   <h2>Same app, more power</h2>
   <p class="sub">Pro is the same OMNITUBE, made in the cloud on your own API keys, so it runs on any laptop. You pay the AI providers directly (usually $0.50 to $2 per video), nothing extra to us. Free stays free, with no watermark and no limits.</p>
-  <div class="prostatus"><span class="dot"></span>Launch offer is back. Pro: $20 one time, with 1 year of updates on one PC. Lifetime: $99, Windows + Mac and every future version, only 30 spots. OMNITUBE 2 is included for every buyer.</div>
-  <div class="cta" style="margin-top:18px;justify-content:flex-start"><a class="btn primary big" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get OMNITUBE Pro, $20</a></div>
+  <div class="pricing" id="pricing">
+    <div class="plan">
+      <h3>Free</h3>
+      <div class="price"><b>$0</b></div>
+      <div class="per">Forever. No watermark, no limits.</div>
+      <ul><li>The full app on your own PC</li><li>Voices, captions, music, sound effects and editing</li><li>AI pictures and clips on an NVIDIA RTX card</li><li>OMNITUBE 2 included</li></ul>
+      <div class="acts">
+        <a class="btn big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe">Download for Windows</a>
+        <a class="btn dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg">Download for Mac</a>
+      </div>
+    </div>
+    <div class="plan">
+      <span class="tag">50% OFF</span>
+      <h3>Pro</h3>
+      <div class="price"><s>$40</s><b>$20</b></div>
+      <div class="per">One time. 1 PC, Windows or Mac.</div>
+      <ul><li>Runs on any laptop: cloud AI on your own keys</li><li>Omni Shorts, Documentary Studio and Timeline editor</li><li>Publish to YouTube, TikTok and Instagram</li><li>Keeps working forever, updates for 1 year</li></ul>
+      <div class="acts"><a class="btn primary big" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get Pro, $20</a></div>
+    </div>
+    <div class="plan hot">
+      <span class="tag offer-on">50% OFF &middot; 5 SPOTS</span>
+      <h3>Lifetime</h3>
+      <div class="price offer-on"><s>$99</s><b>$50</b></div>
+      <div class="price offer-off" hidden><b>$99</b></div>
+      <div class="per">One time. Windows + Mac, forever.</div>
+      <ul><li>Everything in Pro</li><li>Windows and Mac, mobile when it launches</li><li>Every future version, forever</li><li>Priority personal support</li></ul>
+      <div class="acts">
+        <a class="btn primary big offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener">Get Lifetime, $50</a>
+        <a class="btn primary big offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get Lifetime, $99</a>
+      </div>
+      <p class="note offer-on">Code <b>5LIFE50</b> is added by the button. Pick <b>Lifetime</b> at checkout. First 5 buyers only. Ends in <span class="cd">today</span> (Wednesday 25 Nov, 11:59 PM PKT).</p>
+    </div>
+  </div>
 
   <div class="docu">
     <div class="docu-t">
@@ -386,7 +441,7 @@ footer a:hover{color:var(--text)}
     <div class="card"><h3>Use it from Claude</h3><p>Add OMNITUBE to Claude Desktop with one click. Ask Claude for a video: it writes the script and OMNITUBE builds it.</p></div>
     <div class="card"><h3>Export and 4K</h3><p>Premiere Pro and CapCut projects with every layer and keyframe, your own watermark, lip sync and a sharp 4K master.</p></div>
   </div>
-  <p class="sub" style="margin-top:22px"><a href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get OMNITUBE Pro</a>: launch offer is back, $20 one time, or Lifetime for $99 (only 30 spots). Follow <a href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">@theharisai</a> or join the <a href="https://discord.gg/h5b4GgTXv" target="_blank" rel="noopener">Discord</a> for news and tips.</p>
+  <p class="sub" style="margin-top:22px"><a href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get OMNITUBE Pro</a>: $20 one time (was $40), or Lifetime for every future version. Follow <a href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">@theharisai</a> or join the <a href="https://discord.gg/h5b4GgTXv" target="_blank" rel="noopener">Discord</a> for news and tips.</p>
 </div></section>
 
 <section id="requirements"><div class="wrap">
@@ -570,6 +625,7 @@ document.querySelectorAll(".dlmac").forEach(a => a.addEventListener("click", () 
   setTimeout(() => el.scrollIntoView({behavior: "smooth", block: "start"}), 200);
 }));
 </script>
+<script>(function(){var END=Date.parse('2026-11-25T23:59:00+05:00');function tick(){var ms=END-Date.now(),on=ms>0;document.querySelectorAll('.offer-on').forEach(function(e){e.hidden=!on});document.querySelectorAll('.offer-off').forEach(function(e){e.hidden=on});if(!on)return;var h=Math.floor(ms/3600000),m=Math.floor(ms%3600000/60000);document.querySelectorAll('.cd').forEach(function(e){e.textContent=h+'h '+(m<10?'0':'')+m+'m'})}tick();setInterval(tick,30000)})();</script>
 </body>
 </html>
 
