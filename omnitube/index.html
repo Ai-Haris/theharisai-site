@@ -373,6 +373,28 @@ main .wrap.hero{padding-top:22px}
 .why7-g p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
 @media(max-width:900px){.h7{grid-template-columns:1fr;gap:30px;text-align:center}.h7 .lead{margin-inline:auto}.h7-offer,.h7-free{margin-inline:auto;text-align:left}.h7-free{justify-content:center}.phone{max-width:250px}.why7-g{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.why7-g{grid-template-columns:1fr}.h7-fb{flex-direction:column;width:100%}}
+main .wrap.hero{position:relative;padding-top:0}
+.cine{position:absolute;top:0;left:50%;width:100vw;height:calc(100vh - 106px);min-height:620px;max-height:900px;transform:translateX(-50%);overflow:hidden;z-index:0;background:#0a0a0d url(assets/promo/omnitube-film.jpg) center/cover no-repeat}
+.cine video{display:block;width:100%;height:100%;object-fit:cover}
+.cine::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,13,.95) 0%,rgba(10,10,13,.82) 34%,rgba(10,10,13,.38) 66%,rgba(10,10,13,.6) 100%),linear-gradient(180deg,rgba(10,10,13,.35) 0%,transparent 22%,transparent 72%,#0a0a0d 100%)}
+.cine-cap{position:absolute;z-index:2;right:max(16px,calc(50vw - 560px));bottom:34px;margin:0;color:rgba(255,255,255,.72);font-size:12.5px;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.cine-cap b{color:#fff}
+.h8{position:relative;z-index:1;display:grid;grid-template-columns:1.12fr .88fr;gap:52px;align-items:center;max-width:1120px;min-height:calc(100vh - 106px);max-height:900px;margin:0 auto;padding:18px 0 70px;text-align:left}
+.h8 h1{white-space:normal!important;font-size:clamp(42px,5.6vw,74px);line-height:1;letter-spacing:-2.4px;margin:18px 0 14px;color:#fff;text-shadow:0 6px 40px rgba(0,0,0,.55)}
+.h8 .lead{max-width:44ch;margin:0 0 24px;color:rgba(246,243,243,.84);font-size:17.5px;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.h8-dl{display:flex;flex-wrap:wrap;gap:12px}
+.h8-dl .btn{height:54px;padding:0 24px;font-size:16px;white-space:nowrap}
+.h8-dl .btn:not(.primary){background:rgba(10,10,13,.55);border-color:rgba(255,255,255,.22)}
+.h8-note{margin:10px 0 0;color:rgba(246,243,243,.62);font-size:13px}
+.h8 .dlc{margin-top:18px;background:rgba(10,10,13,.6);border-color:rgba(255,255,255,.14)}
+.h8-offer{display:grid;gap:12px}
+.h8-k{margin:0 0 2px;color:rgba(246,243,243,.75);font-size:14px;font-weight:700;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.h8 .pm-life{background:linear-gradient(160deg,rgba(46,20,24,.9),rgba(20,14,16,.92) 62%)}
+.h8 .pm-pro{background:rgba(16,14,17,.82)}
+.h8 .pm-price b{font-size:54px}
+@media(max-width:900px){.cine{height:100%;max-height:none;min-height:0}.cine::after{background:linear-gradient(180deg,rgba(10,10,13,.7),rgba(10,10,13,.88) 40%,#0a0a0d)}
+ .h8{grid-template-columns:1fr;gap:30px;min-height:0;max-height:none;padding:26px 0 60px;text-align:center}.h8 .lead{margin-inline:auto}.h8-dl{justify-content:center}.h8-offer{text-align:left}.cine-cap{bottom:12px;right:16px}}
+@media(max-width:520px){.h8-dl .btn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
@@ -386,13 +408,20 @@ main .wrap.hero{padding-top:22px}
 
 <main>
 <div class="wrap hero">
-  <div class="h7" id="deals">
-    <div class="h7-l">
+  <div class="cine" aria-hidden="true"><video src="assets/promo/omnitube-film.mp4" poster="assets/promo/omnitube-film.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+  <p class="cine-cap"><b>Every frame of this film was made in OMNITUBE.</b> The Girl Who Saved the Light</p>
+  <div class="h8" id="deals">
+    <div class="h8-l">
       <a class="hlogo" href="#whatsnew" aria-label="OMNITUBE 2"><img src="assets/app_icon.png" alt="OMNITUBE logo"><span class="w">OMNI<b>TUBE</b></span><span class="v">2.0</span></a>
       <span id="relnote" hidden></span>
       <h1>Stop editing.<br>Start posting.</h1>
-      <p class="lead">Type a topic or paste a script. OMNITUBE writes it, voices it, animates it and edits it into a finished YouTube video or Short. <b style="color:var(--text)">You just press upload.</b></p>
-      <div class="h7-offer">
+      <p class="lead">Type a topic or paste a script. OMNITUBE writes, voices, animates and edits the whole video for you. The film behind this page was made with it.</p>
+      <div class="h8-dl"><a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div>
+      <p class="h8-note">Free forever, no watermark. The free version needs an NVIDIA RTX card.</p>
+      <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
+    </div>
+    <div class="h8-offer">
+      <p class="h8-k">No NVIDIA card? Get OMNITUBE Pro and make it all in the cloud.</p>
         <a class="pm-life offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener">
         <div class="pm-life-top"><span>Lifetime</span><span class="pm-spots">5 spots at this price</span></div>
         <div class="pm-price"><b>$50</b><s>$99</s></div>
@@ -411,15 +440,8 @@ main .wrap.hero{padding-top:22px}
         <div class="pm-pp"><b>$20</b><s>$40</s></div>
         <span class="pm-btn2">Get Pro</span>
       </a>
-      </div>
-      <div class="h7-free"><span><b>Or start free.</b> No watermark. Needs an NVIDIA RTX card.</span><div class="h7-fb"><a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div></div>
-    </div>
-    <div class="h7-r">
-      <div class="phone"><video src="assets/promo/omnitube-reel.mp4" poster="assets/promo/omnitube-reel.jpg" autoplay muted loop playsinline preload="auto" aria-label="Shorts made with OMNITUBE"></video></div>
-      <p class="phone-cap"><b>Real Shorts made in OMNITUBE.</b> Four styles, no editing.</p>
     </div>
   </div>
-  <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
   <div class="meta"><b id="vlabel">v2.0</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees · Mac (Apple Silicon)</div>
   <div class="meta"><a class="saclink" href="#sac">Windows blocked the installer? Here is the fix.</a>&ensp;&middot;&ensp;<a class="saclink" href="#mac-install" onclick="var e=document.getElementById('mac-install');if(e)e.open=true">On a Mac? Here is how to open it.</a></div>
 
