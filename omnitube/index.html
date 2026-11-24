@@ -395,6 +395,99 @@ main .wrap.hero{position:relative;padding-top:0}
 @media(max-width:900px){.cine{height:100%;max-height:none;min-height:0}.cine::after{background:linear-gradient(180deg,rgba(10,10,13,.7),rgba(10,10,13,.88) 40%,#0a0a0d)}
  .h8{grid-template-columns:1fr;gap:30px;min-height:0;max-height:none;padding:26px 0 60px;text-align:center}.h8 .lead{margin-inline:auto}.h8-dl{justify-content:center}.h8-offer{text-align:left}.cine-cap{bottom:12px;right:16px}}
 @media(max-width:520px){.h8-dl .btn{width:100%;justify-content:center}}
+.h9{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;max-width:1180px;margin:0 auto;padding:24px 0 34px;text-align:left}
+.h9 h1{white-space:normal!important;font-size:clamp(40px,4.6vw,62px);line-height:1.02;letter-spacing:-2px;margin:16px 0 12px;color:var(--text)}
+.h9 .lead{margin:0 0 20px;max-width:44ch;font-size:16.5px}
+.h9-dl{display:flex;flex-wrap:wrap;gap:10px}
+.h9-dl .btn{height:50px;padding:0 20px;font-size:15px;white-space:nowrap}
+.h9-note{margin:8px 0 0;color:var(--faint);font-size:12.5px}
+.h9 .dlc{margin-top:14px}
+.ofx{margin-top:18px;border-radius:18px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03);overflow:hidden}
+.ofx-k{margin:0;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.07);color:var(--muted);font-size:13px}
+.ofx-k b{color:var(--text)}
+.ofx-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px;padding:12px 16px;color:var(--text);transition:background .2s}
+.ofx-row+.ofx-row{border-top:1px solid rgba(255,255,255,.07)}
+.ofx-row:hover{background:rgba(255,255,255,.04)}
+.ofx-row.hot{background:linear-gradient(120deg,rgba(255,45,64,.16),rgba(245,196,107,.05))}
+.ofx-row b.n{font-size:16px;font-weight:800}
+.ofx-tag{margin-left:8px;padding:2px 8px;border-radius:999px;background:rgba(245,196,107,.12);border:1px solid rgba(245,196,107,.38);color:#f5c46b;font-size:11.5px;font-weight:700}
+.ofx-row small{display:block;margin-top:2px;color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+.ofx-row small b{color:#f5c46b}
+.ofx-p{display:flex;align-items:baseline;gap:7px}
+.ofx-p b{font:800 30px/1 Urbanist,sans-serif;letter-spacing:-1px}
+.ofx-p s{color:var(--faint);font-size:14px;font-weight:700}
+.ofx-btn{display:flex;align-items:center;height:40px;padding:0 16px;border-radius:11px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-weight:800;font-size:14px;white-space:nowrap;box-shadow:0 8px 22px rgba(255,45,64,.35)}
+.ofx-btn.ghost{background:none;border:1px solid rgba(255,255,255,.22);box-shadow:none}
+.ed{position:relative;overflow:hidden;border-radius:18px;background:#121014;border:1px solid rgba(255,255,255,.09);box-shadow:0 40px 110px rgba(0,0,0,.6),0 0 90px rgba(255,45,64,.12);font-family:Urbanist,sans-serif;user-select:none}
+.ed-top{display:flex;align-items:center;gap:12px;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.07)}
+.ed-logo{display:flex;align-items:center;gap:6px;font-weight:800;font-size:12px;letter-spacing:.04em;color:var(--text)}
+.ed-logo img{width:18px;height:18px;border-radius:5px}
+.ed-proj{color:var(--muted);font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ed-tabs{display:flex;gap:4px;margin-left:auto}
+.ed-tabs span{padding:4px 8px;border-radius:7px;color:var(--faint);font-size:11px;font-weight:700}
+.ed-tabs span.on{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff}
+.ed-main{display:grid;grid-template-columns:1.55fr 1fr;gap:10px;padding:10px}
+.ed-pw{display:flex;flex-direction:column;gap:6px}
+.ed-prev{position:relative;overflow:hidden;aspect-ratio:16/9;border-radius:10px;background:#000 url(assets/promo/omnitube-film.jpg) center/cover}
+.ed-prev video{display:block;width:100%;height:100%;object-fit:cover}
+.ed-cap{position:absolute;left:50%;bottom:9%;max-width:88%;transform:translateX(-50%);padding:3px 10px;border-radius:6px;background:rgba(0,0,0,.6);color:#fff;font-weight:800;font-size:14px;line-height:1.3;text-align:center;opacity:0;transition:opacity .3s}
+.ed-cap.on{opacity:1}
+.ed-cap i{font-style:normal;color:#f5c46b}
+.ed-toast{position:absolute;top:10px;left:50%;padding:5px 12px;border-radius:999px;background:rgba(18,40,28,.92);border:1px solid rgba(62,224,143,.5);color:#3ee08f;font-weight:800;font-size:12.5px;white-space:nowrap;opacity:0;transform:translate(-50%,-8px);transition:opacity .3s,transform .3s}
+.ed-toast.show{opacity:1;transform:translate(-50%,0)}
+.ed-ctrl{display:flex;align-items:center;gap:8px;color:var(--text);font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
+.ed-play{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--a2));display:grid;place-items:center}
+.ed-play:after{content:"";margin-left:2px;border-left:7px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent}
+.ed-ctrl .tot{color:var(--faint)}
+.ed-render{position:relative;overflow:hidden;margin-left:auto;padding:5px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.16);font-size:11px;font-weight:800;color:var(--text)}
+.ed-render:before{content:"";position:absolute;inset:0;width:0;background:rgba(255,45,64,.45)}
+.ed-render.busy:before{animation:edbusy 1.5s linear forwards}
+@keyframes edbusy{to{width:100%}}
+.ed-render span{position:relative}
+.ed-script{display:flex;flex-direction:column;gap:5px;padding:9px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:var(--muted);font-size:11.5px;line-height:1.35}
+.ed-script .h{color:var(--text);font-weight:800;font-size:12px}
+.ed-script p{margin:0;padding:6px 8px;border-radius:7px;background:rgba(255,255,255,.04)}
+.ed-script p b{color:#ff7a6b;font-weight:800;margin-right:5px}
+.ed-script p.ty{min-height:31px;border:1px dashed rgba(167,139,250,.45);background:rgba(167,139,250,.06);color:var(--text)}
+.ed-script p.ty.on:after{content:"";display:inline-block;width:1.5px;height:12px;margin-left:1px;vertical-align:-2px;background:#a78bfa;animation:edcar .7s steps(1) infinite}
+@keyframes edcar{50%{opacity:0}}
+.ed-tl{position:relative;--lab:96px;padding:4px 10px 10px;border-top:1px solid rgba(255,255,255,.07)}
+.ed-bar{display:flex;align-items:center;gap:8px;height:30px;font-size:11px;font-weight:700;color:var(--muted)}
+.ed-bar .pill{padding:3px 8px;border-radius:7px;border:1px solid rgba(255,255,255,.12)}
+.ed-src{display:flex;align-items:center;gap:6px;margin-left:auto;padding:3px 8px 3px 3px;border-radius:7px;border:1px solid rgba(160,170,255,.35);background:rgba(160,170,255,.08);color:var(--text);transition:opacity .3s}
+.ed-src img{width:38px;height:21px;border-radius:4px;object-fit:cover}
+.ed-src.used{opacity:.35}
+.ed-ruler{display:flex;justify-content:space-between;margin-left:var(--lab);height:16px;color:var(--faint);font-size:9.5px;font-variant-numeric:tabular-nums}
+.ed-trk{display:grid;grid-template-columns:var(--lab) 1fr;align-items:center;height:32px;border-top:1px solid rgba(255,255,255,.05)}
+.ed-lab{color:var(--muted);font-size:11px;font-weight:700;white-space:nowrap}
+.ed-lane{position:relative;display:flex;gap:2px;height:24px}
+.ed-clip{position:relative;overflow:hidden;flex:0 0 calc(var(--w) - 2px);border-radius:5px;border:1px solid rgba(160,170,255,.38);background:#1d2240 center/cover}
+.ed-clip b{position:absolute;left:3px;top:2px;padding:0 3px;border-radius:3px;background:rgba(0,0,0,.6);color:#fff;font-size:8.5px;font-weight:800}
+.ed-clip.slot{border:1px dashed rgba(255,255,255,.28);background:none!important}
+.ed-clip.slot b{display:none}
+.ed-clip.slot.fill{border:1px solid rgba(160,170,255,.38);background:#1d2240 url(assets/promo/sc8.jpg) center/cover!important;animation:edpop .35s ease-out}
+.ed-clip.slot.fill b{display:block}
+@keyframes edpop{from{transform:scale(.85);opacity:.4}}
+.ed-voice{flex:0 0 calc(var(--w) - 2px);border-radius:5px;border:1px solid rgba(62,224,143,.38);background:repeating-linear-gradient(90deg,rgba(62,224,143,.75) 0 2px,transparent 2px 5px) center/100% 62% no-repeat,rgba(62,224,143,.1)}
+.ed-voice.slot{flex-basis:0;opacity:0;transition:flex-basis .8s ease-out,opacity .3s}
+.ed-voice.slot.grow{flex-basis:calc(var(--w) - 2px);opacity:1}
+.ed-capbar{display:flex;gap:2px;width:0;overflow:hidden;transition:width 1s ease-out}
+.ed-capbar.on{width:100%}
+.ed-capbar span{flex:0 0 calc(var(--w) - 2px);border-radius:5px;border:1px solid rgba(245,196,107,.4);background:rgba(245,196,107,.12);color:#f5c46b;font-size:8.5px;font-weight:800;padding:5px 4px;white-space:nowrap;overflow:hidden}
+.ed-off{position:absolute;left:0;top:3px;padding:2px 8px;border-radius:6px;background:#f5b83d;color:#1a1206;font-size:10.5px;font-weight:800;z-index:1;transition:opacity .3s}
+.ed-off.on{opacity:0}
+.ed-music{flex:1;border-radius:5px;border:1px solid rgba(245,196,107,.3);background:rgba(245,196,107,.07);color:rgba(245,196,107,.85);font-size:10px;font-weight:700;padding:5px 8px}
+.ed-ph{position:absolute;top:44px;bottom:8px;width:2px;margin-left:-1px;background:#ff2d40;box-shadow:0 0 10px #ff2d40;pointer-events:none}
+.ed-ph:before{content:"";position:absolute;top:-6px;left:-4px;width:10px;height:10px;border-radius:2px;background:#ff2d40;transform:rotate(45deg)}
+.edc{position:absolute;left:0;top:0;z-index:6;pointer-events:none;transition:transform 1s cubic-bezier(.45,0,.2,1)}
+.edc svg{display:block;width:18px;height:18px;fill:var(--c);stroke:#fff;stroke-width:1.4;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));transition:transform .15s}
+.edc.clk svg{transform:scale(.78)}
+.edc span{position:absolute;left:14px;top:16px;padding:2px 7px;border-radius:6px;background:var(--c);color:#111;font-size:10.5px;font-weight:800;white-space:nowrap}
+.edc img{display:none;position:absolute;left:10px;top:34px;width:64px;height:36px;border-radius:5px;object-fit:cover;opacity:.92;box-shadow:0 8px 20px rgba(0,0,0,.5);border:1px solid rgba(160,170,255,.6)}
+.edc.drag img{display:block}
+@media(max-width:1000px){.h9{grid-template-columns:1fr;gap:30px;text-align:center}.h9 .lead{margin-inline:auto}.h9-dl{justify-content:center}.ofx{text-align:left;max-width:560px;margin-inline:auto}.h9-l .hlogo{margin:0 auto}}
+@media(max-width:640px){.ed-script,.ed-tabs{display:none}.ed-main{grid-template-columns:1fr}.ed-tl{--lab:64px}.ed-lab{font-size:9.5px}.edc span{font-size:9.5px}}
+@media(max-width:520px){.h9-dl .btn{width:100%;justify-content:center}.ofx-row{grid-template-columns:1fr auto}.ofx-btn{grid-column:1/-1;justify-content:center}}
 </style>
 </head>
 <body>
@@ -408,38 +501,45 @@ main .wrap.hero{position:relative;padding-top:0}
 
 <main>
 <div class="wrap hero">
-  <div class="cine" aria-hidden="true"><video src="assets/promo/omnitube-film.mp4" poster="assets/promo/omnitube-film.jpg" autoplay muted loop playsinline preload="auto"></video></div>
-  <p class="cine-cap"><b>Every frame of this film was made in OMNITUBE.</b> The Girl Who Saved the Light</p>
-  <div class="h8" id="deals">
-    <div class="h8-l">
+  <div class="h9" id="deals">
+    <div class="h9-l">
       <a class="hlogo" href="#whatsnew" aria-label="OMNITUBE 2"><img src="assets/app_icon.png" alt="OMNITUBE logo"><span class="w">OMNI<b>TUBE</b></span><span class="v">2.0</span></a>
       <span id="relnote" hidden></span>
       <h1>Stop editing.<br>Start posting.</h1>
-      <p class="lead">Type a topic or paste a script. OMNITUBE writes, voices, animates and edits the whole video for you. The film behind this page was made with it.</p>
-      <div class="h8-dl"><a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div>
-      <p class="h8-note">Free forever, no watermark. The free version needs an NVIDIA RTX card.</p>
-      <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
+      <p class="lead">Type a topic or paste a script. OMNITUBE does the whole team's work: script, voice, animation, captions and the edit. <b style="color:var(--text)">You just press upload.</b></p>
+      <div class="h9-dl"><a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div>
+      <p class="h9-note">Free forever, no watermark. The free version needs an NVIDIA RTX card.</p>
+    <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
+      <div class="ofx">
+        <p class="ofx-k"><b>No NVIDIA card?</b> OMNITUBE Pro makes it all in the cloud, on any laptop.</p>
+        <a class="ofx-row hot offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener"><div><b class="n">Lifetime</b><span class="ofx-tag">5 spots</span><small>Back to $99 in <b><span class="t-h">00</span>:<span class="t-m">00</span>:<span class="t-s">00</span></b></small></div><div class="ofx-p"><b>$50</b><s>$99</s></div><span class="ofx-btn">Claim Lifetime</span></a>
+        <a class="ofx-row offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener"><div><b class="n">Lifetime</b><small>Windows and Mac, every future version</small></div><div class="ofx-p"><b>$99</b></div><span class="ofx-btn">Get Lifetime</span></a>
+        <a class="ofx-row" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener"><div><b class="n">Pro</b><small>One PC, Windows or Mac</small></div><div class="ofx-p"><b>$20</b><s>$40</s></div><span class="ofx-btn ghost">Get Pro</span></a>
+      </div>
     </div>
-    <div class="h8-offer">
-      <p class="h8-k">No NVIDIA card? Get OMNITUBE Pro and make it all in the cloud.</p>
-        <a class="pm-life offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener">
-        <div class="pm-life-top"><span>Lifetime</span><span class="pm-spots">5 spots at this price</span></div>
-        <div class="pm-price"><b>$50</b><s>$99</s></div>
-        <p class="pm-desc">Pay once. Windows and Mac, every future version.</p>
-        <div class="pm-ends">Back to $99 in <b><span class="t-h">00</span>:<span class="t-m">00</span>:<span class="t-s">00</span></b></div>
-        <span class="pm-btn">Claim Lifetime for $50</span>
-      </a>
-      <a class="pm-life offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
-        <div class="pm-life-top"><span>Lifetime</span><span class="pm-spots">30 spots only</span></div>
-        <div class="pm-price"><b>$99</b></div>
-        <p class="pm-desc">Pay once. Windows and Mac, every future version.</p>
-        <span class="pm-btn">Get Lifetime</span>
-      </a>
-      <a class="pm-pro" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
-        <div><span class="pm-name">Pro</span><span class="pm-mini">One PC, Windows or Mac</span></div>
-        <div class="pm-pp"><b>$20</b><s>$40</s></div>
-        <span class="pm-btn2">Get Pro</span>
-      </a>
+    <div class="ed" id="ed" aria-label="OMNITUBE Timeline editor, animated">
+      <div class="ed-top"><span class="ed-logo"><img src="assets/app_icon.png" alt="">OMNITUBE</span><span class="ed-proj">The Girl Who Saved the Light</span>
+        <div class="ed-tabs"><span>Script</span><span>Voice</span><span>Cast</span><span>Storyboard</span><span class="on">Timeline</span><span>Output</span></div></div>
+      <div class="ed-main">
+        <div class="ed-pw">
+          <div class="ed-prev"><video src="assets/promo/omnitube-film.mp4" autoplay muted loop playsinline preload="auto"></video><div class="ed-cap" id="edCap"></div><div class="ed-toast" id="edToast">&#10003; Video ready &middot; 1080p</div></div>
+          <div class="ed-ctrl"><span class="ed-play"></span><span id="edTime">0:00.0</span><span class="tot">/ 0:35.4</span><span class="ed-render" id="edRender"><span>Render video</span></span></div>
+        </div>
+        <div class="ed-script"><span class="h">Script</span><p><b>s006</b>Together they set it before the giant lens.</p><p><b>s007</b>Far away, a little boat turned toward the light.</p><p class="ty" id="edType"></p></div>
+      </div>
+      <div class="ed-tl" id="edTl">
+        <div class="ed-bar"><span class="pill">Linked</span><span class="pill">Snap</span><span class="ed-src" id="edSrc"><img src="assets/promo/sc8.jpg" alt="">s008_morning.mp4</span></div>
+        <div class="ed-ruler"><span>0:00</span><span>0:05</span><span>0:10</span><span>0:15</span><span>0:20</span><span>0:25</span><span>0:30</span><span>0:35</span></div>
+        <div class="ed-trk"><span class="ed-lab">Captions</span><div class="ed-lane"><span class="ed-off" id="edOff">Off</span><div class="ed-capbar" id="edCapbar"><span style="--w:17.30%">The storm</span><span style="--w:9.85%">Her father's</span><span style="--w:8.61%">She climbed</span><span style="--w:18.43%">Baba stood</span><span style="--w:6.57%">She took</span><span style="--w:16.51%">Together they</span><span style="--w:8.27%">Far away,</span><span style="--w:14.48%">By morning,</span></div></div></div>
+        <div class="ed-trk"><span class="ed-lab">Pictures &amp; videos</span><div class="ed-lane"><span class="ed-clip" style="--w:17.30%;background-image:url(assets/promo/sc1.jpg)"><b>s001</b></span><span class="ed-clip" style="--w:9.85%;background-image:url(assets/promo/sc2.jpg)"><b>s002</b></span><span class="ed-clip" style="--w:8.61%;background-image:url(assets/promo/sc3.jpg)"><b>s003</b></span><span class="ed-clip" style="--w:18.43%;background-image:url(assets/promo/sc4.jpg)"><b>s004</b></span><span class="ed-clip" style="--w:6.57%;background-image:url(assets/promo/sc5.jpg)"><b>s005</b></span><span class="ed-clip" style="--w:16.51%;background-image:url(assets/promo/sc6.jpg)"><b>s006</b></span><span class="ed-clip" style="--w:8.27%;background-image:url(assets/promo/sc7.jpg)"><b>s007</b></span><span class="ed-clip slot" id="edSlot" style="--w:14.48%"><b>s008</b></span></div></div>
+        <div class="ed-trk"><span class="ed-lab">Voice</span><div class="ed-lane"><span class="ed-voice" style="--w:17.30%"></span><span class="ed-voice" style="--w:9.85%"></span><span class="ed-voice" style="--w:8.61%"></span><span class="ed-voice" style="--w:18.43%"></span><span class="ed-voice" style="--w:6.57%"></span><span class="ed-voice" style="--w:16.51%"></span><span class="ed-voice" style="--w:8.27%"></span><span class="ed-voice slot" id="edVslot" style="--w:14.48%"></span></div></div>
+        <div class="ed-trk"><span class="ed-lab">Music</span><div class="ed-lane"><span class="ed-music">Hopeful piano</span></div></div>
+        <div class="ed-ph" id="edPh"></div>
+      </div>
+      <div class="edc" data-c="script" style="--c:#a78bfa"><svg viewBox="0 0 24 24"><path d="M3 2l7.5 19 2.6-7.6L21 11z"/></svg><span>Script AI</span></div>
+      <div class="edc" data-c="anim" style="--c:#ff5a6a"><svg viewBox="0 0 24 24"><path d="M3 2l7.5 19 2.6-7.6L21 11z"/></svg><span>Animator</span><img src="assets/promo/sc8.jpg" alt=""></div>
+      <div class="edc" data-c="voice" style="--c:#3ee08f"><svg viewBox="0 0 24 24"><path d="M3 2l7.5 19 2.6-7.6L21 11z"/></svg><span>Voice</span></div>
+      <div class="edc" data-c="cap" style="--c:#f5c46b"><svg viewBox="0 0 24 24"><path d="M3 2l7.5 19 2.6-7.6L21 11z"/></svg><span>Captions</span></div>
     </div>
   </div>
   <div class="meta"><b id="vlabel">v2.0</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees · Mac (Apple Silicon)</div>
@@ -840,6 +940,36 @@ document.querySelectorAll(".dlmac").forEach(a => a.addEventListener("click", () 
 </script>
 <script>(function(){var END=Date.parse('2026-11-25T23:59:00+05:00');function tick(){var ms=END-Date.now(),on=ms>0;document.querySelectorAll('.offer-on').forEach(function(e){e.hidden=!on});document.querySelectorAll('.offer-off').forEach(function(e){e.hidden=on});if(!on)return;var h=Math.floor(ms/3600000),m=Math.floor(ms%3600000/60000);document.querySelectorAll('.cd').forEach(function(e){e.textContent=h+'h '+(m<10?'0':'')+m+'m'})}tick();setInterval(tick,30000)})();</script>
 <script>(function(){var END=Date.parse('2026-11-25T23:59:00+05:00');function p(n){return (n<10?'0':'')+n}function f(){var s=Math.max(0,Math.floor((END-Date.now())/1000));var v={'t-h':p(Math.floor(s/3600)),'t-m':p(Math.floor(s%3600/60)),'t-s':p(s%60)};for(var k in v){document.querySelectorAll('.'+k).forEach(function(e){e.textContent=v[k]})}}f();setInterval(f,1000)})();</script>
+<script>(function(){var ed=document.getElementById('ed');if(!ed)return;
+function q(s){return ed.querySelector(s)}var v=q('video'),ph=q('#edPh'),tl=q('#edTl'),tm=q('#edTime'),cap=q('#edCap');
+var TOT=35.44,LINES=["The storm came faster than anyone expected.", "Her father's boat was still out there.", "She climbed the cliff path, all the way to Baba.", "Baba stood beside the great lamp. It was broken.", "She took the little lantern from his hands.", "Together they set it before the giant lens.", "Far away, a little boat turned toward the light.", "By morning, the storm was gone."],capOn=false;
+var cur={};ed.querySelectorAll('.edc').forEach(function(c){cur[c.dataset.c]=c});
+function fmt(s){var m=Math.floor(s/60),r=s-m*60;return m+':'+(r<10?'0':'')+r.toFixed(1)}
+function frame(){if(v.duration){var p=v.currentTime/v.duration,lab=parseFloat(getComputedStyle(tl).getPropertyValue('--lab'))||96,w=tl.clientWidth-20-lab;
+ph.style.left=(10+lab+w*p)+'px';tm.textContent=fmt(p*TOT);
+if(capOn){var i=Math.min(LINES.length-1,Math.floor(p*LINES.length)),wd=LINES[i].split(' '),k=Math.floor((p*LINES.length-i)*wd.length);
+cap.innerHTML=wd.map(function(x,j){return j===k?'<i>'+x+'</i>':x}).join(' ')}}requestAnimationFrame(frame)}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+function at(el,fx,fy){var a=ed.getBoundingClientRect(),b=el.getBoundingClientRect();return[b.left-a.left+b.width*fx,b.top-a.top+b.height*fy]}
+function go(c,el,fx,fy){var p=at(el,fx,fy);c.style.transform='translate('+p[0]+'px,'+p[1]+'px)'}
+function home(c,fx,fy){c.style.transform='translate('+ed.clientWidth*fx+'px,'+ed.clientHeight*fy+'px)'}
+function click(c){c.classList.add('clk');setTimeout(function(){c.classList.remove('clk')},250)}
+function reset(){q('#edType').textContent='';q('#edSlot').classList.remove('fill');q('#edSrc').classList.remove('used');q('#edVslot').classList.remove('grow');
+q('#edOff').classList.remove('on');q('#edCapbar').classList.remove('on');capOn=false;cap.classList.remove('on');q('#edToast').classList.remove('show');
+home(cur.script,.62,.14);home(cur.anim,.84,.52);home(cur.voice,.05,.83);home(cur.cap,.42,.86)}
+async function script(){var ty=q('#edType');go(cur.script,ty,.06,.5);await sleep(1050);ty.classList.add('on');var s='s008 '+LINES[7];
+for(var i=0;i<s.length;i++){ty.innerHTML=i<4?'<b>'+s.slice(0,i+1)+'</b>':'<b>s008</b>'+s.slice(5,i+1);await sleep(42)}ty.classList.remove('on')}
+async function anim(){await sleep(350);var src=q('#edSrc'),slot=q('#edSlot');go(cur.anim,src,.25,.5);await sleep(1050);click(cur.anim);src.classList.add('used');
+cur.anim.classList.add('drag');await sleep(200);go(cur.anim,slot,.35,.5);await sleep(1100);cur.anim.classList.remove('drag');slot.classList.add('fill');await sleep(300);home(cur.anim,.84,.52)}
+async function voice(){var s=q('#edVslot');go(cur.voice,s.previousElementSibling,1,.5);await sleep(1050);click(cur.voice);s.classList.add('grow');await sleep(900);home(cur.voice,.05,.83)}
+async function caps(){await sleep(300);var o=q('#edOff');go(cur.cap,o,.5,.5);await sleep(1050);click(cur.cap);o.classList.add('on');q('#edCapbar').classList.add('on');capOn=true;cap.classList.add('on');await sleep(900);home(cur.cap,.42,.86)}
+async function run(){for(;;){reset();await sleep(900);await Promise.all([script(),anim()]);await sleep(200);await Promise.all([voice(),caps()]);await sleep(700);
+var r=q('#edRender');go(cur.script,r,.5,.5);await sleep(1100);click(cur.script);r.classList.add('busy');await sleep(1600);r.classList.remove('busy');
+q('#edToast').classList.add('show');await sleep(2600)}}
+requestAnimationFrame(frame);
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){q('#edSlot').classList.add('fill');q('#edVslot').classList.add('grow');q('#edOff').classList.add('on');q('#edCapbar').classList.add('on');reset=function(){};
+ed.querySelectorAll('.edc').forEach(function(c){c.style.display='none'});return}
+run()})();</script>
 </body>
 </html>
 
