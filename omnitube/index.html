@@ -616,6 +616,19 @@ header .wrap.nav,main .wrap.hero{width:min(1480px,100% - 48px)}
 .free9-n{margin:6px 0 0;color:var(--faint);font-size:12.5px}
 @media(max-width:1100px){.free9 .meta{text-align:center}}
 @media (prefers-reduced-motion:reduce){.h9 .dlc .dot{animation:none}}
+.h9 .dlc{gap:12px;padding:10px 20px 10px 14px;margin-bottom:18px;font-size:14.5px}
+.h9 .dlc .dot{width:10px;height:10px}
+.h9 .dlc .dln{font-size:23px;letter-spacing:-.4px}
+.h9 .dlc .lbl{color:rgba(246,243,243,.78);font-weight:700}
+.h9 .dlc .os{gap:8px;margin-left:4px;padding-left:14px}
+.h9 .dlc .os svg{width:16px;height:16px;fill:rgba(246,243,243,.85)}
+.free9-r .btn.store{height:58px;padding:0 22px 0 16px;gap:12px;border-radius:15px;text-align:left}
+.btn.store svg.osi{width:25px;height:25px;fill:currentColor;stroke:none}
+.store .st{display:flex;flex-direction:column;align-items:flex-start;gap:3px;line-height:1}
+.store .st small{font-size:11px;font-weight:600;opacity:.85;letter-spacing:.01em}
+.store .st b{font-size:18.5px;font-weight:800;letter-spacing:-.2px}
+.btn.store:not(.primary){background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.btn.store:not(.primary):hover{border-color:rgba(255,255,255,.32)}
 </style>
 </head>
 <body>
@@ -632,7 +645,7 @@ header .wrap.nav,main .wrap.hero{width:min(1480px,100% - 48px)}
   <div class="h9" id="deals">
     <div class="h9-l">
       <span id="relnote" hidden></span>
-      <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span><span class="os"><svg viewBox="0 0 24 24"><path d="M3 5.5 10.5 4.4v7.2H3zM11.5 4.3 21 3v8.6h-9.5zM3 12.4h7.5v7.2L3 18.5zM11.5 12.4H21V21l-9.5-1.3z"/></svg><svg viewBox="0 0 24 24"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg></span></div>
+      <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span class="lbl">downloads and counting</span><span class="os"><svg viewBox="0 0 24 24"><path d="M3 5.5 10.5 4.4v7.2H3zM11.5 4.3 21 3v8.6h-9.5zM3 12.4h7.5v7.2L3 18.5zM11.5 12.4H21V21l-9.5-1.3z"/></svg><svg viewBox="0 0 24 24"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg></span></div>
       <h1>A whole video team.<br>One app.</h1>
       <p class="lead">Script, footage, voice, captions, music, color and publishing. Type a topic, OMNITUBE does the rest, and you press upload.</p>
       <div class="sale">
@@ -650,7 +663,7 @@ header .wrap.nav,main .wrap.hero{width:min(1480px,100% - 48px)}
         <p class="sale-foot"><b>No NVIDIA card needed with Pro.</b> One-time payment, no subscription.</p>
       </div>
       <div class="free9">
-        <div class="free9-r"><span class="free9-k">Or start free</span><a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div>
+        <div class="free9-r"><span class="free9-k">Or start free</span><a class="btn primary dl store" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg class="osi" viewBox="0 0 24 24"><path d="M3 5.5 10.5 4.4v7.2H3zM11.5 4.3 21 3v8.6h-9.5zM3 12.4h7.5v7.2L3 18.5zM11.5 12.4H21V21l-9.5-1.3z"/></svg><span class="st"><small>Free download for</small><b>Windows</b></span></a><a class="btn dlmac store" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg class="osi" viewBox="0 0 24 24"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg><span class="st"><small>Free download for</small><b>macOS</b></span></a></div>
         <div class="meta"><a class="saclink" href="#sac">Windows blocked the installer? Here is the fix.</a>&ensp;&middot;&ensp;<a class="saclink" href="#mac-install" onclick="var e=document.getElementById('mac-install');if(e)e.open=true">On a Mac? Here is how to open it.</a></div>
         <p class="free9-n">The free version has no watermark and needs an NVIDIA RTX card.</p>
       </div>
