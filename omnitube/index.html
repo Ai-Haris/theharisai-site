@@ -345,6 +345,34 @@ main .wrap.hero{padding-top:22px}
 @media(max-width:900px){.pm{grid-template-columns:1fr;padding:22px}.pm-buy{order:-1}.pm h2{font-size:27px}}
 @media(max-width:520px){.pm-pro{grid-template-columns:1fr auto}.pm-btn2{grid-column:1/-1;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.pm-life::before,.pm-cost .track i{animation:none}}
+.h7{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center;max-width:1100px;margin:0 auto;text-align:left}
+.h7 h1{white-space:normal!important;font-size:clamp(40px,5.2vw,64px);line-height:1.02;letter-spacing:-2px;margin:16px 0 12px}
+.h7 .lead{margin:0 0 20px;max-width:52ch;font-size:17px}
+.h7-offer{display:grid;gap:10px;max-width:560px}
+.h7 .pm-life{padding:18px 20px}
+.h7 .pm-price{margin:8px 0 4px}
+.h7 .pm-price b{font-size:50px}
+.h7 .pm-desc{margin:0 0 8px}
+.h7 .pm-ends{margin:0 0 12px}
+.h7-free{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;margin-top:16px;max-width:560px;color:var(--muted);font-size:13.5px}
+.h7-free b{color:var(--text)}
+.h7-fb{display:flex;gap:10px}
+.h7-fb .btn{height:40px;padding:0 16px;font-size:14px;white-space:nowrap}
+.h7-fb .btn svg{width:16px;height:16px}
+.h7-r{display:flex;flex-direction:column;align-items:center}
+.phone{position:relative;width:100%;max-width:320px;aspect-ratio:9/16;border-radius:40px;padding:10px;background:linear-gradient(160deg,#2c2c33,#0c0c0f);box-shadow:0 0 0 1px rgba(255,255,255,.09),0 40px 100px rgba(0,0,0,.6),0 0 90px rgba(255,45,64,.16)}
+.phone video{display:block;width:100%;height:100%;object-fit:cover;border-radius:31px;background:#000}
+.phone::after{content:"";position:absolute;top:19px;left:50%;width:74px;height:20px;margin-left:-37px;border-radius:99px;background:#050506}
+.phone-cap{margin:14px 0 0;color:var(--muted);font-size:13.5px;text-align:center}
+.phone-cap b{color:var(--text)}
+.why7{max-width:1100px;margin:46px auto 0;text-align:left}
+.why7 h2{margin:0 0 22px;font:800 28px/1.15 Urbanist,sans-serif;letter-spacing:-.6px;text-align:center;color:var(--text)}
+.why7-g{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.why7-g svg{width:24px;height:24px;stroke:#ff6a52;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.why7-g b{display:block;margin:10px 0 4px;color:var(--text);font-size:16.5px}
+.why7-g p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+@media(max-width:900px){.h7{grid-template-columns:1fr;gap:30px;text-align:center}.h7 .lead{margin-inline:auto}.h7-offer,.h7-free{margin-inline:auto;text-align:left}.h7-free{justify-content:center}.phone{max-width:250px}.why7-g{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.why7-g{grid-template-columns:1fr}.h7-fb{flex-direction:column;width:100%}}
 </style>
 </head>
 <body>
@@ -358,30 +386,14 @@ main .wrap.hero{padding-top:22px}
 
 <main>
 <div class="wrap hero">
-  <a class="hlogo" href="#whatsnew" aria-label="OMNITUBE 2"><img src="assets/app_icon.png" alt="OMNITUBE logo"><span class="w">OMNI<b>TUBE</b></span><span class="v">2.0</span></a>
-  <span id="relnote" hidden></span>
-  <h1>Stop editing. Start posting.</h1>
-  <p class="lead">Paste a script or type a topic. OMNITUBE writes, voices, animates and edits the whole YouTube video or Short for you. <b style="color:var(--text)">You just press upload.</b></p>
-  <div class="pm" id="deals">
-    <div>
-      <p class="pm-kicker">OMNITUBE Pro</p>
-      <h2>No NVIDIA card? No problem.</h2>
-      <p class="pm-sub">Pro makes the pictures, clips and voices in the cloud, so OMNITUBE runs on the laptop you already have.</p>
-      <ul class="pm-why">
-        <li><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><div><b>A topic in, a finished Short out</b><span>Omni Shorts writes, voices, animates and captions it.</span></div></li>
-        <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div><b>A month of uploads in one sitting</b><span>Batch Builder makes a Short for every day of your plan.</span></div></li>
-        <li><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></svg><div><b>Long videos and documentaries</b><span>Documentary Studio and the Timeline editor.</span></div></li>
-      </ul>
-      <div class="pm-cost">
-        <div class="row"><span>AI video subscriptions, one year</span><b>$240 to $600</b></div>
-        <div class="track"><i style="--w:100%"></i></div>
-        <div class="row"><span>OMNITUBE Pro, one time</span><b>$20</b></div>
-        <div class="track"><i class="r" style="--w:4%"></i></div>
-        <p>Most AI video apps charge $20 to $50 a month. With Pro you pay the AI providers directly for what you make, usually $0.50 to $2 per video.</p>
-      </div>
-    </div>
-    <div class="pm-buy">
-      <a class="pm-life offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener">
+  <div class="h7" id="deals">
+    <div class="h7-l">
+      <a class="hlogo" href="#whatsnew" aria-label="OMNITUBE 2"><img src="assets/app_icon.png" alt="OMNITUBE logo"><span class="w">OMNI<b>TUBE</b></span><span class="v">2.0</span></a>
+      <span id="relnote" hidden></span>
+      <h1>Stop editing.<br>Start posting.</h1>
+      <p class="lead">Type a topic or paste a script. OMNITUBE writes it, voices it, animates it and edits it into a finished YouTube video or Short. <b style="color:var(--text)">You just press upload.</b></p>
+      <div class="h7-offer">
+        <a class="pm-life offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener">
         <div class="pm-life-top"><span>Lifetime</span><span class="pm-spots">5 spots at this price</span></div>
         <div class="pm-price"><b>$50</b><s>$99</s></div>
         <p class="pm-desc">Pay once. Windows and Mac, every future version.</p>
@@ -399,14 +411,27 @@ main .wrap.hero{padding-top:22px}
         <div class="pm-pp"><b>$20</b><s>$40</s></div>
         <span class="pm-btn2">Get Pro</span>
       </a>
-      <p class="pm-trust">Your key arrives by email right away. No subscription.</p>
-      <p class="pm-maker"><b>Built by Haris, an independent developer.</b> Every Pro keeps OMNITUBE free.</p>
+      </div>
+      <div class="h7-free"><span><b>Or start free.</b> No watermark. Needs an NVIDIA RTX card.</span><div class="h7-fb"><a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div></div>
+    </div>
+    <div class="h7-r">
+      <div class="phone"><video src="assets/promo/omnitube-reel.mp4" poster="assets/promo/omnitube-reel.jpg" autoplay muted loop playsinline preload="auto" aria-label="Shorts made with OMNITUBE"></video></div>
+      <p class="phone-cap"><b>Real Shorts made in OMNITUBE.</b> Four styles, no editing.</p>
     </div>
   </div>
-  <div class="pm-free"><span><b>Just want to try it?</b> OMNITUBE Free costs nothing and adds no watermark. It runs on your own NVIDIA RTX PC.</span><a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div>
   <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
   <div class="meta"><b id="vlabel">v2.0</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees · Mac (Apple Silicon)</div>
   <div class="meta"><a class="saclink" href="#sac">Windows blocked the installer? Here is the fix.</a>&ensp;&middot;&ensp;<a class="saclink" href="#mac-install" onclick="var e=document.getElementById('mac-install');if(e)e.open=true">On a Mac? Here is how to open it.</a></div>
+
+  <div class="why7">
+    <h2>Why creators pay for Pro</h2>
+    <div class="why7-g">
+      <div><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><b>No graphics card needed</b><p>The free version needs an NVIDIA RTX card. Pro makes everything in the cloud, so it runs on any laptop.</p></div>
+      <div><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><b>The top AI models in one app</b><p>Kling, Veo 3.1 and Seedance video, Nano Banana and FLUX pictures, ElevenLabs voices.</p></div>
+      <div><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 9l4 3-4 3z"/></svg><b>Shorts like the big channels</b><p>Omni Shorts has 8 styles in 3D and 2D. A topic goes in, a finished Short comes out.</p></div>
+      <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg><b>Pay once, not every month</b><p>Most AI video apps cost $20 to $50 a month. Pro is $20 once, and you pay the AI providers only for what you make.</p></div>
+    </div>
+  </div>
 
   <div class="showcase" id="tour">
     <div class="frame"><div class="stack" id="stack"></div></div>
