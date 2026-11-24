@@ -279,6 +279,48 @@ main .wrap.hero{padding-top:26px}
 .of-note{text-align:center;color:var(--faint);font-size:12px}
 @media(max-width:760px){.ofs{grid-template-columns:1fr;gap:28px}.of.hot{order:-1}.of-price b{font-size:50px}.hlogo img{width:44px;height:44px}.hlogo .w{font-size:27px}}
 @media (prefers-reduced-motion:reduce){.of,.of.hot,.of-in::after,.of-off,.of-price b,.of-price s::after,.of.hot .of-btn,.of-btn::after,.of-rib,.of-timer i.sec{animation:none}}
+.vs{display:grid;grid-template-columns:1fr 1.18fr;gap:20px;max-width:1000px;margin:28px auto 0;text-align:left;scroll-margin-top:120px}
+.vcol{position:relative;display:flex;border-radius:22px}
+.vcol.free{border:1px solid rgba(62,224,143,.32);background:linear-gradient(165deg,rgba(62,224,143,.08),rgba(255,255,255,.02) 60%);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 18px 50px rgba(0,0,0,.3)}
+.vcol.pro{padding:2px;background:conic-gradient(from var(--ang),#ff2d40,#ffb04a,#ff2d40,#ff6a3d,#ffd36e,#ff2d40);animation:ofspin 3s linear infinite,ofglow 1.8s ease-in-out infinite}
+.vin{position:relative;overflow:hidden;flex:1;display:flex;flex-direction:column;gap:12px;padding:22px;border-radius:20px}
+.vcol.pro .vin{background:linear-gradient(160deg,#2a1013,#120b0d)}
+.vcol.pro .vin::after{content:"";position:absolute;top:0;left:-70%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.1),transparent);transform:skewX(-18deg);animation:ofshine 3.2s ease-in-out infinite;pointer-events:none}
+.vtag{align-self:flex-start;padding:4px 11px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.09em}
+.vtag.ok{background:rgba(62,224,143,.14);border:1px solid rgba(62,224,143,.45);color:var(--ok)}
+.vtag.hot{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;box-shadow:0 0 18px rgba(255,45,64,.6);animation:flash 1s ease-in-out infinite}
+.vin h2{margin:0;font:800 27px/1.1 Urbanist,sans-serif;letter-spacing:-.5px;color:var(--text)}
+.vin h2 b{background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.vsub{margin:-6px 0 0;color:var(--muted);font-size:14.5px}
+.vfp{display:flex;align-items:baseline;gap:10px}
+.vfp b{font:800 46px/1 Urbanist,sans-serif;color:var(--ok)}
+.vfp span{color:var(--muted);font-size:14px;font-weight:700}
+.vin ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;color:var(--muted);font-size:14.5px}
+.vin ul.two{grid-template-columns:1fr 1fr;gap:7px 14px}
+.vin li{display:flex;gap:8px}
+.vin li::before{content:"\2713";color:var(--ok);font-weight:800;flex:none}
+.vbtns{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vbtns .btn{width:100%;justify-content:center;height:52px;padding:0 8px;font-size:14px;white-space:nowrap}
+.vbtns .btn svg{display:none}
+.vi .of-timer{white-space:nowrap}
+.vopt{position:relative;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px;padding:14px 16px;border-radius:16px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.045);color:var(--text);transition:transform .2s,border-color .2s,background .2s}
+.vopt:hover{transform:translateY(-2px);border-color:rgba(255,45,64,.65);background:rgba(255,45,64,.09)}
+.vopt.hot{border-color:rgba(255,176,74,.65);background:linear-gradient(135deg,rgba(255,45,64,.22),rgba(255,140,61,.08))}
+.vi b{display:block;font-size:17px;font-weight:800}
+.vi>span{display:block;color:var(--muted);font-size:13px}
+.vi .of-timer{margin-top:7px}
+.vp{display:flex;align-items:baseline;gap:8px}
+.vp s{position:relative;text-decoration:none;color:var(--faint);font-size:18px;font-weight:800}
+.vp s::after{content:"";position:absolute;left:-3px;right:-3px;top:50%;height:3px;border-radius:2px;background:#ff2d40;box-shadow:0 0 8px #ff2d40;transform-origin:left;animation:ofstrike 2.4s ease-in-out infinite}
+.vp b{display:inline-block;font:800 42px/1 Urbanist,sans-serif;letter-spacing:-1px;background:linear-gradient(180deg,#fff,#ffc4b6);-webkit-background-clip:text;background-clip:text;color:transparent;animation:ofpop 2.4s ease-in-out infinite}
+.vgo{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-weight:800;font-size:14.5px;white-space:nowrap;box-shadow:0 8px 24px rgba(255,45,64,.45)}
+.vgo::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:ofshine 2.2s ease-in-out infinite}
+.vopt.hot .vgo{animation:ofbtn 1.6s ease-in-out infinite}
+.vrib{position:absolute;top:-11px;right:16px;padding:4px 10px;border-radius:999px;background:#fff;color:#ff2d40;font-size:11px;font-weight:800;letter-spacing:.08em;box-shadow:0 6px 18px rgba(255,45,64,.55);animation:flash 1s ease-in-out infinite}
+.vnote{margin-top:-4px;text-align:center;color:var(--faint);font-size:12px}
+@media(max-width:860px){.vs{grid-template-columns:1fr}.vin ul.two{grid-template-columns:1fr}}
+@media(max-width:520px){.vopt{grid-template-columns:1fr auto}.vgo{grid-column:1/-1}.vbtns{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.vcol.pro,.vcol.pro .vin::after,.vtag.hot,.vp s::after,.vp b,.vgo::after,.vopt.hot .vgo,.vrib{animation:none}}
 </style>
 </head>
 <body>
@@ -296,33 +338,38 @@ main .wrap.hero{padding-top:26px}
   <span id="relnote" hidden></span>
   <h1>Faceless videos in <span>one click.</span></h1>
   <p class="lead">Paste a script or type a topic. OMNITUBE writes, voices, animates and edits the whole YouTube video or Short on your PC. <b style="color:var(--text)">Free, no watermark.</b></p>
-  <div class="cta">
-    <a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a>
-    <a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a>
-  </div>
-  <div class="ofs" id="deals">
-    <a class="of" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener"><div class="of-in">
-      <div class="of-top"><span class="of-name">OMNITUBE Pro</span><span class="of-off">50% OFF</span></div>
-      <div class="of-price"><b>$20</b><span class="was"><s>$40</s><span>one time</span></span></div>
-      <div class="of-feat">Runs on any laptop &middot; Omni Shorts &middot; Documentary Studio &middot; Timeline editor &middot; 1 PC</div>
-      <span class="of-btn">Get Pro for $20 &rarr;</span>
-      <div class="of-note">Pay once. No subscription.</div>
-    </div></a>
-    <a class="of hot offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener"><span class="of-rib">&#128293; ONLY 5 SPOTS</span><div class="of-in">
-      <div class="of-top"><span class="of-name">Lifetime</span><span class="of-off">50% OFF</span></div>
-      <div class="of-price"><b>$50</b><span class="was"><s>$99</s><span>pay once, forever</span></span></div>
-      <div class="of-feat">Everything in Pro &middot; Windows + Mac &middot; every future version</div>
-      <div class="of-timer">Ends in <i><b class="t-h">00</b><small>h</small></i><i><b class="t-m">00</b><small>m</small></i><i class="sec"><b class="t-s">00</b><small>s</small></i></div>
-      <span class="of-btn">Grab Lifetime for $50 &rarr;</span>
-      <div class="of-note">Code 5LIFE50 is added for you. Pick Lifetime at checkout.</div>
-    </div></a>
-    <a class="of hot offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener"><span class="of-rib">ONLY 30 SPOTS</span><div class="of-in">
-      <div class="of-top"><span class="of-name">Lifetime</span></div>
-      <div class="of-price"><b>$99</b><span class="was"><span>pay once, forever</span></span></div>
-      <div class="of-feat">Everything in Pro &middot; Windows + Mac &middot; every future version</div>
-      <span class="of-btn">Get Lifetime &rarr;</span>
-      <div class="of-note">Pay once. No subscription.</div>
-    </div></a>
+  <div class="vs" id="deals">
+    <div class="vcol free"><div class="vin">
+      <span class="vtag ok">FREE</span>
+      <h2>OMNITUBE</h2>
+      <p class="vsub">The free version. Make videos on your own PC.</p>
+      <div class="vfp"><b>$0</b><span>forever &middot; no watermark &middot; no limits</span></div>
+      <ul><li>The full video studio on your PC</li><li>Script, voice, captions, music and editing</li><li>AI pictures and clips with an NVIDIA RTX card</li><li>OMNITUBE 2 included</li></ul>
+      <div class="vbtns"><a class="btn primary big dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn big dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div>
+    </div></div>
+    <div class="vcol pro"><div class="vin">
+      <span class="vtag hot">PAID &middot; 50% OFF TODAY</span>
+      <h2>OMNITUBE <b>Pro</b></h2>
+      <p class="vsub">Everything in Free, plus cloud AI on your own keys. Runs on any laptop.</p>
+      <ul class="two"><li>Omni Shorts: topic in, Short out</li><li>Documentary Studio</li><li>Timeline editor</li><li>Publish to YouTube and TikTok</li></ul>
+      <a class="vopt" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
+        <div class="vi"><b>Pro</b><span>1 PC &middot; Windows or Mac &middot; one time</span></div>
+        <div class="vp"><s>$40</s><b>$20</b></div>
+        <span class="vgo">Get Pro &rarr;</span>
+      </a>
+      <a class="vopt hot offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener"><span class="vrib">&#128293; ONLY 5 SPOTS</span>
+        <div class="vi"><b>Lifetime</b><span>Windows + Mac &middot; every future version</span>
+          <div class="of-timer">Ends in <i><b class="t-h">00</b><small>h</small></i><i><b class="t-m">00</b><small>m</small></i><i class="sec"><b class="t-s">00</b><small>s</small></i></div></div>
+        <div class="vp"><s>$99</s><b>$50</b></div>
+        <span class="vgo">Grab it &rarr;</span>
+      </a>
+      <a class="vopt hot offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
+        <div class="vi"><b>Lifetime</b><span>Windows + Mac &middot; every future version</span></div>
+        <div class="vp"><b>$99</b></div>
+        <span class="vgo">Get Lifetime &rarr;</span>
+      </a>
+      <div class="vnote offer-on">Code 5LIFE50 is added for you. Pick Lifetime at checkout.</div>
+    </div></div>
   </div>
   <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
   <div class="meta"><b id="vlabel">v2.0</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees · Mac (Apple Silicon)</div>
