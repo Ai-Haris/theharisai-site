@@ -279,71 +279,77 @@ main .wrap.hero{padding-top:26px}
 .of-note{text-align:center;color:var(--faint);font-size:12px}
 @media(max-width:760px){.ofs{grid-template-columns:1fr;gap:28px}.of.hot{order:-1}.of-price b{font-size:50px}.hlogo img{width:44px;height:44px}.hlogo .w{font-size:27px}}
 @media (prefers-reduced-motion:reduce){.of,.of.hot,.of-in::after,.of-off,.of-price b,.of-price s::after,.of.hot .of-btn,.of-btn::after,.of-rib,.of-timer i.sec{animation:none}}
-.pz{position:relative;max-width:1060px;margin:22px auto 0;padding:2px;border-radius:26px;text-align:left;background:conic-gradient(from var(--ang),#ff2d40,#ffb04a,#ff2d40,#ff6a3d,#ffd36e,#ff2d40);animation:ofspin 3s linear infinite,ofglow 1.8s ease-in-out infinite;scroll-margin-top:120px}
-.pz-in{position:relative;overflow:hidden;display:grid;grid-template-columns:1.08fr 1fr;gap:26px;padding:22px 26px;border-radius:24px;background:radial-gradient(120% 140% at 0% 0%,rgba(255,45,64,.22),transparent 55%),linear-gradient(160deg,#1f0e11,#0e0a0c)}
-.pz-in::after{content:"";position:absolute;top:0;left:-70%;width:35%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.08),transparent);transform:skewX(-18deg);animation:ofshine 3.6s ease-in-out infinite;pointer-events:none}
-.pz-tag{display:inline-block;padding:5px 12px;border-radius:999px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.09em;box-shadow:0 0 18px rgba(255,45,64,.6);animation:flash 1s ease-in-out infinite}
-.pz h2{margin:10px 0 6px;font:800 34px/1.08 Urbanist,sans-serif;letter-spacing:-1px;color:var(--text)}
-.pz h2 span{background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.pz-sub{margin:0 0 14px;color:var(--muted);font-size:15px}
-.pz-why{display:grid;gap:9px;margin:0 0 14px}
-.pz-why div{display:flex;gap:12px;align-items:center}
-.pz-why i{font-style:normal;flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(255,45,64,.15);border:1px solid rgba(255,45,64,.4);font-size:16px}
-.pz-why p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.35}
-.pz-why p b{display:block;color:var(--text);font-size:15.5px}
-.pz-cmp{padding:12px 14px;border-radius:16px;background:rgba(0,0,0,.28);border:1px solid var(--line)}
-.pz-cmp h4{margin:0 0 4px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
-.bar{display:grid;grid-template-columns:150px 1fr 96px;align-items:center;gap:10px;margin-top:7px;color:var(--muted);font-size:13px}
-.bar .tr{height:11px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
-.bar .fl1{height:100%;border-radius:99px;background:linear-gradient(90deg,#55555f,#9a9aa6);animation:pzgrow 3.4s ease-out infinite}
-.bar.pro .fl1{width:5%;background:linear-gradient(90deg,var(--a),var(--a2));box-shadow:0 0 12px var(--a);animation:none}
-@keyframes pzgrow{0%{width:4%}70%,100%{width:100%}}
-.bar b{color:var(--text);font-weight:800;text-align:right;white-space:nowrap}
-.bar.pro b{color:var(--ok)}
-.pz-fine{margin:8px 0 0;color:var(--faint);font-size:11.5px;line-height:1.45}
-.pz-buy{display:flex;flex-direction:column;gap:12px;padding-top:4px}
-.po{position:relative;display:block;padding:15px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:var(--text);transition:transform .2s,border-color .2s,background .2s}
-.po:hover{transform:translateY(-3px);border-color:rgba(255,45,64,.7);background:rgba(255,45,64,.08)}
-.po.hot{border:1.5px solid rgba(255,176,74,.85);background:linear-gradient(135deg,rgba(255,45,64,.3),rgba(255,140,61,.1))}
-.po-rib{position:absolute;top:-12px;left:18px;padding:4px 11px;border-radius:999px;background:#fff;color:#ff2d40;font-size:11px;font-weight:800;letter-spacing:.08em;box-shadow:0 6px 18px rgba(255,45,64,.55);animation:flash 1s ease-in-out infinite}
-.po-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.po-h b{font-size:18px;font-weight:800}
-.po-h span{color:var(--muted);font-size:12.5px;text-align:right}
-.po-p{display:flex;align-items:baseline;gap:10px;margin:4px 0 8px}
-.po-p s{position:relative;text-decoration:none;color:var(--faint);font-size:19px;font-weight:800}
-.po-p s::after{content:"";position:absolute;left:-3px;right:-3px;top:50%;height:3px;border-radius:2px;background:#ff2d40;box-shadow:0 0 8px #ff2d40;transform-origin:left;animation:ofstrike 2.4s ease-in-out infinite}
-.po-p b{display:inline-block;transform-origin:left;font:800 44px/1 Urbanist,sans-serif;letter-spacing:-1px;background:linear-gradient(180deg,#fff,#ffc4b6);-webkit-background-clip:text;background-clip:text;color:transparent;animation:ofpop 2.4s ease-in-out infinite}
-.po-p em{font-style:normal;color:var(--muted);font-size:13px;font-weight:700}
-.po .of-timer{margin:0 0 10px;white-space:nowrap}
-.po-cta{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;height:48px;border-radius:13px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-weight:800;font-size:15.5px;box-shadow:0 10px 28px rgba(255,45,64,.45)}
-.po-cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:ofshine 2.2s ease-in-out infinite}
-.po.hot .po-cta{animation:ofbtn 1.6s ease-in-out infinite}
-.po:not(.hot) .po-cta{background:rgba(255,255,255,.08);border:1px solid rgba(255,45,64,.55);box-shadow:none}
-.pz-trust{display:flex;flex-wrap:wrap;gap:4px 14px;color:var(--muted);font-size:12.5px;font-weight:600}
-.pz-trust span::before{content:"\2713  ";color:var(--ok);font-weight:800}
-.pz-me{padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted);font-size:12.5px;line-height:1.45}
-.pz-me b{color:var(--text)}
-.fr{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px 14px;max-width:1060px;margin:14px auto 0;padding:10px 16px;border-radius:16px;border:1px dashed rgba(62,224,143,.4);background:rgba(62,224,143,.05);color:var(--muted);font-size:14px}
-.fr b{color:var(--ok)}
-.fr .btn{height:40px;padding:0 16px;font-size:14px}
-.fr .btn svg{width:16px;height:16px}
-@media(max-width:900px){.pz-in{grid-template-columns:1fr}.pz-buy{order:-1}.bar{grid-template-columns:110px 1fr 84px}.pz h2{font-size:28px}}
-@media (prefers-reduced-motion:reduce){.pz,.pz-in::after,.pz-tag,.bar .fl1,.po-rib,.po-p s::after,.po-p b,.po-cta::after,.po.hot .po-cta{animation:none}.bar .fl1{width:100%}}
-main .wrap.hero{padding-top:20px}
-.hlogo img{width:44px;height:44px;border-radius:13px}
-.hlogo .w{font-size:28px}
-.hero h1{margin:12px 0 8px}
-.pz-in{padding:20px 24px}
-.po.row{display:grid;grid-template-columns:1fr 190px;align-items:center;gap:6px 16px}
-.po.row .po-p{margin:2px 0 0}
-.po.row .po-cta{grid-row:1/3;grid-column:2;height:46px;font-size:14.5px}
-.pz-buy{gap:11px}
-@media(max-width:520px){.po.row{grid-template-columns:1fr}.po.row .po-cta{grid-row:auto;grid-column:auto}}
+main .wrap.hero{padding-top:22px}
+.ticker{height:36px;background:#151114;animation:none;box-shadow:none;border-bottom:1px solid rgba(255,255,255,.07);color:var(--muted)}
+.tk-track{height:36px;animation-duration:70s}
+.tk-track>span{font-weight:600;font-size:13px;letter-spacing:.01em;text-transform:none}
+.tk-i{gap:7px;padding:0 26px}
+.tk-i b{font-size:13px;color:var(--text)}
+.tk-i s{opacity:.55}
+.tk-i .cd{color:#f5c46b}
+.tk-i .chip{animation:none;background:none;border:0;padding:0;color:#ff7a6b;font-size:13px}
+.tk-sep{opacity:.3}
+.hlogo img{width:42px;height:42px;border-radius:12px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 10px 30px rgba(255,45,64,.35)}
+.hlogo .w{font-size:26px}
+.hlogo .v{align-self:center;background:none;border:1px solid var(--line2);color:var(--muted);font-weight:700}
+.hero h1{margin:14px 0 8px;color:var(--text)}
+.pm{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;max-width:1080px;margin:24px auto 0;padding:26px 28px;border-radius:28px;text-align:left;background:radial-gradient(70% 110% at 0% 0%,rgba(255,45,64,.11),transparent 60%),#121013;border:1px solid rgba(255,255,255,.08);box-shadow:0 40px 120px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.05);scroll-margin-top:120px}
+.pm-kicker{margin:0 0 6px;color:#ff7a6b;font-weight:700;font-size:14px}
+.pm h2{margin:0 0 8px;font:800 32px/1.1 Urbanist,sans-serif;letter-spacing:-.8px;color:var(--text)}
+.pm-sub{margin:0 0 18px;color:var(--muted);font-size:15px;max-width:46ch}
+.pm-why{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:12px}
+.pm-why li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start}
+.pm-why svg{width:20px;height:20px;margin-top:2px;stroke:#ff6a52;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pm-why b{display:block;color:var(--text);font-size:15px;font-weight:700}
+.pm-why span{color:var(--muted);font-size:13.5px}
+.pm-cost{padding-top:14px;border-top:1px solid rgba(255,255,255,.07)}
+.pm-cost .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;color:var(--muted);font-size:13.5px}
+.pm-cost .row b{color:var(--text);font-weight:800}
+.pm-cost .track{height:6px;margin-top:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.pm-cost .track i{display:block;height:100%;width:var(--w);border-radius:99px;background:rgba(255,255,255,.3);transform-origin:left;animation:pmgrow 1.6s cubic-bezier(.2,.7,.2,1) .5s both}
+.pm-cost .track i.r{background:linear-gradient(90deg,var(--a),var(--a2))}
+@keyframes pmgrow{from{transform:scaleX(0)}}
+.pm-cost p{margin:10px 0 0;color:var(--faint);font-size:12px;line-height:1.5}
+.pm-buy{display:flex;flex-direction:column;gap:12px}
+.pm-life{position:relative;overflow:hidden;display:block;padding:20px 22px;border-radius:20px;color:var(--text);background:linear-gradient(160deg,#2b1417,#171012 62%);border:1px solid rgba(245,196,107,.38);box-shadow:0 24px 60px rgba(255,45,64,.16),inset 0 1px 0 rgba(255,255,255,.06);transition:border-color .25s,transform .25s}
+.pm-life:hover{border-color:rgba(245,196,107,.75);transform:translateY(-2px)}
+.pm-life::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,232,190,.1) 50%,transparent 65%);transform:translateX(-100%);animation:pmsweep 7s ease-in-out 1.2s infinite;pointer-events:none}
+@keyframes pmsweep{0%{transform:translateX(-100%)}18%,100%{transform:translateX(100%)}}
+.pm-life-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:800;font-size:17px}
+.pm-spots{padding:4px 10px;border-radius:999px;background:rgba(245,196,107,.12);border:1px solid rgba(245,196,107,.38);color:#f5c46b;font-size:12.5px;font-weight:700}
+.pm-price{display:flex;align-items:baseline;gap:12px;margin:10px 0 4px}
+.pm-price b{font:800 56px/1 Urbanist,sans-serif;letter-spacing:-2px}
+.pm-price s{color:var(--faint);font-size:20px;font-weight:700}
+.pm-desc{margin:0 0 10px;color:var(--muted);font-size:14px}
+.pm-ends{margin:0 0 14px;color:var(--muted);font-size:13.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.pm-ends b{color:#f5c46b;font-weight:800}
+.pm-btn{display:flex;align-items:center;justify-content:center;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-weight:800;font-size:16px;box-shadow:0 12px 30px rgba(255,45,64,.32);transition:box-shadow .2s}
+.pm-life:hover .pm-btn{box-shadow:0 16px 40px rgba(255,45,64,.5)}
+.pm-pro{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:16px;padding:15px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:var(--text);transition:border-color .2s}
+.pm-pro:hover{border-color:rgba(255,255,255,.26)}
+.pm-name{display:block;font-weight:800;font-size:17px}
+.pm-mini{display:block;color:var(--muted);font-size:13px}
+.pm-pp{display:flex;align-items:baseline;gap:8px}
+.pm-pp b{font:800 34px/1 Urbanist,sans-serif;letter-spacing:-1px}
+.pm-pp s{color:var(--faint);font-size:16px;font-weight:700}
+.pm-btn2{display:flex;align-items:center;height:42px;padding:0 18px;border-radius:12px;border:1px solid rgba(255,255,255,.22);font-weight:800;font-size:14.5px;transition:background .2s}
+.pm-pro:hover .pm-btn2{background:rgba(255,255,255,.08)}
+.pm-trust{margin:2px 0 0;color:var(--muted);font-size:13px}
+.pm-maker{margin:0;color:var(--faint);font-size:12.5px}
+.pm-maker b{color:var(--muted);font-weight:700}
+.pm-life:focus-visible,.pm-pro:focus-visible{outline:2px solid #f5c46b;outline-offset:3px}
+.pm-free{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px 16px;max-width:1080px;margin:16px auto 0;color:var(--muted);font-size:14px}
+.pm-free b{color:var(--text)}
+.pm-free .btn{height:40px;padding:0 16px;font-size:14px}
+.pm-free .btn svg{width:16px;height:16px}
+@media(max-width:900px){.pm{grid-template-columns:1fr;padding:22px}.pm-buy{order:-1}.pm h2{font-size:27px}}
+@media(max-width:520px){.pm-pro{grid-template-columns:1fr auto}.pm-btn2{grid-column:1/-1;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.pm-life::before,.pm-cost .track i{animation:none}}
 </style>
 </head>
 <body>
 <div class="glow"><i class="g1"></i><i class="g2"></i><i class="g3"></i></div>
-<a class="ticker" href="#deals" aria-label="OMNITUBE offers"><div class="tk-track"><span><span class="tk-i"><span class="chip">50% OFF</span>OMNITUBE Pro <s>$40</s> <b>$20</b> one time</span><span class="tk-sep">&#10022;</span><span class="tk-i offer-on">&#9889; Lifetime <s>$99</s> <b>$50</b> &middot; only 5 spots &middot; ends in <span class="cd">today</span></span><span class="tk-sep offer-on">&#10022;</span><span class="tk-i">Free download for Windows and Mac</span><span class="tk-sep">&#10022;</span><span class="tk-i">&#128293; OMNITUBE 2 with Omni Shorts</span><span class="tk-sep">&#10022;</span><span class="tk-i"><span class="chip">50% OFF</span>OMNITUBE Pro <s>$40</s> <b>$20</b> one time</span><span class="tk-sep">&#10022;</span><span class="tk-i offer-on">&#9889; Lifetime <s>$99</s> <b>$50</b> &middot; only 5 spots &middot; ends in <span class="cd">today</span></span><span class="tk-sep offer-on">&#10022;</span><span class="tk-i">Free download for Windows and Mac</span><span class="tk-sep">&#10022;</span><span class="tk-i">&#128293; OMNITUBE 2 with Omni Shorts</span><span class="tk-sep">&#10022;</span></span><span aria-hidden="true"><span class="tk-i"><span class="chip">50% OFF</span>OMNITUBE Pro <s>$40</s> <b>$20</b> one time</span><span class="tk-sep">&#10022;</span><span class="tk-i offer-on">&#9889; Lifetime <s>$99</s> <b>$50</b> &middot; only 5 spots &middot; ends in <span class="cd">today</span></span><span class="tk-sep offer-on">&#10022;</span><span class="tk-i">Free download for Windows and Mac</span><span class="tk-sep">&#10022;</span><span class="tk-i">&#128293; OMNITUBE 2 with Omni Shorts</span><span class="tk-sep">&#10022;</span><span class="tk-i"><span class="chip">50% OFF</span>OMNITUBE Pro <s>$40</s> <b>$20</b> one time</span><span class="tk-sep">&#10022;</span><span class="tk-i offer-on">&#9889; Lifetime <s>$99</s> <b>$50</b> &middot; only 5 spots &middot; ends in <span class="cd">today</span></span><span class="tk-sep offer-on">&#10022;</span><span class="tk-i">Free download for Windows and Mac</span><span class="tk-sep">&#10022;</span><span class="tk-i">&#128293; OMNITUBE 2 with Omni Shorts</span><span class="tk-sep">&#10022;</span></span></div></a>
+<a class="ticker" href="#deals" aria-label="OMNITUBE offers"><div class="tk-track"><span><span class="tk-i"><span class="chip">50% OFF</span>OMNITUBE Pro <s>$40</s> <b>$20</b> one time</span><span class="tk-sep">&#10022;</span><span class="tk-i offer-on">Lifetime <s>$99</s> <b>$50</b> &middot; only 5 spots &middot; ends in <span class="cd">today</span></span><span class="tk-sep offer-on">&#10022;</span><span class="tk-i">Free download for Windows and Mac</span><span class="tk-sep">&#10022;</span><span class="tk-i">OMNITUBE 2 with Omni Shorts</span><span class="tk-sep">&#10022;</span><span class="tk-i"><span class="chip">50% OFF</span>OMNITUBE Pro <s>$40</s> <b>$20</b> one time</span><span class="tk-sep">&#10022;</span><span class="tk-i offer-on">Lifetime <s>$99</s> <b>$50</b> &middot; only 5 spots &middot; ends in <span class="cd">today</span></span><span class="tk-sep offer-on">&#10022;</span><span class="tk-i">Free download for Windows and Mac</span><span class="tk-sep">&#10022;</span><span class="tk-i">OMNITUBE 2 with Omni Shorts</span><span class="tk-sep">&#10022;</span></span><span aria-hidden="true"><span class="tk-i"><span class="chip">50% OFF</span>OMNITUBE Pro <s>$40</s> <b>$20</b> one time</span><span class="tk-sep">&#10022;</span><span class="tk-i offer-on">Lifetime <s>$99</s> <b>$50</b> &middot; only 5 spots &middot; ends in <span class="cd">today</span></span><span class="tk-sep offer-on">&#10022;</span><span class="tk-i">Free download for Windows and Mac</span><span class="tk-sep">&#10022;</span><span class="tk-i">OMNITUBE 2 with Omni Shorts</span><span class="tk-sep">&#10022;</span><span class="tk-i"><span class="chip">50% OFF</span>OMNITUBE Pro <s>$40</s> <b>$20</b> one time</span><span class="tk-sep">&#10022;</span><span class="tk-i offer-on">Lifetime <s>$99</s> <b>$50</b> &middot; only 5 spots &middot; ends in <span class="cd">today</span></span><span class="tk-sep offer-on">&#10022;</span><span class="tk-i">Free download for Windows and Mac</span><span class="tk-sep">&#10022;</span><span class="tk-i">OMNITUBE 2 with Omni Shorts</span><span class="tk-sep">&#10022;</span></span></div></a>
 <header><div class="wrap nav">
   <a class="brand" href="#"><img src="assets/app_icon.png" alt=""><span class="word">OMNI<b>TUBE</b></span><span class="by">by Haris Ai</span></a>
   <nav><a href="#shorts">Omni Shorts</a><a href="#features">Features</a><a href="#pro">Pro</a><a href="#whatsnew">What's new</a><a href="#faq">FAQ</a></nav>
@@ -354,46 +360,50 @@ main .wrap.hero{padding-top:20px}
 <div class="wrap hero">
   <a class="hlogo" href="#whatsnew" aria-label="OMNITUBE 2"><img src="assets/app_icon.png" alt="OMNITUBE logo"><span class="w">OMNI<b>TUBE</b></span><span class="v">2.0</span></a>
   <span id="relnote" hidden></span>
-  <h1>Stop editing. <span>Start posting.</span></h1>
+  <h1>Stop editing. Start posting.</h1>
   <p class="lead">Paste a script or type a topic. OMNITUBE writes, voices, animates and edits the whole YouTube video or Short for you. <b style="color:var(--text)">You just press upload.</b></p>
-  <div class="pz" id="deals"><div class="pz-in">
+  <div class="pm" id="deals">
     <div>
-      <span class="pz-tag">OMNITUBE PRO &middot; 50% OFF TODAY</span>
-      <h2>No NVIDIA card? <span>No problem.</span></h2>
-      <p class="pz-sub">Pro makes every picture, clip and voice in the cloud, so OMNITUBE runs on the laptop you already have.</p>
-      <div class="pz-why">
-        <div><i>&#9889;</i><p><b>One topic in, a finished Short out</b>Omni Shorts writes, voices, animates and captions it</p></div>
-        <div><i>&#128197;</i><p><b>A video for every day, in one go</b>Batch Builder and Channels fill your posting plan</p></div>
-        <div><i>&#127916;</i><p><b>Long videos and documentaries too</b>Documentary Studio and the Timeline editor</p></div>
-      </div>
-      <div class="pz-cmp"><h4>What you pay in one year</h4>
-        <div class="bar"><span>AI video subscriptions</span><div class="tr"><div class="fl1"></div></div><b>$240 to $600</b></div>
-        <div class="bar pro"><span>OMNITUBE Pro</span><div class="tr"><div class="fl1"></div></div><b>$20 once</b></div>
-        <p class="pz-fine">Typical AI video apps cost $20 to $50 every month. With Pro you pay the AI providers directly for what you make, usually $0.50 to $2 per video.</p>
+      <p class="pm-kicker">OMNITUBE Pro</p>
+      <h2>No NVIDIA card? No problem.</h2>
+      <p class="pm-sub">Pro makes the pictures, clips and voices in the cloud, so OMNITUBE runs on the laptop you already have.</p>
+      <ul class="pm-why">
+        <li><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><div><b>A topic in, a finished Short out</b><span>Omni Shorts writes, voices, animates and captions it.</span></div></li>
+        <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div><b>A month of uploads in one sitting</b><span>Batch Builder makes a Short for every day of your plan.</span></div></li>
+        <li><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></svg><div><b>Long videos and documentaries</b><span>Documentary Studio and the Timeline editor.</span></div></li>
+      </ul>
+      <div class="pm-cost">
+        <div class="row"><span>AI video subscriptions, one year</span><b>$240 to $600</b></div>
+        <div class="track"><i style="--w:100%"></i></div>
+        <div class="row"><span>OMNITUBE Pro, one time</span><b>$20</b></div>
+        <div class="track"><i class="r" style="--w:4%"></i></div>
+        <p>Most AI video apps charge $20 to $50 a month. With Pro you pay the AI providers directly for what you make, usually $0.50 to $2 per video.</p>
       </div>
     </div>
-    <div class="pz-buy">
-      <a class="po hot offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener"><span class="po-rib">&#128293; ONLY 5 SPOTS AT THIS PRICE</span>
-        <div class="po-h"><b>Lifetime</b><span>Windows + Mac &middot; every future version</span></div>
-        <div class="po-p"><s>$99</s><b>$50</b><em>pay once, yours forever</em></div>
-        <div class="of-timer">Price goes back to $99 in <i><b class="t-h">00</b><small>h</small></i><i><b class="t-m">00</b><small>m</small></i><i class="sec"><b class="t-s">00</b><small>s</small></i></div>
-        <span class="po-cta">Yes, I want Lifetime for $50 &rarr;</span>
+    <div class="pm-buy">
+      <a class="pm-life offer-on" href="https://theharisai.gumroad.com/l/omnitube-pro/5LIFE50" target="_blank" rel="noopener">
+        <div class="pm-life-top"><span>Lifetime</span><span class="pm-spots">5 spots at this price</span></div>
+        <div class="pm-price"><b>$50</b><s>$99</s></div>
+        <p class="pm-desc">Pay once. Windows and Mac, every future version.</p>
+        <div class="pm-ends">Back to $99 in <b><span class="t-h">00</span>:<span class="t-m">00</span>:<span class="t-s">00</span></b></div>
+        <span class="pm-btn">Claim Lifetime for $50</span>
       </a>
-      <a class="po hot offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
-        <div class="po-h"><b>Lifetime</b><span>Windows + Mac &middot; every future version</span></div>
-        <div class="po-p"><b>$99</b><em>pay once, yours forever</em></div>
-        <span class="po-cta">Get Lifetime &rarr;</span>
+      <a class="pm-life offer-off" hidden href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
+        <div class="pm-life-top"><span>Lifetime</span><span class="pm-spots">30 spots only</span></div>
+        <div class="pm-price"><b>$99</b></div>
+        <p class="pm-desc">Pay once. Windows and Mac, every future version.</p>
+        <span class="pm-btn">Get Lifetime</span>
       </a>
-      <a class="po row" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
-        <div class="po-h"><b>Pro</b><span>1 PC &middot; Windows or Mac</span></div>
-        <div class="po-p"><s>$40</s><b>$20</b><em>one time</em></div>
-        <span class="po-cta">Get Pro for $20 &rarr;</span>
+      <a class="pm-pro" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">
+        <div><span class="pm-name">Pro</span><span class="pm-mini">One PC, Windows or Mac</span></div>
+        <div class="pm-pp"><b>$20</b><s>$40</s></div>
+        <span class="pm-btn2">Get Pro</span>
       </a>
-      <div class="pz-trust"><span>Key by email instantly</span><span>Paste the key, done</span><span>No subscription</span></div>
-      <div class="pz-me">&#10084;&#65039; <b>Built by Haris, a solo developer.</b> Every Pro keeps OMNITUBE free for everyone.</div>
+      <p class="pm-trust">Your key arrives by email right away. No subscription.</p>
+      <p class="pm-maker"><b>Built by Haris, an independent developer.</b> Every Pro keeps OMNITUBE free.</p>
     </div>
-  </div></div>
-  <div class="fr"><span>Just want to try first? <b>OMNITUBE Free</b> is $0 forever, no watermark, on your own NVIDIA RTX PC.</span><a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div>
+  </div>
+  <div class="pm-free"><span><b>Just want to try it?</b> OMNITUBE Free costs nothing and adds no watermark. It runs on your own NVIDIA RTX PC.</span><a class="btn primary dl" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Setup_2.0.2.exe"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>Download for Windows</a><a class="btn dlmac" href="https://github.com/Ai-Haris/omnitube-releases/releases/download/v2.0.2/OMNITUBE_Mac_2.0.2.dmg"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M16.4 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.2 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.5.9-1.4 1.3-2.8 1.3-2.9 0 0-2.4-.9-2.3-3.6zM14 5.2c.7-.8 1.1-2 1-3.2-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.3z"/></svg>Download for Mac</a></div>
   <div class="dlc" id="dlc"><span class="dot"></span><b class="dln" data-v="0">0</b><span>downloads of OMNITUBE so far</span></div>
   <div class="meta"><b id="vlabel">v2.0</b> · Windows 10 and 11 · Free · No watermark · No per-minute fees · Mac (Apple Silicon)</div>
   <div class="meta"><a class="saclink" href="#sac">Windows blocked the installer? Here is the fix.</a>&ensp;&middot;&ensp;<a class="saclink" href="#mac-install" onclick="var e=document.getElementById('mac-install');if(e)e.open=true">On a Mac? Here is how to open it.</a></div>
