@@ -194,6 +194,7 @@ footer a:hover{color:var(--text)}
   .stabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.stabs button{flex:none}
   .vtabs{display:flex;width:100%;overflow-x:auto;scrollbar-width:none}.vtabs button{flex:none;padding:0 14px}}
 @media (prefers-reduced-motion:reduce){.stack img{transition:none}.stabs button.on:after{animation:none}}
+.faq pre.cmd{margin:10px 0 12px;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);overflow-x:auto;white-space:pre;font:13px/1.5 ui-monospace,Consolas,monospace;color:var(--text)}
 </style>
 </head>
 <body>
@@ -421,6 +422,7 @@ footer a:hover{color:var(--text)}
     <details><summary>Do I own the videos?</summary><p>Yes. Your scripts and videos never leave your PC. The included models use open licenses (Apache 2.0 and MIT). Follow YouTube's rules: add your own creativity and mark realistic AI content as altered or synthetic when YouTube asks.</p></details>
     <details><summary>I have an AMD or Intel graphics card.</summary><p>OMNITUBE runs in Limited mode: voices, scripts, captions, music, sound effects, stock footage and editing all work. AI images and video clips on your own PC need an NVIDIA RTX card. OMNITUBE Pro makes them with cloud AI on any PC.</p></details>
     <details><summary>My antivirus flags OMNITUBE (for example Avast "IDP.Generic").</summary><p>That is a false positive: the app is new and not code-signed yet, and some antivirus tools flag every new unsigned program. Add the OMNITUBE folder as an exception, or restore the file from the antivirus quarantine. A signed version is on the way.</p></details>
+    <details id="nopip"><summary>Omni Shorts setup stops with "No module named pip".</summary><p>The next update (2.0.3) fixes this by itself. Until then, open <b>Command Prompt</b>, paste this line and press Enter:</p><pre class="cmd"><code>"%USERPROFILE%\.omni-shorts\venv\Scripts\python.exe" -m ensurepip --upgrade</code></pre><p>Then open Setup Center, Omni Shorts, and click <b>Set up now</b> again. Still stuck? Send us the file setup.log from the <b>.omni-shorts</b> folder in your user folder.</p></details>
     <details><summary>Something is not working. How do I get help?</summary><p>Open Setup Center and click <b>Repair OMNITUBE</b>, it fixes most problems. Still stuck? Click <b>Create error report</b> in the same place and send the file from your Desktop to <a href="https://www.instagram.com/theharisai/" target="_blank" rel="noopener">@theharisai</a>.</p></details>
     <details><summary>What is OMNITUBE Pro? Is it paid?</summary><p>Pro is an optional one-time paid upgrade: $20 for Pro on one PC with 1 year of updates, or $99 for Lifetime (Windows + Mac and every future version, only 30 spots). It adds Omni Shorts, the Documentary Studio, Timeline editor, cloud AI video and images with your own API keys, ElevenLabs voices, lip sync, publishing and more. <a class="saclink" href="https://theharisai.gumroad.com/l/omnitube-pro" target="_blank" rel="noopener">Get OMNITUBE Pro</a>.</p></details>
   </div>
